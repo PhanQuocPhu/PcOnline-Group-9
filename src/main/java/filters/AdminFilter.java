@@ -19,7 +19,6 @@ public class AdminFilter implements Filter {
         if (session.getAttribute("username_admin") == null && !httpServletRequest.getRequestURI().endsWith("admin/login")) {
             /* req.getRequestDispatcher("/WEB-INF/views/Admin/account/login.jsp").forward(req, resp);*/
             httpServletResponse.sendRedirect("admin/login");
-
         } else {
             chain.doFilter(req, resp);
         }
