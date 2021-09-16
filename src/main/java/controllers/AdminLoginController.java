@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AdminLoginController",  urlPatterns = "/admin/login")
+@WebServlet(name = "AdminLoginController", urlPatterns = { "/admin/login"})
 public class AdminLoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -15,6 +15,5 @@ public class AdminLoginController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/Admin/account/login.jsp").forward(request, response);
-
     }
 }
