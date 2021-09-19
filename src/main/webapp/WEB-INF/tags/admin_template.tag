@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ attribute name="tittle" required="true" type="java.lang.String" %>
 <%@ attribute name="content" fragment="true" %>
-
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">

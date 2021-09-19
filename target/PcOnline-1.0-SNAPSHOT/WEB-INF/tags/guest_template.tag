@@ -1,9 +1,8 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ attribute name="tittle" required="true" type="java.lang.String" %>
 <%@ attribute name="content" fragment="true" %>
-
-<%--<!DOCTYPE html>--%>
-<%--<html lang="en">--%>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,11 +47,11 @@
 			</div>--%>
 
 			<!-- Navbar -->
-			<%@include file="../views/Guest/components/navbar.jsp" %>
+			<%@include file="../views/Admin/components/navbar.jsp" %>
 			<!-- /.navbar -->
 
 			<!-- Main Sidebar Container -->
-			<%@include file="../views/Guest/components/sidebar.jsp" %>
+			<%@include file="../views/Admin/components/sidebar.jsp" %>
 
 
 			<%--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>
@@ -111,5 +110,5 @@
 	</footer>
 
 
-<%--</html>--%>
+</html>
 

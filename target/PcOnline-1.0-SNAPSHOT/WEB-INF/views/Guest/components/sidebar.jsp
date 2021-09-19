@@ -51,11 +51,7 @@
 				<%--Category--%>
 				<li class="nav-item">
 					<a href="pages/gallery.html" class="nav-link">
-<<<<<<< Updated upstream
 						<i class="nav-icon far fa-image"></i>
-=======
-						<i class="nav-icon fas fa-image"></i>
->>>>>>> Stashed changes
 						<p>
 							Category
 						</p>
@@ -75,11 +71,7 @@
 				<%--Transaction--%>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-<<<<<<< Updated upstream
 						<i class="nav-icon far fa-envelope"></i>
-=======
-						<i class="nav-icon fas fa-envelope"></i>
->>>>>>> Stashed changes
 						<p>
 							Transaction
 							<i class="fas fa-angle-left right"></i>
@@ -110,11 +102,7 @@
 				<%--Account--%>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-<<<<<<< Updated upstream
 						<i class="nav-icon far fa-envelope"></i>
-=======
-						<i class="nav-icon fas fa-envelope"></i>
->>>>>>> Stashed changes
 						<p>
 							Account
 							<i class="fas fa-angle-left right"></i>
