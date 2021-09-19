@@ -1,10 +1,7 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ attribute name="tittle" required="true" type="java.lang.String" %>
 <%@ attribute name="content" fragment="true" %>
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 564262f (haha)
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -51,11 +48,11 @@
 			</div>--%>
 
 			<!-- Navbar -->
-			<%@include file="../views/Admin/components/navbar.jsp" %>
+			<%@include file="../views/Guest/components/navbar.jsp" %>
 			<!-- /.navbar -->
 
 			<!-- Main Sidebar Container -->
-			<%@include file="../views/Admin/components/sidebar.jsp" %>
+			<%@include file="../views/Guest/components/sidebar.jsp" %>
 
 
 			<%--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>

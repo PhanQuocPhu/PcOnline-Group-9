@@ -51,7 +51,7 @@
 				<%--Category--%>
 				<li class="nav-item">
 					<a href="pages/gallery.html" class="nav-link">
-						<i class="nav-icon far fa-image"></i>
+						<i class="nav-icon fas fa-image"></i>
 						<p>
 							Category
 						</p>
@@ -71,7 +71,7 @@
 				<%--Transaction--%>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="nav-icon far fa-envelope"></i>
+						<i class="nav-icon fas fa-envelope"></i>
 						<p>
 							Transaction
 							<i class="fas fa-angle-left right"></i>
@@ -102,7 +102,7 @@
 				<%--Account--%>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="nav-icon far fa-envelope"></i>
+						<i class="nav-icon fas fa-envelope"></i>
 						<p>
 							Account
 							<i class="fas fa-angle-left right"></i>
