@@ -40,7 +40,7 @@
 		<!-- Messages Dropdown Menu -->
 		<li class="nav-item dropdown">
 			<a class="nav-link" data-toggle="dropdown" href="#">
-				<i class="fas fa-comments"></i>
+				<i class="far fa-comments"></i>
 				<span class="badge badge-danger navbar-badge">3</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -55,7 +55,7 @@
 								<span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
 							</h3>
 							<p class="text-sm">Call me whenever you can...</p>
-							<p class="text-sm text-muted"><i class="fas fa-clock mr-1"></i> 4 Hours Ago</p>
+							<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
 						</div>
 					</div>
 					<!-- Message End -->
@@ -72,7 +72,7 @@
 								<span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
 							</h3>
 							<p class="text-sm">I got your message bro</p>
-							<p class="text-sm text-muted"><i class="fas fa-clock mr-1"></i> 4 Hours Ago</p>
+							<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
 						</div>
 					</div>
 					<!-- Message End -->
@@ -89,7 +89,7 @@
 								<span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
 							</h3>
 							<p class="text-sm">The subject goes here</p>
-							<p class="text-sm text-muted"><i class="fas fa-clock mr-1"></i> 4 Hours Ago</p>
+							<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
 						</div>
 					</div>
 					<!-- Message End -->
@@ -101,7 +101,7 @@
 		<!-- Notifications Dropdown Menu -->
 		<li class="nav-item dropdown">
 			<a class="nav-link" data-toggle="dropdown" href="#">
-				<i class="fas fa-bell"></i>
+				<i class="far fa-bell"></i>
 				<span class="badge badge-warning navbar-badge">15</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
