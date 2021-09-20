@@ -11,15 +11,15 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/guest/images/favicon.p3ng'/>">
+		<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/guest/images/favicon.png'/>">
 		<!-- Material Design Iconic Font-V2.2.0 -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/material-design-iconic-font.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/guest/css/material-design-iconic-font.min.css">
 		<!-- Font Awesome -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/font-awesome.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/guest/css/font-awesome.min.css">
 		<!-- Font Awesome Stars-->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/fontawesome-stars.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/guest/css/fontawesome-stars.css">
 		<!-- Meanmenu CSS -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/meanmenu.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/guest/css/meanmenu.css">
 		<!-- owl carousel CSS -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/owl.carousel.min.css">
 		<!-- Slick Carousel CSS -->
