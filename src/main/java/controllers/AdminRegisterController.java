@@ -14,6 +14,6 @@ public class AdminRegisterController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/views/Admin/account/register.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Admin/account/register.jsp").forward(request, response);
     }
 }

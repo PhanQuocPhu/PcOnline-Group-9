@@ -47,11 +47,11 @@
 			</div>--%>
 
 			<!-- Navbar -->
-			<%@include file="/views/Admin/components/navbar.jsp" %>
+			<%@include file="../views/Admin/components/navbar.jsp" %>
 			<!-- /.navbar -->
 
 			<!-- Main Sidebar Container -->
-			<%@include file="/views/Admin/components/sidebar.jsp" %>
+			<%@include file="../views/Admin/components/sidebar.jsp" %>
 
 
 			<%--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>
