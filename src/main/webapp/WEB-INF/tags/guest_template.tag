@@ -39,7 +39,7 @@
 		<!-- Helper CSS -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/helper.css">
 		<!-- Main Style CSS -->
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/style.css">
 		<!-- Responsive CSS -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/responsive.css">
 		<!-- Modernizr js -->
