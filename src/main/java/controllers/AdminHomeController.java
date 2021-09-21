@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "AdminHomeController", urlPatterns = "/admin/*")
+@WebServlet(name = "AdminHomeController", urlPatterns = "/admin")
 public class AdminHomeController extends HttpServlet {
 
 
