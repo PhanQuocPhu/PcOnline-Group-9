@@ -1,5 +1,6 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ attribute name="tittle" required="true" type="java.lang.String" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ attribute name="content" fragment="true" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,37 +9,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>${tittle}</title>
 
-		<!-- Google Font: Source Sans Pro -->
-		<link rel="stylesheet"
-		      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-		<!-- Font Awesome -->
-		<link rel="stylesheet"
-		      href="${pageContext.request.contextPath}/assets/admin/plugins/fontawesome-free/css/all.min.css">
-		<!-- Ionicons -->
-		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-		<!-- Tempusdominus Bootstrap 4 -->
-		<link rel="stylesheet"
-		      href="${pageContext.request.contextPath}/assets/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-		<!-- iCheck -->
-		<link rel="stylesheet"
-		      href="${pageContext.request.contextPath}/assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-		<!-- JQVMap -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/admin/plugins/jqvmap/jqvmap.min.css">
-		<!-- Theme style -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/admin/dist/css/adminlte.min.css">
-		<!-- overlayScrollbars -->
-		<link rel="stylesheet"
-		      href="${pageContext.request.contextPath}/assets/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-		<!-- Daterange picker -->
-		<link rel="stylesheet"
-		      href="${pageContext.request.contextPath}/assets/admin/plugins/daterangepicker/daterangepicker.css">
-		<!-- summernote -->
-		<link rel="stylesheet"
-		      href="${pageContext.request.contextPath}/assets/admin/plugins/summernote/summernote-bs4.min.css">
 	</head>
 
 	<body class="hold-transition sidebar-mini layout-fixed">
 		<div class="wrapper">
+			<%@include file="/views/Admin/components/css.jsp" %>
+
 
 			<!-- Preloader -->
 			<%--<div class="preloader flex-column justify-content-center align-items-center">
@@ -49,10 +25,8 @@
 			<!-- Navbar -->
 			<%@include file="/views/Admin/components/navbar.jsp" %>
 			<!-- /.navbar -->
-
 			<!-- Main Sidebar Container -->
 			<%@include file="/views/Admin/components/sidebar.jsp" %>
-
 
 			<%--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>
 			<!-- Content Wrapper. Contains page content -->
@@ -73,42 +47,7 @@
 	</body>
 
 	<footer>
-		<!-- jQuery -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/jquery/jquery.min.js"></script>
-		<!-- jQuery UI 1.11.4 -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
-		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-		<script>
-            $.widget.bridge('uibutton', $.ui.button)
-		</script>
-		<!-- Bootstrap 4 -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<!-- ChartJS -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/chart.js/Chart.min.js"></script>
-		<!-- Sparkline -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/sparklines/sparkline.js"></script>
-		<!-- JQVMap -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-		<!-- jQuery Knob Chart -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
-		<!-- daterangepicker -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/moment/moment.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
-		<!-- Tempusdominus Bootstrap 4 -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-		<!-- Summernote -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/summernote/summernote-bs4.min.js"></script>
-		<!-- overlayScrollbars -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-		<!-- AdminLTE App -->
-		<script src="${pageContext.request.contextPath}/assets/admin/dist/js/adminlte.js"></script>
-		<!-- AdminLTE for demo purposes -->
-		<script src="${pageContext.request.contextPath}/assets/admin/dist/js/demo.js"></script>
-		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-		<script src="${pageContext.request.contextPath}/assets/admin/dist/js/pages/dashboard.js"></script>
+		<%@include file="/views/Admin/components/js.jsp" %>
 	</footer>
-
-
 </html>
 
