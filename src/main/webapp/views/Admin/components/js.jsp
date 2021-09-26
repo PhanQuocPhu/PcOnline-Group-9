@@ -33,9 +33,3 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="${pageContext.request.contextPath}/assets/admin/dist/js/pages/dashboard.js"></script>
 
-<!-- DataTables  & Plugins -->
-<script src="${pageContext.request.contextPath}/assets/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>

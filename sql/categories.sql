@@ -30,18 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories`
 (
     `id`                int(10) UNSIGNED                        NOT NULL,
-    `c_name`            varchar(225) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `c_slug`            varchar(225) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `c_icon`            char(191) COLLATE utf8mb4_unicode_ci             DEFAULT NULL,
-    `c_avatar`          varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `c_active`          tinyint(4)                              NOT NULL DEFAULT 1,
-    `c_total_product`   int(10)                               NOT NULL DEFAULT 0,
-    `c_title_seo`       varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `c_description_seo` varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `c_keyword_seo`     varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `c_home`            tinyint(4)                              NOT NULL DEFAULT 0 COMMENT 'Hiện trên trang chủ',
-    `created_at`        timestamp                               NULL     DEFAULT NULL,
-    `updated_at`        timestamp                               NULL     DEFAULT NULL
+    `cName`            varchar(225) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `cSlug`            varchar(225) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `cIcon`            char(191) COLLATE utf8mb4_unicode_ci             DEFAULT NULL,
+    `cAvatar`          varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `cActive`          tinyint(4)                              NOT NULL DEFAULT 1,
+    `cTotalProduct`   int(10)                               NOT NULL DEFAULT 0,
+    `cTitleSeo`       varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `cDescriptionSeo` varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `cKeywordSeo`     varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `cHome`            tinyint(4)                              NOT NULL DEFAULT 0 COMMENT 'Hiện trên trang chủ',
+    `createdAt`        timestamp                               NULL     DEFAULT NULL,
+    `updatedAt`        timestamp                               NULL     DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
@@ -50,8 +50,8 @@ CREATE TABLE `categories`
 -- Đang đổ dữ liệu cho bảng `categories`
 --
 
-INSERT INTO `categories` (`id`, `c_name`, `c_slug`, `c_icon`, `c_avatar`, `c_active`, `c_total_product`, `c_title_seo`,
-                          `c_description_seo`, `c_keyword_seo`, `created_at`, `updated_at`, `c_home`)
+INSERT INTO `categories` (`id`, `cName`, `cSlug`, `cIcon`, `cAvatar`, `cActive`, `cTotalProduct`, `cTitleSeo`,
+                          `cDescriptionSeo`, `cKeywordSeo`, `createdAt`, `updatedAt`, `cHome`)
 VALUES (10, 'MainBoard - Bo mạch chủ', 'mainboard-bo-mach-chu', '2021-06-07__020-motherboard.png', NULL, 1, 0,
         'MainBoard', NULL, NULL, '2021-04-07 20:17:29', '2021-06-13 08:35:47', 1),
        (11, 'CPU - Vi xử lý', 'cpu-vi-xu-ly', '2021-06-07__013-processor.png', NULL, 1, 0, 'CPU', NULL, NULL,
@@ -82,10 +82,10 @@ VALUES (10, 'MainBoard - Bo mạch chủ', 'mainboard-bo-mach-chu', '2021-06-07_
 --
 ALTER TABLE `categories`
     ADD PRIMARY KEY (`id`),
-    ADD UNIQUE KEY `categories_c_name_unique` (`c_name`),
-    ADD KEY `categories_c_slug_index` (`c_slug`),
-    ADD KEY `categories_c_active_index` (`c_active`),
-    ADD KEY `categories_c_home_index` (`c_home`);
+    ADD UNIQUE KEY `categories_cName_unique` (`cName`),
+    ADD KEY `categories_cSlug_index` (`cSlug`),
+    ADD KEY `categories_cActive_index` (`cActive`),
+    ADD KEY `categories_cHome_index` (`cHome`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ

@@ -5,13 +5,13 @@
              version="3.0">
   <persistence-unit name="default">
 
-      <class>models.AdminsEntity</class>
-      <class>models.CategoriesEntity</class>
-      <class>models.OrdersEntity</class>
-      <class>models.PaymentsEntity</class>
-      <class>models.ProductsEntity</class>
-      <class>models.TransactionsEntity</class>
-      <class>models.UsersEntity</class>
+      <class>entity.AdminsEntity</class>
+      <class>entity.CategoriesEntity</class>
+      <class>entity.OrdersEntity</class>
+      <class>entity.PaymentsEntity</class>
+      <class>entity.ProductsEntity</class>
+      <class>entity.TransactionsEntity</class>
+      <class>entity.UsersEntity</class>
       <properties>
           <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/pconlineweb"/>
           <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

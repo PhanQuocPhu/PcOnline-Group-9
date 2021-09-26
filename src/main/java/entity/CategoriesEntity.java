@@ -1,10 +1,10 @@
-package models;
+package entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "categories", schema = "pconlineweb"/*, catalog = ""*/)
+@Table(name = "categories", schema = "pconlineweb", catalog = "")
 public class CategoriesEntity {
     private int id;
     private String cName;
@@ -20,24 +20,6 @@ public class CategoriesEntity {
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
-    public CategoriesEntity() {
-
-    }
-    public CategoriesEntity(int id, String cName, String cSlug, String cIcon, String cAvatar, byte cActive, int cTotalProduct, String cTitleSeo, String cDescriptionSeo, String cKeywordSeo, byte cHome, Timestamp createdAt, Timestamp updatedAt) {
-        this.id = id;
-        this.cName = cName;
-        this.cSlug = cSlug;
-        this.cIcon = cIcon;
-        this.cAvatar = cAvatar;
-        this.cActive = cActive;
-        this.cTotalProduct = cTotalProduct;
-        this.cTitleSeo = cTitleSeo;
-        this.cDescriptionSeo = cDescriptionSeo;
-        this.cKeywordSeo = cKeywordSeo;
-        this.cHome = cHome;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
     @Id
     @Column(name = "id")
     public int getId() {
@@ -49,7 +31,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_name")
+    @Column(name = "cName")
     public String getcName() {
         return cName;
     }
@@ -59,7 +41,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_slug")
+    @Column(name = "cSlug")
     public String getcSlug() {
         return cSlug;
     }
@@ -69,7 +51,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_icon")
+    @Column(name = "cIcon")
     public String getcIcon() {
         return cIcon;
     }
@@ -79,7 +61,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_avatar")
+    @Column(name = "cAvatar")
     public String getcAvatar() {
         return cAvatar;
     }
@@ -89,7 +71,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_active")
+    @Column(name = "cActive")
     public byte getcActive() {
         return cActive;
     }
@@ -99,7 +81,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_total_product")
+    @Column(name = "cTotalProduct")
     public int getcTotalProduct() {
         return cTotalProduct;
     }
@@ -109,7 +91,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_title_seo")
+    @Column(name = "cTitleSeo")
     public String getcTitleSeo() {
         return cTitleSeo;
     }
@@ -119,7 +101,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_description_seo")
+    @Column(name = "cDescriptionSeo")
     public String getcDescriptionSeo() {
         return cDescriptionSeo;
     }
@@ -129,7 +111,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_keyword_seo")
+    @Column(name = "cKeywordSeo")
     public String getcKeywordSeo() {
         return cKeywordSeo;
     }
@@ -139,7 +121,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "c_home")
+    @Column(name = "cHome")
     public byte getcHome() {
         return cHome;
     }
@@ -149,7 +131,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "created_at")
+    @Column(name = "createdAt")
     public Timestamp getCreatedAt() {
         return createdAt;
     }
@@ -159,7 +141,7 @@ public class CategoriesEntity {
     }
 
     @Basic
-    @Column(name = "updated_at")
+    @Column(name = "updatedAt")
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }

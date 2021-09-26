@@ -1,21 +1,21 @@
-package dao;
+package models;
 
-import models.CategoriesEntity;
-import utils.ConnectionUtil;
+import entity.CategoriesEntity;
+import utils.DbUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesDAO {
+public class CategoriesModel {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public List<CategoriesEntity> getListCategories() {
+    //Test
+    /*public List<CategoriesEntity> getListCategoriesDao() {
         try {
             String sql = "select * from categories";
             conn = new ConnectionUtil().openConn();     //Mở kết nối
@@ -32,8 +32,17 @@ public class CategoriesDAO {
 
             return list;
         } catch (SQLException throwables) {
+            System.out.println("Lỗi trong CategoriesDAO");
             throwables.printStackTrace();
         }
         return null;
+    }*/
+
+    //Sql2o - Lấy hết
+    public static List<CategoriesEntity> getAll() throws SQLException {
+        final String sql = "select * from categories";
+        try ( org.sql2o.Connection con = DbUtil.openConn() ){
+            return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(CategoriesEntity.class);
+        }
     }
 }
