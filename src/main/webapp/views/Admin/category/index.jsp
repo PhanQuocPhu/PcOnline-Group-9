@@ -4,7 +4,7 @@
 
 <jsp:useBean id="categories" scope="request" type="java.util.List<entity.CategoriesEntity>"/>
 
-<mt:admin_template tittle="Admin">
+<mt:admin_template tittle="Category">
 	<jsp:body>
 		<section class="content-header">
 			<div class="container-fluid">
@@ -29,7 +29,7 @@
 						<div class="card">
 							<div class="card-header">
 								<h2 class="card-title"></h2>
-								<a class="btn btn-outline-success float-right"> Thêm mới </a>
+								<a href="${pageContext.request.contextPath}/admin/category/add" class="btn btn-outline-success float-right"> Thêm mới </a>
 							</div>
 							<!-- /.card-header -->
 

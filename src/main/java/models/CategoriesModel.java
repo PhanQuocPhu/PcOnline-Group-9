@@ -42,7 +42,24 @@ public class CategoriesModel {
     public static List<CategoriesEntity> getAll() throws SQLException {
         final String sql = "select * from categories";
         try ( org.sql2o.Connection con = DbUtil.openConn() ){
-            return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(CategoriesEntity.class);
+            return con.createQuery(sql)/*.throwOnMappingFailure(false)*/.executeAndFetch(CategoriesEntity.class);
+        }
+    }
+    //Sql2o - Thêm
+    public static void add(CategoriesEntity c) {
+        final String sql = "INSERT INTO categories (cName, cSlug, cIcon, cAvatar, cActive, " +
+                "cTotalProduct, cHome) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (org.sql2o.Connection con = DbUtil.openConn()) {
+            con.createQuery(sql)
+                    .addParameter("cName", c.getcName())
+                    .addParameter("cSlug", c.getcSlug() )
+                    .addParameter("cIcon", c.getcIcon())
+                    .addParameter("cAvatar", c.getcAvatar())
+                    .addParameter("cActive", c.getcActive())
+                    .addParameter("cTotalProduct", c.getcTotalProduct())
+                    .addParameter("cHome", c.getcHome())
+                    .executeUpdate();
         }
     }
 }
