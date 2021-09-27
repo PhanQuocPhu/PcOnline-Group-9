@@ -30,27 +30,27 @@ SET time_zone = "+00:00";
 CREATE TABLE `products`
 (
     `id`                  int(10) UNSIGNED                        NOT NULL,
-    `pro_name`            varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `pro_slug`            varchar(225) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `pro_category_id`     int(10) UNSIGNED                        NOT NULL DEFAULT 0,
-    `pro_price`           int(10)                               NOT NULL DEFAULT 0,
-    `pro_author_id`       int(10)                               NOT NULL DEFAULT 0,
-    `pro_sale`            tinyint(4)                              NOT NULL DEFAULT 0,
-    `pro_active`          tinyint(4)                              NOT NULL DEFAULT 1,
-    `pro_hot`             tinyint(4)                              NOT NULL DEFAULT 0,
-    `pro_view`            int(10)                               NOT NULL DEFAULT 0,
-    `pro_description`     varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `pro_avatar`          varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `pro_description_seo` varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `pro_keyword_seo`     varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `pro_title_seo`       varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
-    `pro_content`         longtext COLLATE utf8mb4_unicode_ci              DEFAULT NULL,
-    `pro_pay`             tinyint(4)                              NOT NULL DEFAULT 0,
-    `pro_number`          tinyint(4)                              NOT NULL DEFAULT 0,
-    `pro_total_rating`    int(10)                               NOT NULL DEFAULT 0 COMMENT 'Tổng đánh giá sản phẩm',
-    `pro_total_number`    int(10)                               NOT NULL DEFAULT 0 COMMENT 'Tổng điểm đánh giá',
-    `created_at`          timestamp                               NULL     DEFAULT NULL,
-    `updated_at`          timestamp                               NULL     DEFAULT NULL
+    `proName`            varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `proSlug`            varchar(225) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `proCategoryId`     int(10) UNSIGNED                        NOT NULL DEFAULT 0,
+    `proPrice`           int(10)                               NOT NULL DEFAULT 0,
+    `proAuthorId`       int(10)                               NOT NULL DEFAULT 0,
+    `proSale`            tinyint(4)                              NOT NULL DEFAULT 0,
+    `proActive`          tinyint(4)                              NOT NULL DEFAULT 1,
+    `proHot`             tinyint(4)                              NOT NULL DEFAULT 0,
+    `proView`            int(10)                               NOT NULL DEFAULT 0,
+    `proDescription`     varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `proAvatar`          varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `proDescriptionSeo` varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `proKeywordSeo`     varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `proTitleSeo`       varchar(225) COLLATE utf8mb4_unicode_ci          DEFAULT NULL,
+    `proContent`         longtext COLLATE utf8mb4_unicode_ci              DEFAULT NULL,
+    `proPay`             tinyint(4)                              NOT NULL DEFAULT 0,
+    `proNumber`          tinyint(4)                              NOT NULL DEFAULT 0,
+    `proTotalRating`    int(10)                               NOT NULL DEFAULT 0 COMMENT 'Tổng đánh giá sản phẩm',
+    `proTotalNumber`    int(10)                               NOT NULL DEFAULT 0 COMMENT 'Tổng điểm đánh giá',
+    `createdAt`          timestamp                               NULL     DEFAULT NULL,
+    `updatedAt`          timestamp                               NULL     DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
@@ -59,10 +59,10 @@ CREATE TABLE `products`
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `products` (`id`, `pro_name`, `pro_slug`, `pro_category_id`, `pro_price`, `pro_author_id`, `pro_sale`,
-                        `pro_active`, `pro_hot`, `pro_view`, `pro_description`, `pro_avatar`, `pro_description_seo`,
-                        `pro_keyword_seo`, `created_at`, `updated_at`, `pro_title_seo`, `pro_content`, `pro_pay`,
-                        `pro_number`, `pro_total_rating`, `pro_total_number`)
+INSERT INTO `products` (`id`, `proName`, `proSlug`, `proCategoryId`, `proPrice`, `proAuthorId`, `proSale`,
+                        `proActive`, `proHot`, `proView`, `proDescription`, `proAvatar`, `proDescriptionSeo`,
+                        `proKeywordSeo`, `createdAt`, `updatedAt`, `proTitleSeo`, `proContent`, `proPay`,
+                        `proNumber`, `proTotalRating`, `proTotalNumber`)
 VALUES (8, 'Intel Pentium G6400 / 4MB / 4.0GHz / 2 Nhân 4 Luồng / LGA 1200',
         'intel-pentium-g6400-4mb-40ghz-2-nhan-4-luong-lga-1200', 11, 1690000, 0, 0, 1, 1, 0,
         '<p>H&atilde;ng sản xuất: INTEL</p>\r\n\r\n<p>T&igrave;nh trạng: Mới v&agrave; Fullbox 100%</p>\r\n\r\n<p>Bảo h&agrave;nh: 36 th&aacute;ng</p>',
@@ -112,10 +112,10 @@ VALUES (8, 'Intel Pentium G6400 / 4MB / 4.0GHz / 2 Nhân 4 Luồng / LGA 1200',
         '2021-08-05 19:41:17', '2021-08-05 19:41:17', 'ASUS Prime TRX40 -Pro',
         '<p><strong>Th&ocirc;ng số kỹ thuật&nbsp;</strong></p>\r\n\r\n<table border=\"3\" cellpadding=\"3\" cellspacing=\"3\" style=\"width:900px\">\r\n	<tbody>\r\n		<tr>\r\n			<td colspan=\"2\"><strong>M&ocirc; tả chi tiết&nbsp;</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>CPU</td>\r\n			<td>AMD Socket sTRX4 for 3rd Gen AMD Ryzen&trade; Threadripper&trade; Series Desktop Processors<br />\r\n			&nbsp;Refer to www.asus.com for CPU support list</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Chipset</td>\r\n			<td>&nbsp;&nbsp;&nbsp; Build in AMD TRX40</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Bộ nhớ\r\n			<p>&nbsp;</p>\r\n			</td>\r\n			<td>3rd&nbsp;Gen AMD Ryzen&trade;&nbsp;Threadripper&trade;&nbsp;Series Desktop processors</td>\r\n		</tr>\r\n		<tr>\r\n			<td>&nbsp;</td>\r\n			<td>8 x DIMM, Max. 256GB, DDR4 3200/2933/2800/2666/2400/2133 MHz ECC and non-ECC, Un-buffered Memory</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"4\">Multi-GPU Support</td>\r\n			<td>Supports NVIDIA&reg; Quad-GPU SLI&reg; Technology</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Supports NVIDIA&reg; 2-Way SLI&reg; Technology</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Supports AMD Quad-GPU CrossFireX&trade; Technology</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Supports AMD 2-Way CrossFireX Technology</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"4\">Expansion Slots</td>\r\n			<td>3rd&nbsp;Gen AMD Ryzen&trade;&nbsp;Threadripper&trade;&nbsp;Series Desktop processors</td>\r\n		</tr>\r\n		<tr>\r\n			<td>3 x PCIe 4.0 x16 (x16/x16/x16) *</td>\r\n		</tr>\r\n		<tr>\r\n			<td>AMD TRX40 chipset</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x PCIe 4.0 (x4 mode)</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"6\">Storage</td>\r\n			<td>3rd&nbsp;Gen AMD Ryzen&trade;&nbsp;Threadripper&trade;&nbsp;Series Desktop processors :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x M.2 Socket 3, with M key, type 2242/2260/2280/22110 storage devices support(PCIe 4.0 x4 mode)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>AMD TRX40 chipset :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x M.2 Socket 3, with vertical M key, type 2242/2260/2280/22110 storage devices support(SATA &amp; PCIe 4.0 x4 mode)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>8 x SATA 6Gb/s port(s),</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Support Raid 0, 1, 10</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"3\">LAN</td>\r\n			<td>Intel&reg; I211-AT</td>\r\n		</tr>\r\n		<tr>\r\n			<td>ASUS Turbo LAN Utility</td>\r\n		</tr>\r\n		<tr>\r\n			<td>ASUS LAN Guard</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"12\">Audio</td>\r\n			<td>Realtek&reg; ALC S1220 8-Channel High Definition Audio CODEC featuring Crystal Sound 3</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Impedance sense for front and rear headphone outputs</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Internal audio Amplifier to enhance the highest quality sound for headphone and speakers</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Supports : Jack-detection, Multi-streaming, Front Panel Jack-retasking</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- High quality 120 dB (Line-out at rear) and 108 dB SNR recording input (Line-in)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Audio Feature :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- DTS X&reg;:Ultra</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Optical S/PDIF out port(s) at back panel</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Audio Shielding: Ensures precision analog/digital separation and greatly reduced multi-lateral interference</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Dedicated audio PCB layers: Separate layers for left and right channels to guard the quality of the sensitive audio signals</td>\r\n		</tr>\r\n		<tr>\r\n			<td>#NAME?</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Unique de-pop circuit: Reduces start-up popping noise to audio outputs</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"12\">USB Ports</td>\r\n			<td>AMD Ryzen&trade; Threadripper&trade; Processors :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>4 x USB 3.2 Gen 2 port(s) (4 at back panel, , 3 x Type-A+1 x Type-C)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>AMD TRX40 chipset :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x USB 3.2 Gen 2 front panel connector port(s) (1 at mid-board)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>AMD TRX40 chipset :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>6 x USB 3.2 Gen 1 port(s) (2 at back panel, , Type-A, 4 at mid-board)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>AMD TRX40 chipset :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x USB 2.0 port(s) (2 at mid-board)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>ASMedia&reg; USB 3.2 Gen 1 controller :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>4 x USB 3.2 Gen 1 port(s) (4 at back panel, , Type-A)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>GL852G USB Hub :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x USB 2.0 port(s) (2 at mid-board)</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"31\">Special Features</td>\r\n			<td>ASUS Dual Intelligent Processors 5-Way Optimization by Dual Intelligent Processors 5 :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>5Way Optimization tuning key perfectly consolidates TPU, EPU, DIGI+ VRM, Fan Expert 4, and Turbo App</td>\r\n		</tr>\r\n		<tr>\r\n			<td>ASUS SafeSlot&nbsp;- Protect your graphics card Investment</td>\r\n		</tr>\r\n		<tr>\r\n			<td>AURA :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Aura RGB Strip Headers</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Aura Lighting Effects Synchronization with compatible ASUS ROG devices</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Addressable Gen 2 Header</td>\r\n		</tr>\r\n		<tr>\r\n			<td>ASUS Exclusive Features&nbsp;:</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- AI Suite 3</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Ai Charger</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Onboard Button : Power</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS UEFI BIOS EZ Mode featuring friendly graphics user interface</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Turbo LAN</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Crystal Sound 3</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Armoury Crate</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Pre-mounted I/O Shield</td>\r\n		</tr>\r\n		<tr>\r\n			<td>ASUS Quiet Thermal Solution&nbsp;:</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Stylish Design Heat-pipe solution</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Stylish Fanless Design with M.2 Heat-sink solution</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS Fan Xpert 4</td>\r\n		</tr>\r\n		<tr>\r\n			<td>ASUS EZ DIY :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS EZ Flash 3</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS USB BIOS FlashBack&trade;</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS UEFI BIOS EZ Mode</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- Multi-language BIOS</td>\r\n		</tr>\r\n		<tr>\r\n			<td>ASUS Q-Design :</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS Q-Code</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS Q-LED (CPU, DRAM, VGA, Boot Device LED)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS Q-Slot</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS Q-DIMM</td>\r\n		</tr>\r\n		<tr>\r\n			<td>- ASUS Q-Connector</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"6\">Back I/O Ports</td>\r\n			<td>1 x LAN (RJ45) port(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>4 x USB 3.2 Gen 2 (teal blue) (3 x Type-A+1 x Type-C) (one port can be switched to USB BIOS FlashBack&trade;)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>6 x USB 3.2 Gen 1 (blue)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x Optical S/PDIF out</td>\r\n		</tr>\r\n		<tr>\r\n			<td>5 x Audio jack(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x USB BIOS FlashBack&trade;&nbsp;Button(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td rowspan=\"23\">Internal I/O Ports</td>\r\n			<td>1 x Q_Code</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x Aura RGB Strip Header(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x Addressable Gen 2 header(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x USB 3.2 Gen 1(up to 5Gbps) connector(s) support(s) additional 4 USB 3.2 Gen 1 port(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x USB 2.0 connector(s) support(s) additional 4 USB 2.0 port(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x M.2 Socket 3 with M key, type 2242/2260/2280/22110 storage devices support(SATA &amp; PCIe 4.0 x4 mode)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x M.2 Socket 3 with vertical M key, type 2242/2260/2280/22110 storage devices support(SATA &amp; PCIe 4.0 x4 mode)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x M.2 with E key for Wi-Fi module</td>\r\n		</tr>\r\n		<tr>\r\n			<td>8 x SATA 6Gb/s connector(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x CPU Fan connector(s) (1 x 4 -pin)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x CPU OPT Fan connector(s) (1 x 4 -pin)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>3 x Chassis Fan connector(s) (3 x 4 -pin)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x AIO_PUMP connector (1 x 4 -pin)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x W_PUMP+ connector (1 x 4 -pin)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x 24-pin EATX Power connector(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>2 x 8-pin ATX 12V Power connector(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x Front panel audio connector(s) (AAFP)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x System panel(s) (Q-Connector) x With flexkey function</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x Thermal sensor connector(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x Power-on button(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x Clear CMOS jumper(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x Node Connector(s)</td>\r\n		</tr>\r\n		<tr>\r\n			<td>1 x USB 3.2 Gen 2 front panel connector</td>\r\n		</tr>\r\n		<tr>\r\n			<td>BIOS</td>\r\n			<td>1 x 128 Mb Flash ROM, UEFI AMI BIOS, PnP, WfM2.0, SM BIOS 3.2, ACPI 6.2</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Manageability</td>\r\n			<td>WfM 2.0, WOL by PME, PXE</td>\r\n		</tr>\r\n		<tr>\r\n			<td>Hệ điều h&agrave;nh</td>\r\n			<td>Support for Windows 10 64-bit</td>\r\n		</tr>\r\n		<tr>\r\n			<td>K&iacute;ch Thước&nbsp;</td>\r\n			<td>ATX Form Factor 12 inch x 9.6 inch ( 30.5 cm x 24.4 cm )</td>\r\n		</tr>\r\n	</tbody>\r\n</table>',
         2, 98, 1, 5);
-INSERT INTO `products` (`id`, `pro_name`, `pro_slug`, `pro_category_id`, `pro_price`, `pro_author_id`, `pro_sale`,
-                        `pro_active`, `pro_hot`, `pro_view`, `pro_description`, `pro_avatar`, `pro_description_seo`,
-                        `pro_keyword_seo`, `created_at`, `updated_at`, `pro_title_seo`, `pro_content`, `pro_pay`,
-                        `pro_number`, `pro_total_rating`, `pro_total_number`)
+INSERT INTO `products` (`id`, `proName`, `proSlug`, `proCategoryId`, `proPrice`, `proAuthorId`, `proSale`,
+                        `proActive`, `proHot`, `proView`, `proDescription`, `proAvatar`, `proDescriptionSeo`,
+                        `proKeywordSeo`, `createdAt`, `updatedAt`, `proTitleSeo`, `proContent`, `proPay`,
+                        `proNumber`, `proTotalRating`, `proTotalNumber`)
 VALUES (18, 'ASUS ROG Strix TRX40-E Gaming', 'asus-rog-strix-trx40-e-gaming', 10, 13740000, 0, 0, 1, 0, 0,
         '- Nhà sản xuất : ASUS\r\n\r\n- Bảo hành : 36 tháng \r\n\r\n- Tình trạng: Mới 100%',
         '2021-06-23__gearvn-rog-strix-trx40-e-gaming-9-99-6a707eaaffcd421bb4ca9088e14e1c3e.jpg',
@@ -155,10 +155,10 @@ VALUES (18, 'ASUS ROG Strix TRX40-E Gaming', 'asus-rog-strix-trx40-e-gaming', 10
         'Intel Pentium Gold G5420 / 4M / 3.8GHz / 2 nhân 4 luồng',
         '<p><strong>T&iacute;nh năng nổi bật:</strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<table border=\"4\" cellspacing=\"2\">\r\n	<tbody>\r\n		<tr>\r\n			<td><strong>&nbsp;Socket</strong></td>\r\n			<td>\r\n			<p>&nbsp;&nbsp;<strong>LGA1151v2</strong></p>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;Bộ nhớ đệm</strong></td>\r\n			<td>&nbsp; 4MB</td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;Thuật in</strong></td>\r\n			<td>&nbsp; 14 nm</td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;Số nh&acirc;n (Cores)</strong></td>\r\n			<td>&nbsp;&nbsp;<strong>2</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;Số luồng (Threads)</strong></td>\r\n			<td>&nbsp;&nbsp;<strong>4</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;Xung cơ bản</strong></td>\r\n			<td>&nbsp;&nbsp;<strong>3.8GHz</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;Điện ti&ecirc;u thụ</strong></td>\r\n			<td>&nbsp;&nbsp;<strong>54W</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;RAM tối đa</strong></td>\r\n			<td>&nbsp; 64GB</td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;Loại RAM</strong></td>\r\n			<td>&nbsp; DDR4-2400</td>\r\n		</tr>\r\n		<tr>\r\n			<td><strong>&nbsp;Card Onboard&nbsp;</strong></td>\r\n			<td>&nbsp;&nbsp;Intel&reg;&nbsp;<strong>UHD Graphics 610</strong></td>\r\n		</tr>\r\n	</tbody>\r\n</table>',
         1, 90, 0, 0);
-INSERT INTO `products` (`id`, `pro_name`, `pro_slug`, `pro_category_id`, `pro_price`, `pro_author_id`, `pro_sale`,
-                        `pro_active`, `pro_hot`, `pro_view`, `pro_description`, `pro_avatar`, `pro_description_seo`,
-                        `pro_keyword_seo`, `created_at`, `updated_at`, `pro_title_seo`, `pro_content`, `pro_pay`,
-                        `pro_number`, `pro_total_rating`, `pro_total_number`)
+INSERT INTO `products` (`id`, `proName`, `proSlug`, `proCategoryId`, `proPrice`, `proAuthorId`, `proSale`,
+                        `proActive`, `proHot`, `proView`, `proDescription`, `proAvatar`, `proDescriptionSeo`,
+                        `proKeywordSeo`, `createdAt`, `updatedAt`, `proTitleSeo`, `proContent`, `proPay`,
+                        `proNumber`, `proTotalRating`, `proTotalNumber`)
 VALUES (25, 'Intel Core i5 11400F / 12MB / 2.6GHZ / 6 nhân 12 luồng / LGA 1200',
         'intel-core-i5-11400f-12mb-26ghz-6-nhan-12-luong-lga-1200', 11, 5590000, 0, 10, 1, 0, 0,
         'Hãng sản xuất: Intel\r\nBảo hành: 36 Tháng', '2021-06-23__10400f-71634928fe5b44f1a956f0e652e65d59.jpg',
@@ -176,10 +176,10 @@ VALUES (25, 'Intel Core i5 11400F / 12MB / 2.6GHZ / 6 nhân 12 luồng / LGA 120
 --
 ALTER TABLE `products`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `products_pro_slug_index` (`pro_slug`),
-    ADD KEY `products_pro_category_id_index` (`pro_category_id`),
-    ADD KEY `products_pro_author_id_index` (`pro_author_id`),
-    ADD KEY `products_pro_active_index` (`pro_active`);
+    ADD KEY `products_proSlug_index` (`proSlug`),
+    ADD KEY `products_proCategoryId_index` (`proCategoryId`),
+    ADD KEY `products_proAuthorId_index` (`proAuthorId`),
+    ADD KEY `products_proActive_index` (`proActive`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -200,7 +200,7 @@ ALTER TABLE `products`
 -- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
-    ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`pro_category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`proCategoryId`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;

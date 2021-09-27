@@ -30,17 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `payments`
 (
     `id`                  bigint(20) UNSIGNED NOT NULL,
-    `p_transaction_id`    int(10) UNSIGNED                        DEFAULT NULL,
-    `p_user_id`           int(10) UNSIGNED                        DEFAULT NULL,
-    `p_money`             int(10)                                 DEFAULT NULL COMMENT 'Số tiền thanh toán',
-    `p_note`              varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Nội dung thanh toán',
-    `p_vnp_response_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Mã phản hồi',
-    `p_code_vnp`          varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Mã giao dịch vnpay',
-    `p_code_bank`         varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Mã ngân hàng',
-    `p_time`              datetime                                DEFAULT NULL COMMENT 'Thời gian chuyển tiền',
-    `p_transaction_code`  varchar(30) COLLATE utf8mb4_unicode_ci  DEFAULT NULL,
+    `pTransactionId`    int(10) UNSIGNED                        DEFAULT NULL,
+    `pUserId`           int(10) UNSIGNED                        DEFAULT NULL,
+    `pMoney`             int(10)                                 DEFAULT NULL COMMENT 'Số tiền thanh toán',
+    `pNote`              varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Nội dung thanh toán',
+    `pVnpResponseCode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Mã phản hồi',
+    `pCodeVnp`          varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Mã giao dịch vnpay',
+    `pCodeBank`         varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Mã ngân hàng',
+    `pTime`              datetime                                DEFAULT NULL COMMENT 'Thời gian chuyển tiền',
+    `pTransactionCode`  varchar(30) COLLATE utf8mb4_unicode_ci  DEFAULT NULL,
     `created_at`          timestamp           NULL                DEFAULT NULL,
-    `updated_at`          timestamp           NULL                DEFAULT NULL
+    `updatedAt`          timestamp           NULL                DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
@@ -49,8 +49,8 @@ CREATE TABLE `payments`
 -- Đang đổ dữ liệu cho bảng `payments`
 --
 
-INSERT INTO `payments` (`id`, `p_transaction_id`, `p_user_id`, `p_money`, `p_note`, `p_vnp_response_code`, `p_code_vnp`,
-                        `p_code_bank`, `p_time`, `created_at`, `updated_at`, `p_transaction_code`)
+INSERT INTO `payments` (`id`, `pTransactionId`, `pUserId`, `pMoney`, `pNote`, `pVnpResponseCode`, `pCodeVnp`,
+                        `pCodeBank`, `pTime`, `created_at`, `updatedAt`, `pTransactionCode`)
 VALUES (7, 74, 5, 3600500, 'Noi dung thanh toan', '00', '13523265', 'NCB', '2021-06-13 23:32:00', NULL, NULL,
         'bj0Lb5bmCRAZORx'),
        (9, 122, 5, 3600500, 'Thanh toán đơn hàng', '00', '13557406', 'NCB', '2021-08-03 20:01:00', NULL, NULL,
@@ -73,8 +73,8 @@ VALUES (7, 74, 5, 3600500, 'Noi dung thanh toan', '00', '13523265', 'NCB', '2021
 --
 ALTER TABLE `payments`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `p_transaction_id` (`p_transaction_id`),
-    ADD KEY `p_user_id` (`p_user_id`);
+    ADD KEY `pTransactionId` (`pTransactionId`),
+    ADD KEY `pUserId` (`pUserId`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -95,8 +95,8 @@ ALTER TABLE `payments`
 -- Các ràng buộc cho bảng `payments`
 --
 ALTER TABLE `payments`
-    ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`p_transaction_id`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`p_user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`pTransactionId`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`pUserId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;

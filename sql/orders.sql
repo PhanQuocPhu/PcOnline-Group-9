@@ -30,13 +30,13 @@ SET time_zone = "+00:00";
 CREATE TABLE `orders`
 (
     `id`                int(10) UNSIGNED NOT NULL,
-    `or_transaction_id` int(10) UNSIGNED NOT NULL,
-    `or_product_id`     int(10) UNSIGNED NOT NULL DEFAULT 0,
-    `or_qty`            tinyint(4)       NOT NULL DEFAULT 0,
-    `or_price`          int(10)        NOT NULL DEFAULT 0,
-    `or_sale`           tinyint(4)       NOT NULL DEFAULT 0,
-    `created_at`        timestamp        NULL     DEFAULT NULL,
-    `updated_at`        timestamp        NULL     DEFAULT NULL
+    `orTransactionId` int(10) UNSIGNED NOT NULL,
+    `orProductId`     int(10) UNSIGNED NOT NULL DEFAULT 0,
+    `orQty`            tinyint(4)       NOT NULL DEFAULT 0,
+    `orPrice`          int(10)        NOT NULL DEFAULT 0,
+    `orSale`           tinyint(4)       NOT NULL DEFAULT 0,
+    `createdAt`        timestamp        NULL     DEFAULT NULL,
+    `updatedAt`        timestamp        NULL     DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
@@ -45,8 +45,8 @@ CREATE TABLE `orders`
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`id`, `or_transaction_id`, `or_product_id`, `or_qty`, `or_price`, `or_sale`, `created_at`,
-                      `updated_at`)
+INSERT INTO `orders` (`id`, `orTransactionId`, `orProductId`, `orQty`, `orPrice`, `orSale`, `createdAt`,
+                      `updatedAt`)
 VALUES (76, 74, 9, 1, 3790000, 5, NULL, NULL),
        (81, 122, 9, 1, 3790000, 5, NULL, NULL),
        (100, 123, 9, 1, 3790000, 5, NULL, NULL),
@@ -63,9 +63,9 @@ VALUES (76, 74, 9, 1, 3790000, 5, NULL, NULL),
 --
 ALTER TABLE `orders`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `orders_or_transaction_id_index` (`or_transaction_id`),
-    ADD KEY `orders_or_product_id_index` (`or_product_id`),
-    ADD KEY `or_transaction_id` (`or_transaction_id`);
+    ADD KEY `orders_orTransactionId_index` (`orTransactionId`),
+    ADD KEY `orders_orProductId_index` (`orProductId`),
+    ADD KEY `orTransactionId` (`orTransactionId`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -86,8 +86,8 @@ ALTER TABLE `orders`
 -- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
-    ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`or_transaction_id`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`or_product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`orTransactionId`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`orProductId`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "categories", schema = "pconlineweb", catalog = "")
+@Table(name = "categories", schema = "pconlineweb")
 public class CategoriesEntity {
     private int id;
     private String cName;
@@ -19,6 +19,11 @@ public class CategoriesEntity {
     private byte cHome;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+
+    public CategoriesEntity() {
+
+    }
 
     @Id
     @Column(name = "id")

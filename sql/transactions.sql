@@ -30,15 +30,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `transactions`
 (
     `id`         int(10) UNSIGNED NOT NULL,
-    `tr_user_id` int(10)        NOT NULL               DEFAULT 0,
-    `tr_total`   int(10)        NOT NULL               DEFAULT 0,
-    `tr_note`    varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `tr_address` varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `tr_phone`   varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    `tr_status`  tinyint(4)       NOT NULL               DEFAULT 0,
-    `tr_payment` tinyint(4)       NOT NULL               DEFAULT 0,
-    `created_at` timestamp        NULL                   DEFAULT NULL,
-    `updated_at` timestamp        NULL                   DEFAULT NULL
+    `trUserId` int(10) UNSIGNED NOT NULL               DEFAULT 0,
+    `trTotal`   int(10)          NOT NULL               DEFAULT 0,
+    `trNote`    varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `trAddress` varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `trPhone`   varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `trStatus`  tinyint(4)       NOT NULL               DEFAULT 0,
+    `trPayment` tinyint(4)       NOT NULL               DEFAULT 0,
+    `createdAt` timestamp        NULL                   DEFAULT NULL,
+    `updatedAt` timestamp        NULL                   DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
@@ -47,8 +47,8 @@ CREATE TABLE `transactions`
 -- Đang đổ dữ liệu cho bảng `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `tr_user_id`, `tr_total`, `tr_note`, `tr_address`, `tr_phone`, `tr_status`,
-                            `created_at`, `updated_at`, `tr_payment`)
+INSERT INTO `transactions` (`id`, `trUserId`, `trTotal`, `trNote`, `trAddress`, `trPhone`, `trStatus`,
+                            `createdAt`, `updatedAt`, `trPayment`)
 VALUES (74, 5, 3600500, NULL, '47 đường 783 tạ quang bửu p4', '0981805990', 1, '2021-06-13 09:31:28',
         '2021-08-03 06:08:27', 1),
        (122, 5, 3600500, NULL, '47 đường 783 tạ quang bửu p4a', '0981805990', 1, '2021-08-03 06:01:17',
@@ -71,8 +71,8 @@ VALUES (74, 5, 3600500, NULL, '47 đường 783 tạ quang bửu p4', '098180599
 --
 ALTER TABLE `transactions`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `transactions_tr_user_id_index` (`tr_user_id`),
-    ADD KEY `transactions_tr_status_index` (`tr_status`);
+    ADD KEY `transactions_trUserId_index` (`trUserId`),
+    ADD KEY `transactions_trStatus_index` (`trStatus`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
