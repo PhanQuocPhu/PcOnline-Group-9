@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "orders", schema = "pconlineweb", catalog = "")
-public class OrdersEntity {
+public class Orders {
     private int id;
     private byte orQty;
     private int orPrice;
@@ -78,14 +77,14 @@ public class OrdersEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrdersEntity that = (OrdersEntity) o;
+        Orders orders = (Orders) o;
 
-        if (id != that.id) return false;
-        if (orQty != that.orQty) return false;
-        if (orPrice != that.orPrice) return false;
-        if (orSale != that.orSale) return false;
-        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
+        if (id != orders.id) return false;
+        if (orQty != orders.orQty) return false;
+        if (orPrice != orders.orPrice) return false;
+        if (orSale != orders.orSale) return false;
+        if (createdAt != null ? !createdAt.equals(orders.createdAt) : orders.createdAt != null) return false;
+        if (updatedAt != null ? !updatedAt.equals(orders.updatedAt) : orders.updatedAt != null) return false;
 
         return true;
     }

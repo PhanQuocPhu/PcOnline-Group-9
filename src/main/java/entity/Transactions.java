@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "transactions", schema = "pconlineweb", catalog = "")
-public class TransactionsEntity {
+public class Transactions {
     private int id;
     private int trUserId;
     private int trTotal;
@@ -122,7 +121,7 @@ public class TransactionsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TransactionsEntity that = (TransactionsEntity) o;
+        Transactions that = (Transactions) o;
 
         if (id != that.id) return false;
         if (trUserId != that.trUserId) return false;

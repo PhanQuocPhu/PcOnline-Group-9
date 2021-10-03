@@ -1,6 +1,6 @@
 package controllers;
 
-import entity.CategoriesEntity;
+import entity.Categories;
 import models.CategoriesModel;
 import utils.ServletUtils;
 
@@ -11,12 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 @WebServlet(name = "AdminCategoryController", urlPatterns = "/admin/category/*")
 public class AdminCategoryController extends HttpServlet {
@@ -45,7 +40,7 @@ public class AdminCategoryController extends HttpServlet {
         }
         switch (path) {
             case "/index":
-                List<CategoriesEntity> list = null;
+                List<Categories> list = null;
                 try {
                     list = CategoriesModel.getAll();
                 } catch (SQLException throwables) {
@@ -83,7 +78,7 @@ public class AdminCategoryController extends HttpServlet {
         String cTotalProduct = request.getParameter("cTotalProduct");
         String cHome = request.getParameter("cHome");
 
-        CategoriesEntity c = new CategoriesEntity();
+        Categories c = new Categories();
         CategoriesModel.add(c);
         ServletUtils.forward("/views/Admin/category/form.jsp", request, response);
     }

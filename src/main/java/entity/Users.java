@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "admins", schema = "pconlineweb", catalog = "")
-public class AdminsEntity {
+public class Users {
     private int id;
     private String name;
     private String email;
@@ -14,7 +13,10 @@ public class AdminsEntity {
     private byte active;
     private String password;
     private String rememberToken;
+    private int totalPay;
     private String address;
+    private String provider;
+    private String providerId;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
@@ -99,6 +101,16 @@ public class AdminsEntity {
     }
 
     @Basic
+    @Column(name = "total_pay")
+    public int getTotalPay() {
+        return totalPay;
+    }
+
+    public void setTotalPay(int totalPay) {
+        this.totalPay = totalPay;
+    }
+
+    @Basic
     @Column(name = "address")
     public String getAddress() {
         return address;
@@ -106,6 +118,26 @@ public class AdminsEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Basic
+    @Column(name = "provider")
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    @Basic
+    @Column(name = "provider_id")
+    public String getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
     }
 
     @Basic
@@ -133,20 +165,23 @@ public class AdminsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AdminsEntity that = (AdminsEntity) o;
+        Users users = (Users) o;
 
-        if (id != that.id) return false;
-        if (active != that.active) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-        if (avatar != null ? !avatar.equals(that.avatar) : that.avatar != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (rememberToken != null ? !rememberToken.equals(that.rememberToken) : that.rememberToken != null)
+        if (id != users.id) return false;
+        if (active != users.active) return false;
+        if (totalPay != users.totalPay) return false;
+        if (name != null ? !name.equals(users.name) : users.name != null) return false;
+        if (email != null ? !email.equals(users.email) : users.email != null) return false;
+        if (phone != null ? !phone.equals(users.phone) : users.phone != null) return false;
+        if (avatar != null ? !avatar.equals(users.avatar) : users.avatar != null) return false;
+        if (password != null ? !password.equals(users.password) : users.password != null) return false;
+        if (rememberToken != null ? !rememberToken.equals(users.rememberToken) : users.rememberToken != null)
             return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
+        if (address != null ? !address.equals(users.address) : users.address != null) return false;
+        if (provider != null ? !provider.equals(users.provider) : users.provider != null) return false;
+        if (providerId != null ? !providerId.equals(users.providerId) : users.providerId != null) return false;
+        if (createdAt != null ? !createdAt.equals(users.createdAt) : users.createdAt != null) return false;
+        if (updatedAt != null ? !updatedAt.equals(users.updatedAt) : users.updatedAt != null) return false;
 
         return true;
     }
@@ -161,7 +196,10 @@ public class AdminsEntity {
         result = 31 * result + (int) active;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (rememberToken != null ? rememberToken.hashCode() : 0);
+        result = 31 * result + totalPay;
         result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (provider != null ? provider.hashCode() : 0);
+        result = 31 * result + (providerId != null ? providerId.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         return result;

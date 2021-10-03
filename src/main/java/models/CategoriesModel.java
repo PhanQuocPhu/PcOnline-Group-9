@@ -1,6 +1,6 @@
 package models;
 
-import entity.CategoriesEntity;
+import entity.Categories;
 import utils.DbUtil;
 
 import java.sql.Connection;
@@ -15,15 +15,15 @@ public class CategoriesModel {
     ResultSet rs = null;
 
     //Test
-    /*public List<CategoriesEntity> getListCategoriesDao() {
+    /*public List<Categories> getListCategoriesDao() {
         try {
             String sql = "select * from categories";
             conn = new ConnectionUtil().openConn();     //Mở kết nối
             ps = conn.prepareStatement(sql);            //Ném lệnh query
             rs = ps.executeQuery();                     //Thực thi query trả về rs
-            List<CategoriesEntity> list = new ArrayList<>();
+            List<Categories> list = new ArrayList<>();
             while (rs.next()) {
-                CategoriesEntity cate = new CategoriesEntity(rs.getInt(1), rs.getString(2), rs.getString(3),
+                Categories cate = new Categories(rs.getInt(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getByte(6), rs.getInt(7),
                         rs.getString(8), rs.getString(9), rs.getString(10), rs.getByte(11),
                         rs.getTimestamp(12), rs.getTimestamp(13));
@@ -39,14 +39,14 @@ public class CategoriesModel {
     }*/
 
     //Sql2o - Lấy hết
-    public static List<CategoriesEntity> getAll() throws SQLException {
+    public static List<Categories> getAll() throws SQLException {
         final String sql = "select * from categories";
         try ( org.sql2o.Connection con = DbUtil.openConn() ){
-            return con.createQuery(sql)/*.throwOnMappingFailure(false)*/.executeAndFetch(CategoriesEntity.class);
+            return con.createQuery(sql)/*.throwOnMappingFailure(false)*/.executeAndFetch(Categories.class);
         }
     }
     //Sql2o - Thêm
-    public static void add(CategoriesEntity c) {
+    public static void add(Categories c) {
         final String sql = "INSERT INTO categories (cName, cSlug, cIcon, cAvatar, cActive, " +
                 "cTotalProduct, cHome) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";

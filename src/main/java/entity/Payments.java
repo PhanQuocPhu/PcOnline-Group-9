@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "payments", schema = "pconlineweb", catalog = "")
-public class PaymentsEntity {
+public class Payments {
     private long id;
     private Integer pMoney;
     private String pNote;
@@ -122,20 +121,20 @@ public class PaymentsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PaymentsEntity that = (PaymentsEntity) o;
+        Payments payments = (Payments) o;
 
-        if (id != that.id) return false;
-        if (pMoney != null ? !pMoney.equals(that.pMoney) : that.pMoney != null) return false;
-        if (pNote != null ? !pNote.equals(that.pNote) : that.pNote != null) return false;
-        if (pVnpResponseCode != null ? !pVnpResponseCode.equals(that.pVnpResponseCode) : that.pVnpResponseCode != null)
+        if (id != payments.id) return false;
+        if (pMoney != null ? !pMoney.equals(payments.pMoney) : payments.pMoney != null) return false;
+        if (pNote != null ? !pNote.equals(payments.pNote) : payments.pNote != null) return false;
+        if (pVnpResponseCode != null ? !pVnpResponseCode.equals(payments.pVnpResponseCode) : payments.pVnpResponseCode != null)
             return false;
-        if (pCodeVnp != null ? !pCodeVnp.equals(that.pCodeVnp) : that.pCodeVnp != null) return false;
-        if (pCodeBank != null ? !pCodeBank.equals(that.pCodeBank) : that.pCodeBank != null) return false;
-        if (pTime != null ? !pTime.equals(that.pTime) : that.pTime != null) return false;
-        if (pTransactionCode != null ? !pTransactionCode.equals(that.pTransactionCode) : that.pTransactionCode != null)
+        if (pCodeVnp != null ? !pCodeVnp.equals(payments.pCodeVnp) : payments.pCodeVnp != null) return false;
+        if (pCodeBank != null ? !pCodeBank.equals(payments.pCodeBank) : payments.pCodeBank != null) return false;
+        if (pTime != null ? !pTime.equals(payments.pTime) : payments.pTime != null) return false;
+        if (pTransactionCode != null ? !pTransactionCode.equals(payments.pTransactionCode) : payments.pTransactionCode != null)
             return false;
-        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
+        if (createdAt != null ? !createdAt.equals(payments.createdAt) : payments.createdAt != null) return false;
+        if (updatedAt != null ? !updatedAt.equals(payments.updatedAt) : payments.updatedAt != null) return false;
 
         return true;
     }

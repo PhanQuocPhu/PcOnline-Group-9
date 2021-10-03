@@ -2,11 +2,9 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
-@Table(name = "categories", schema = "pconlineweb")
-public class CategoriesEntity {
+public class Categories {
     private int id;
     private String cName;
     private String cSlug;
@@ -20,27 +18,6 @@ public class CategoriesEntity {
     private byte cHome;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-
-
-    public CategoriesEntity() {
-
-    }
-
-    public CategoriesEntity(int id, String cName, String cSlug, String cIcon, String cAvatar, byte cActive, int cTotalProduct, String cTitleSeo, String cDescriptionSeo, String cKeywordSeo, byte cHome, Timestamp createdAt, Timestamp updatedAt) {
-        this.id = id;
-        this.cName = cName;
-        this.cSlug = cSlug;
-        this.cIcon = cIcon;
-        this.cAvatar = cAvatar;
-        this.cActive = cActive;
-        this.cTotalProduct = cTotalProduct;
-        this.cTitleSeo = cTitleSeo;
-        this.cDescriptionSeo = cDescriptionSeo;
-        this.cKeywordSeo = cKeywordSeo;
-        this.cHome = cHome;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
 
     @Id
     @Column(name = "id")
@@ -177,22 +154,24 @@ public class CategoriesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CategoriesEntity that = (CategoriesEntity) o;
+        Categories that = (Categories) o;
 
         if (id != that.id) return false;
         if (cActive != that.cActive) return false;
         if (cTotalProduct != that.cTotalProduct) return false;
         if (cHome != that.cHome) return false;
-        if (!Objects.equals(cName, that.cName)) return false;
-        if (!Objects.equals(cSlug, that.cSlug)) return false;
-        if (!Objects.equals(cIcon, that.cIcon)) return false;
-        if (!Objects.equals(cAvatar, that.cAvatar)) return false;
-        if (!Objects.equals(cTitleSeo, that.cTitleSeo)) return false;
-        if (!Objects.equals(cDescriptionSeo, that.cDescriptionSeo))
+        if (cName != null ? !cName.equals(that.cName) : that.cName != null) return false;
+        if (cSlug != null ? !cSlug.equals(that.cSlug) : that.cSlug != null) return false;
+        if (cIcon != null ? !cIcon.equals(that.cIcon) : that.cIcon != null) return false;
+        if (cAvatar != null ? !cAvatar.equals(that.cAvatar) : that.cAvatar != null) return false;
+        if (cTitleSeo != null ? !cTitleSeo.equals(that.cTitleSeo) : that.cTitleSeo != null) return false;
+        if (cDescriptionSeo != null ? !cDescriptionSeo.equals(that.cDescriptionSeo) : that.cDescriptionSeo != null)
             return false;
-        if (!Objects.equals(cKeywordSeo, that.cKeywordSeo)) return false;
-        if (!Objects.equals(createdAt, that.createdAt)) return false;
-        return Objects.equals(updatedAt, that.updatedAt);
+        if (cKeywordSeo != null ? !cKeywordSeo.equals(that.cKeywordSeo) : that.cKeywordSeo != null) return false;
+        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
+        if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
+
+        return true;
     }
 
     @Override
