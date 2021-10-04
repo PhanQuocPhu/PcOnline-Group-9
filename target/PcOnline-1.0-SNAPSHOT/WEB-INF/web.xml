@@ -12,4 +12,7 @@
             views
         </welcome-file>
     </welcome-file-list>
+    <session-config>
+        <session-timeout>15</session-timeout> <!-- in minutes -->
+    </session-config>
 </web-app>

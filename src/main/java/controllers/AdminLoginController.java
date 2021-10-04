@@ -15,38 +15,49 @@ public class AdminLoginController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String rem = request.getParameter("remember");
+        String action = request.getParameter("command");
         HttpSession session = request.getSession();
 
         Admins admin = AdminsModel.get(email);
 
-        if (admin == null) {
-            request.setAttribute("LoginMess", "Username doesn't exist");
-            ServletUtils.forward("/views/Admin/account/login.jsp", request, response);
-        } else if (AdminsModel.checkPass(password, admin.getPassword())) {
-            request.setAttribute("LoginMess", "Wrong password");
-            request.setAttribute("email", email);
-            ServletUtils.forward("/views/Admin/account/login.jsp", request, response);
-        } else {
-            session.setAttribute("admin", admin);
-            Cookie cemail = new Cookie("email", email);
-            Cookie cpassword = new Cookie("password", password);
-            if (rem != null) {
-                cemail.setMaxAge(30 * 24 * 60 * 60);
-                cpassword.setMaxAge(30 * 24 * 60 * 60);
-            } else {
-                cemail.setMaxAge(0);
-                cpassword.setMaxAge(0);
-            }
-            response.addCookie(cemail);
-            response.addCookie(cpassword);
-            System.out.println("Login Successfully");
-            response.sendRedirect("/admin");
+        switch (action) {
+            case "login":
+                if (admin == null) {
+                    request.setAttribute("LoginMess", "Username doesn't exist");
+                    ServletUtils.forward("/views/Admin/account/login.jsp", request, response);
+                } else if (!AdminsModel.checkPass(password, admin.getPassword())) {
+                    request.setAttribute("LoginMess", "Wrong password");
+                    request.setAttribute("email", email);
+                    ServletUtils.forward("/views/Admin/account/login.jsp", request, response);
+                } else {
+                    session.setAttribute("checkAdmin", "Checked");
+                    Cookie aemail = new Cookie("email", email);
+                    Cookie apassword = new Cookie("password", admin.getPassword());
+                    if (rem != null) {
+                        aemail.setMaxAge(30 * 24 * 60 * 60);
+                        apassword.setMaxAge(30 * 24 * 60 * 60);
+                    } else {
+                        aemail.setMaxAge(0);
+                        apassword.setMaxAge(0);
+                    }
+                    response.addCookie(aemail);
+                    response.addCookie(apassword);
+                    System.out.println("Login Successfully");
+                    response.sendRedirect("/admin");
+                }
+                break;
+            case "logout":
+                session.removeAttribute("checkAdmin");
+                System.out.println("Log out Successfully");
+                response.sendRedirect("admin/login");
+                break;
         }
 
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("LoginMess", "Welcome back!!");
         request.getRequestDispatcher("/views/Admin/account/login.jsp").forward(request, response);
     }
 }
