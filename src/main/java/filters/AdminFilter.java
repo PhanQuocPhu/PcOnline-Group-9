@@ -1,5 +1,7 @@
 package filters;
 
+import entity.Admins;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +15,25 @@ public class AdminFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) req;
-        HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
-        HttpSession session = httpServletRequest.getSession();
-        if (session.getAttribute("checkAdmin") == null && !httpServletRequest.getRequestURI().endsWith("admin/login")) {
-            /* req.getRequestDispatcher("/WEB-INF/views/Admin/account/login.jsp").forward(req, resp);*/
-            httpServletResponse.sendRedirect("admin/login");
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
+
+        String cpath = request.getContextPath();
+        String reqAction = request.getRequestURI().replace(cpath, "");
+
+        HttpSession session = request.getSession();
+
+        Admins admin = (Admins) session.getAttribute("admin");
+        /*if (admin == null){
+            session.setAttribute("reqAction", reqAction);
+            session.setAttribute("checkLogin", "fail");
+            response.sendRedirect("admin/login");
+        } else
+            chain.doFilter(req, resp);*/
+
+        if (admin == null && !request.getRequestURI().endsWith("admin/login")) {
+            /*req.getRequestDispatcher("/WEB-INF/views/Admin/account/login.jsp").forward(req, resp);*/
+            response.sendRedirect("admin/login");
         } else {
             chain.doFilter(req, resp);
         }

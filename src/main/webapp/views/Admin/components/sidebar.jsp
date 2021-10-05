@@ -16,10 +16,9 @@
 				     class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">Alexander Pierce <a href="${pageContext.request.contextPath}/admin/login?command=logout">Log out</a></a>
+				<a href="#" class="d-block" methods="post">Alexander Pierce</a>
 			</div>
 		</div>
-
 		<!-- SidebarSearch Form -->
 		<div class="form-inline">
 			<div class="input-group" data-widget="sidebar-search">
@@ -149,10 +148,14 @@
 						</li>
 					</ul>
 				</li>
-
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
+
+		<div class="form-inline text-center">
+			<form id="logoutForm" method="post" action="${pageContext.request.contextPath}/admin/login?command=logout" hidden></form>
+			<a onclick="document.getElementById('logoutForm').submit();" id="adminLogout" class="btn btn-block btn-secondary nav-link">Log Out</a>
+		</div>
 	</div>
 	<!-- /.sidebar -->
 </aside>

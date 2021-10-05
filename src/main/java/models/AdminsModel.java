@@ -39,6 +39,7 @@ public class AdminsModel {
         {
             sql = "insert into admins (name, email, password) values (:name, :email, :password)";
         }
+
         Instant now = Instant.now();
         int id = conn.createQuery(sql)
                 .addParameter("name", name)
