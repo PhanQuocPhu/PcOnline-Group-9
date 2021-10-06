@@ -23,7 +23,9 @@ public class AdminsModel {
     public static Admins get(String email) {
         String sql = "select * FROM Admins WHERE email =:email";
         Connection conn = DbUtil.openConn();
-        return conn.createQuery(sql).addParameter("email", email).throwOnMappingFailure(false).executeAndFetchFirst(Admins.class);
+        Admins admin = conn.createQuery(sql).addParameter("email", email).throwOnMappingFailure(false).executeAndFetchFirst(Admins.class);
+        /*conn.close();*/
+        return admin;
     }
 
     //Create
@@ -34,6 +36,7 @@ public class AdminsModel {
         if(admin != null)
         {
             System.out.println("Có dữ liệu r");
+            /*conn.close();*/
             return admin;
         } else
         {
@@ -46,6 +49,7 @@ public class AdminsModel {
                 .addParameter("email", email)
                 .addParameter("password", encryptPass(password))
                 .executeUpdate().getKey(int.class);
+        /*conn.close();*/
         return admin;
     }
 

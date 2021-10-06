@@ -1,5 +1,6 @@
 package models;
 
+import entity.Admins;
 import entity.Categories;
 import utils.DbUtil;
 
@@ -46,20 +47,46 @@ public class CategoriesModel {
         }
     }
     //Sql2o - Thêm
-    public static void add(Categories c) {
-        final String sql = "INSERT INTO categories (cName, cSlug, cIcon, cAvatar, cActive, " +
-                "cTotalProduct, cHome) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (org.sql2o.Connection con = DbUtil.openConn()) {
-            con.createQuery(sql)
-                    .addParameter("cName", c.getcName())
-                    .addParameter("cSlug", c.getcSlug() )
-                    .addParameter("cIcon", c.getcIcon())
-                    .addParameter("cAvatar", c.getcAvatar())
-                    .addParameter("cActive", c.getcActive())
-                    .addParameter("cTotalProduct", c.getcTotalProduct())
-                    .addParameter("cHome", c.getcHome())
+    public static Categories create(String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
+        String sql = "select * FROM categories WHERE cName =:cName";
+
+        try (org.sql2o.Connection conn = DbUtil.openConn()) {
+            Categories category = conn.createQuery(sql).addParameter("cName", cName).throwOnMappingFailure(false).executeAndFetchFirst(Categories.class);
+            if(category != null)
+            {
+                System.out.println("Tên danh mục đã tồn tại!!!!");
+                return null;
+            } else {
+                sql = "INSERT INTO categories (cName, cSlug, cIcon, cActive, cHome) VALUES (:cName, :cSlug, :cIcon, :cActive, :cHome)";
+            }
+            conn.createQuery(sql)
+                    .addParameter("cName", cName)
+                    .addParameter("cSlug", cSlug)
+                    .addParameter("cIcon", cIcon)
+                    .addParameter("cActive", cActive)
+                    .addParameter("cHome", cHome)
                     .executeUpdate();
+            return null;
+        }
+    }
+
+    //Sql2o - Xóa
+    public static Categories delete(int id) {
+        String sql = "select * FROM categories WHERE id =:id";
+
+        try (org.sql2o.Connection conn = DbUtil.openConn()) {
+            Categories category = conn.createQuery(sql).addParameter("id", id).throwOnMappingFailure(false).executeAndFetchFirst(Categories.class);
+            if(category == null)
+            {
+                System.out.println("Tên danh mục không tồn tại!!!!");
+                return null;
+            } else {
+                sql = "DELETE from categories where id=:id";
+            }
+            conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+            return null;
         }
     }
 }

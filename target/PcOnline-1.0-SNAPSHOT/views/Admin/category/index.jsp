@@ -2,7 +2,7 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:useBean id="categories" scope="request" type="java.util.List<entity.CategoriesEntity>"/>
+<jsp:useBean id="categories" scope="request" type="java.util.List<entity.Categories>"/>
 
 <mt:admin_template tittle="Category">
 	<jsp:body>
@@ -29,10 +29,10 @@
 						<div class="card">
 							<div class="card-header">
 								<h2 class="card-title"></h2>
-								<a href="${pageContext.request.contextPath}/admin/category/add" class="btn btn-outline-success float-right"> Thêm mới </a>
+								<a href="${pageContext.request.contextPath}/admin/category/add"
+								   class="btn btn-outline-success float-right"> Thêm mới </a>
 							</div>
 							<!-- /.card-header -->
-
 							<c:choose>
 								<c:when test="${categories.size() == 0}">
 									<div class="card-body">
@@ -65,16 +65,19 @@
 																${c.cActive == 1 ? '<a class="badge badge-success"> Active </a>' : '<a class="badge badge-danger"> Nope </a>'}
 														</td>
 														<td class="text-center">
-															<a class="btn btn-outline-primary"
-															   href="<%--${pageContext.request.contextPath}/admin/category/edit?id=${c.id}--%>"
-															   role="button">
+															<form action="${pageContext.request.contextPath}/admin/category/delete?id=${c.id}"
+																  method="post" id="${c.id}-del" hidden>
+															</form>
+															<form action="<%--${pageContext.request.contextPath}/admin/category/delete?id=${c.id}--%>"
+																  method="post" id="${c.id}-edit" hidden>
+															</form>
+															<button class="btn btn-outline-success" role="button" onclick="document.getElementById('${c.id}-edit').submit();">
 																<i class="fa fa-pen" aria-hidden="true"></i>
-															</a>
-															<a class="btn btn-outline-danger"
-															   href="<%--${pageContext.request.contextPath}/admin/category/?id=${c.id}--%>"
-															   role="button">
+															</button>
+															<button class="btn btn-outline-danger" role="button" onclick="document.getElementById('${c.id}-del').submit();">
 																<i class="fa fa-trash" aria-hidden="true"></i>
-															</a>
+															</button>
+
 														</td>
 													</tr>
 												</c:forEach>

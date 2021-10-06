@@ -1,6 +1,9 @@
 package entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
@@ -9,7 +12,6 @@ public class Categories {
     private String cName;
     private String cSlug;
     private String cIcon;
-    private String cAvatar;
     private byte cActive;
     private int cTotalProduct;
     private String cTitleSeo;
@@ -18,6 +20,9 @@ public class Categories {
     private byte cHome;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+    public Categories(String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
+    }
 
     @Id
     @Column(name = "id")
@@ -59,15 +64,6 @@ public class Categories {
         this.cIcon = cIcon;
     }
 
-    @Basic
-    @Column(name = "cAvatar")
-    public String getcAvatar() {
-        return cAvatar;
-    }
-
-    public void setcAvatar(String cAvatar) {
-        this.cAvatar = cAvatar;
-    }
 
     @Basic
     @Column(name = "cActive")
@@ -163,7 +159,6 @@ public class Categories {
         if (cName != null ? !cName.equals(that.cName) : that.cName != null) return false;
         if (cSlug != null ? !cSlug.equals(that.cSlug) : that.cSlug != null) return false;
         if (cIcon != null ? !cIcon.equals(that.cIcon) : that.cIcon != null) return false;
-        if (cAvatar != null ? !cAvatar.equals(that.cAvatar) : that.cAvatar != null) return false;
         if (cTitleSeo != null ? !cTitleSeo.equals(that.cTitleSeo) : that.cTitleSeo != null) return false;
         if (cDescriptionSeo != null ? !cDescriptionSeo.equals(that.cDescriptionSeo) : that.cDescriptionSeo != null)
             return false;
@@ -180,7 +175,6 @@ public class Categories {
         result = 31 * result + (cName != null ? cName.hashCode() : 0);
         result = 31 * result + (cSlug != null ? cSlug.hashCode() : 0);
         result = 31 * result + (cIcon != null ? cIcon.hashCode() : 0);
-        result = 31 * result + (cAvatar != null ? cAvatar.hashCode() : 0);
         result = 31 * result + (int) cActive;
         result = 31 * result + cTotalProduct;
         result = 31 * result + (cTitleSeo != null ? cTitleSeo.hashCode() : 0);

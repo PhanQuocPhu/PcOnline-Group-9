@@ -42,8 +42,8 @@ public class AdminLoginController extends HttpServlet {
                     }
                     response.addCookie(aemail);
                     response.addCookie(apassword);
-                    System.out.println("Login Successfully");
-                    System.out.println(session.getAttribute("admin"));
+                    /*System.out.println("Login Successfully");
+                    System.out.println(session.getAttribute("admin"));*/
                     response.sendRedirect("/admin");
                 }
                 break;
@@ -59,10 +59,6 @@ public class AdminLoginController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("LoginMess", "Welcome back!!");
-        HttpSession session = request.getSession();
-        String action = request.getParameter("command");
-        System.out.println(session.getAttribute("admin"));
-        System.out.println(action);
         request.getRequestDispatcher("/views/Admin/account/login.jsp").forward(request, response);
     }
 }

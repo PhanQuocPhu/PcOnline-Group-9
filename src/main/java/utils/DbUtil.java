@@ -18,4 +18,7 @@ public class DbUtil {
     static final Sql2o sql2o = new Sql2o(DB_URL, USER, PASS);
 
     public static Connection openConn() { return sql2o.open(); }
+
+    public static Connection openTran() { return sql2o.beginTransaction(); }
+
 }

@@ -1,10 +1,13 @@
 package controllers;
 
+import com.github.slugify.Slugify;
 import entity.Categories;
 import models.CategoriesModel;
+import services.helper;
 import utils.ServletUtils;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,22 +17,23 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "AdminCategoryController", urlPatterns = "/admin/category/*")
+@MultipartConfig
 public class AdminCategoryController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
         switch (path) {
-            case "/Add":
+            case "/add":
                 addCategory(request, response);
                 break;
-           /* case "/Delete":
+            case "/delete":
                 deleteCategory(request, response);
-                break;*/
-            /*case "/Update":
+                break;
+           /* case "/update":
                 updateCategory(request, response);
                 break;*/
-            default:
+            /*default:
                 ServletUtils.redirect("/notfound", request, response);
-                break;
+                break;*/
         }
     }
 
@@ -71,17 +75,23 @@ public class AdminCategoryController extends HttpServlet {
 
     private void addCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String cName = request.getParameter("cName");
-        String cSlug = request.getParameter("cSlug");
+        String cSlug = helper.createSlug(cName);
         String cIcon = request.getParameter("cIcon");
-        String cAvatar = request.getParameter("cAvatar");
-        String cActive = request.getParameter("cActive");
-        String cTotalProduct = request.getParameter("cTotalProduct");
-        String cHome = request.getParameter("cHome");
-
-        Categories c = new Categories();
-        CategoriesModel.add(c);
+        Byte cActive = Byte.parseByte(request.getParameter("cActive"));
+        Byte cHome = Byte.parseByte(request.getParameter("cHome"));
+        /*System.out.println(cName);*/
+        CategoriesModel.create(cName, cSlug, cIcon, cActive, cHome);
         ServletUtils.forward("/views/Admin/category/form.jsp", request, response);
     }
+
+    private void deleteCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        /*System.out.println(cName);*/
+        CategoriesModel.delete(id);
+        response.sendRedirect("/admin/category/");
+    }
+
+
 
 
 }
