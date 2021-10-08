@@ -47,6 +47,7 @@
 	</body>
 
 	<footer>
+
 		<%@include file="/views/Admin/components/js.jsp" %>
 	</footer>
 </html>

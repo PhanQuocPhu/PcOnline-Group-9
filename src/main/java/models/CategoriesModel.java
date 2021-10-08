@@ -50,7 +50,7 @@ public class CategoriesModel {
     public static Categories create(String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
         String sql = "select * FROM categories WHERE cName =:cName";
 
-        try (org.sql2o.Connection conn = DbUtil.openConn()) {
+        try (org.sql2o.Connection conn = DbUtil.openTran()) {
             Categories category = conn.createQuery(sql).addParameter("cName", cName).throwOnMappingFailure(false).executeAndFetchFirst(Categories.class);
             if(category != null)
             {
@@ -66,6 +66,33 @@ public class CategoriesModel {
                     .addParameter("cActive", cActive)
                     .addParameter("cHome", cHome)
                     .executeUpdate();
+            conn.commit();
+            return null;
+        }
+    }
+    public static Categories update(Integer id, String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
+        String sql = "select * FROM categories WHERE cName =:cName and id!=:id";
+        try (org.sql2o.Connection conn = DbUtil.openTran()) {
+            Categories category = conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .addParameter("cName", cName)
+                    .throwOnMappingFailure(false).executeAndFetchFirst(Categories.class);
+            if(category != null)
+            {
+                System.out.println("Tên danh mục đã tồn tại!!!!");
+                return null;
+            } else {
+                sql = "update categories set cName=:cName, cSlug=:cSlug, cIcon=:cIcon, cActive=:cActive, cHome=:cHome  where id =:id";
+            }
+            conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .addParameter("cName", cName)
+                    .addParameter("cSlug", cSlug)
+                    .addParameter("cIcon", cIcon)
+                    .addParameter("cActive", cActive)
+                    .addParameter("cHome", cHome)
+                    .executeUpdate();
+            conn.commit();
             return null;
         }
     }

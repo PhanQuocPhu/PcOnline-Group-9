@@ -60,28 +60,13 @@
 				</li>
 
 				<%--Category--%>
-				<li class="nav-item  <c:out value="${CatOpen}"/> ">
-					<a href="#" class="nav-link <c:out value="${CatOpen}"/>">
+				<li class="nav-item">
+					<a href="${pageContext.request.contextPath}/admin/category" class="nav-link ${catActive}">
 						<i class="nav-icon far fa-image"></i>
 						<p>
 							Category
-							<i class="fas fa-angle-left right"></i>
 						</p>
 					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="${pageContext.request.contextPath}/admin/category/index" class="nav-link <c:out value="${CatIndex}"/>">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Index</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="${pageContext.request.contextPath}/admin/category/add" class="nav-link <c:out value="${CatAdd}"/>">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Create</p>
-							</a>
-						</li>
-					</ul>
 				</li>
 				<%--Product--%>
 				<li class="nav-item">

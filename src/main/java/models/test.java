@@ -16,18 +16,23 @@ public class test {
         String email = "admin@gmail.com";
         String password = "123";
 
+        int id = 37;
         String cName = "cName";
         String cSlug = "cSlug";
         String cIcon = "cIcon";
-        Byte cActive = 1;
-        Byte cHome = 1;
+        Byte cActive = 0;
+        Byte cHome = 0;
 
-        CreateCategory(cName, cSlug, cIcon, cActive, cHome);
+        //createCate(cName, cSlug, cIcon, cActive, cHome);
+        updateCate(id, cName, cSlug, cIcon, cActive, cHome);
+        //deleteCate(23);
+
+
         //CreateAdmin(name, email, password);
 
         /*CheckAdmin(email, password);*/
 
-        //deleteCate(23);
+
         //Thua
         /*TestCateImp();*/
     }
@@ -40,8 +45,12 @@ public class test {
                 "Password:" + " " + password + " is added to the database!!!!!");
     }
 
-    public static void CreateCategory(String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
+    public static void createCate(String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
         CategoriesModel.create(cName, cSlug, cIcon, cActive, cHome);
+        System.out.println("Success!!!!");
+    }
+    public static void updateCate(int id, String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
+        CategoriesModel.update(id, cName, cSlug, cIcon, cActive, cHome);
         System.out.println("Success!!!!");
     }
 

@@ -1,6 +1,5 @@
 package controllers;
 
-import com.github.slugify.Slugify;
 import entity.Categories;
 import models.CategoriesModel;
 import services.helper;
@@ -23,14 +22,10 @@ public class AdminCategoryController extends HttpServlet {
         String path = request.getPathInfo();
         switch (path) {
             case "/add":
-                addCategory(request, response);
-                break;
+            case "/update":
             case "/delete":
-                deleteCategory(request, response);
+                manageCategory(request, response, path);
                 break;
-           /* case "/update":
-                updateCategory(request, response);
-                break;*/
             /*default:
                 ServletUtils.redirect("/notfound", request, response);
                 break;*/
@@ -42,56 +37,51 @@ public class AdminCategoryController extends HttpServlet {
         if (path == null || path.equals("/")) {
             path = "/index";
         }
-        switch (path) {
-            case "/index":
-                List<Categories> list = null;
-                try {
-                    list = CategoriesModel.getAll();
-                } catch (SQLException throwables) {
-                    System.out.println("Lỗi lấy data rồi :D");
-                    throwables.printStackTrace();
-                }
-                request.setAttribute("categories", list);
-                ServletUtils.forward("/views/Admin/category/index.jsp", request, response);
-                break;
-            case "/add":
-                ServletUtils.forward("/views/Admin/category/form.jsp", request, response);
-                break;
-            /*case "/edit":
-                int id = Integer.parseInt(request.getParameter("id"));
-                Optional<Category> c = CategoryModel.findById(id);
-                if (c.isPresent()) {
-                    request.setAttribute("category", c.get());
-                    ServletUtils.forward("/views/category/form.jsp", request, response);
-                } else {
-                    ServletUtils.redirect("/Admin/Category", request, response);
-                }
-                break;*/
-            default:
-                ServletUtils.redirect("/notfound", request, response);
-                break;
+        if ("/index".equals(path)) {
+            List<Categories> list = null;
+            try {
+                list = CategoriesModel.getAll();
+            } catch (SQLException throwables) {
+                System.out.println("Lỗi lấy data rồi :D");
+                throwables.printStackTrace();
+            }
+            request.setAttribute("categories", list);
+            request.setAttribute("catActive", "active");
+            ServletUtils.forward("/views/Admin/category/index.jsp", request, response);
+        } else {
+            ServletUtils.redirect("/notfound", request, response);
         }
     }
 
-    private void addCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void manageCategory(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
+        int id = 0;
+        if (request.getParameter("id") != null)
+            id = Integer.parseInt(request.getParameter("id"));
         String cName = request.getParameter("cName");
         String cSlug = helper.createSlug(cName);
         String cIcon = request.getParameter("cIcon");
-        Byte cActive = Byte.parseByte(request.getParameter("cActive"));
-        Byte cHome = Byte.parseByte(request.getParameter("cHome"));
-        /*System.out.println(cName);*/
-        CategoriesModel.create(cName, cSlug, cIcon, cActive, cHome);
-        ServletUtils.forward("/views/Admin/category/form.jsp", request, response);
+        byte cActive = 0;
+        if (request.getParameter("cActive") != null)
+            cActive = Byte.parseByte(request.getParameter("cActive"));
+        byte cHome = 0;
+        if (request.getParameter("cHome") != null)
+            cHome = Byte.parseByte(request.getParameter("cHome"));
+        switch (path){
+            case "/add":
+                CategoriesModel.create(cName, cSlug, cIcon, cActive, cHome);
+                response.sendRedirect("/admin/category/");
+                break;
+            case "/update":
+                CategoriesModel.update(id, cName, cSlug, cIcon, cHome, cActive);
+                response.sendRedirect("/admin/category/");
+                break;
+            case "/delete":
+                CategoriesModel.delete(id);
+                response.sendRedirect("/admin/category/");
+                break;
+        }
+
     }
-
-    private void deleteCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        /*System.out.println(cName);*/
-        CategoriesModel.delete(id);
-        response.sendRedirect("/admin/category/");
-    }
-
-
 
 
 }
