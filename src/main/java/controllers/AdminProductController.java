@@ -129,6 +129,9 @@ public class AdminProductController extends HttpServlet {
 
         switch (path) {
             case "/add":
+                if(!request.getPart("proAvatar").getSubmittedFileName().equals(""))
+                    /*System.out.println("Không có file");*/
+                    proAvatar = upload_image(request);
                 ProductsModel.create(proName, proSlug, proCategoryId, proPrice, proAuthorId, proSale, proActive, proHot,
                         proDescription, proAvatar, proContent, proNumber);
                 response.sendRedirect("/admin/product/");

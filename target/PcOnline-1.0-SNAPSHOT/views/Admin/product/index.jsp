@@ -63,15 +63,17 @@
 														<td>${p.id}</td>
 														<td>
 															<div style="width: 250px; height: 250px">
-																<img class="img img-thumbnail"
+																<img class="img img-thumbnail mx-auto d-block"
 																	 style="width: auto; height: auto; max-width: 100%; max-height: 100%"
-																	 src="<c:url value='/public/images/${p.proAvatar}'/>">
+																	 src="<c:url value='/public/images/${p.proAvatar}'/>"
+																	 alt="${p.proSlug}">
 															</div>
 														</td>
 														<td>${p.proName}</td>
 														<td class="text-center">${p.proNumber}</td>
 														<td class="text-center">
-																${p.proActive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' : '<a style="font-size: 14px" class="badge badge-danger" data-value="1"> Nope </a>'}
+																${p.proActive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' :
+																		'<a style="font-size: 14px" class="badge badge-danger" data-value="1"> Nope </a>'}
 														</td>
 														<td class="text-center">
 															<form action="<c:url value='/admin/product/delete?id=${p.id}'/>"
@@ -145,7 +147,7 @@
 										<textarea class="form-control form-control-border modal-proDescription"
 												  id="proDescription"
 												  name="proDescription" rows="2" placeholder="Enter ..."
-												  style="margin-top: 0px; margin-bottom: 0px; height: 40px;"></textarea>
+												  style="margin-top: 0; margin-bottom: 0; height: 40px;"></textarea>
 									</div>
 									<div class="form-group">
 										<label for="proCategoryId" class="form-label">Danh mục:</label>
@@ -169,7 +171,7 @@
 										<label for="proSale" class="form-label">% Khuyến mãi:</label>
 										<input type="number" name="proSale"
 											   class="form-control form-control-border modal-proSale"
-											   placeholder="% giảm giá" id="proSale" min="0"
+											   placeholder="% giảm giá" id="proSale" min="0" max="90"
 											   value="0">
 									</div>
 
@@ -220,11 +222,11 @@
 							</div>
 							<!-- /.row -->
 							<div class="form-group">
-								<label for="proDescription">Mô tả chi tiết</label>
+								<label for="proContent">Mô tả chi tiết</label>
 								<textarea class="form-control form-control-border modal-proContent ckeditor"
 										  id="proContent"
 										  name="proContent" rows="3" placeholder="Enter ..."
-										  style="margin-top: 0px; margin-bottom: 0px; height: 83px;"></textarea>
+										  style="margin-top: 0; margin-bottom: 0; height: 83px;"></textarea>
 							</div>
 
 						</div>
@@ -268,7 +270,8 @@
                 removeTitle: 'Cancel or reset changes',
                 elErrorContainer: '#kv-avatar-errors-1',
                 msgErrorClass: 'alert alert-block alert-danger',
-                defaultPreviewContent: '<img src="/samples/default-avatar-male.png" alt="Ảnh sản phẩm">',
+                defaultPreviewContent:
+                    '<div class="kv-file-content"><img id="imgPreview" style="width:100%; heigh:100%" src="<c:url value='/assets/admin/noimg.jpg'/>" alt="Ảnh sản phẩm"></div>',
                 layoutTemplates: {main2: '{preview} ' + btnCust + ' {remove} {browse}'},
                 allowedFileExtensions: ["jpg", "png", "gif"]
             });
@@ -281,7 +284,6 @@
                 var modalTittle = modal.find('.modal-title');
                 var modalproName = modal.find(' .modal-body .modal-proName');
                 var modalproDescription = modal.find(' .modal-body .modal-proDescription');
-                var modalproContent = modal.find(' .modal-body .modal-proContent');
                 var modalproCategoryId = modal.find(' .modal-body .modal-proCategoryId');
                 var modalproPrice = modal.find(' .modal-body .modal-proPrice');
                 var modalproSale = modal.find(' .modal-body .modal-proSale');
@@ -301,7 +303,7 @@
                         modalproPrice.val(pro.proPrice);
                         modalproSale.val(pro.proSale);
                         modalproNumber.val(pro.proNumber);
-
+                        $('#imgPreview').attr("src", "${pageContext.request.contextPath}/public/images/" + pro.proAvatar);
                         if (pro.proHome !== 0) {
                             modalproHome.prop('checked', true);
                         } else modalproHome.prop('checked', false);
@@ -317,6 +319,11 @@
                     modalproName.val("");
                     modalproDescription.val("");
                     CKEDITOR.instances['proContent'].setData("");
+                    modalproCategoryId.val("");
+                    modalproPrice.val("");
+                    modalproSale.val("");
+                    modalproNumber.val("");
+                    $('#imgPreview').attr("src", "${pageContext.request.contextPath}/assets/admin/noimg.jpg");
                     modalproHome.prop('checked', false);
                     modalproActive.prop('checked', false);
                     modalForm.attr("action", url);
