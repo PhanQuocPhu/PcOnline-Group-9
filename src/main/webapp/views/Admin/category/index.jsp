@@ -53,6 +53,7 @@
 													<th style="width: 5%">ID</th>
 													<th style="width: 50%">Tên Danh Mục</th>
 													<th class="text-center" style="width: 10%">HomePage</th>
+													<th class="text-center" style="width: 10%">Icon</th>
 													<th class="text-center" style="width: 10%">Status</th>
 													<th class="text-center" style="width: 10%">Thao Tác</th>
 												</tr>
@@ -64,6 +65,9 @@
 														<td>${c.cName}</td>
 														<td class="text-center">
 																${c.cHome == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Yes </a>' : '<a style="font-size: 14px" class="badge badge-danger"data-value="0" data-value="1"> Nope </a>'}
+														</td>
+														<td class="text-center">
+															<img src="<c:url value = "/public/images/${c.cIcon}"/>">
 														</td>
 														<td class="text-center">
 																${c.cActive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' : '<a style="font-size: 14px" class="badge badge-danger" data-value="1"> Nope </a>'}
@@ -95,6 +99,7 @@
 													<th>ID</th>
 													<th>Tên Danh Mục</th>
 													<th class="text-center">HomePage</th>
+													<th class="text-center" style="width: 10%">Icon</th>
 													<th class="text-center">Status</th>
 													<th class="text-center">Thao Tác</th>
 												</tr>
@@ -119,7 +124,7 @@
 			 aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
-					<form enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/category/add"
+					<form enctype="multipart/form-data" action="<c:url value='/admin/category/add'/>"
 						  method="post">
 						<div class="modal-header">
 							<h5 class="modal-title" id="formModalLabel">New Category</h5>
@@ -133,21 +138,24 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="cName">Tên danh mục</label>
-										<input type="text" class="form-control form-control-border modal-cName" id="cName"
+										<input type="text" class="form-control form-control-border modal-cName"
+											   id="cName"
 											   name="cName" placeholder="Tên danh mục" required>
 									</div>
 
 									<div class="row">
 										<div class="form-group col-md-6">
 											<div class="custom-control custom-switch">
-												<input type="checkbox" class="custom-control-input modal-cHome" id="cHome" value="1"
+												<input type="checkbox" class="custom-control-input modal-cHome"
+													   id="cHome" value="1"
 													   name="cHome">
 												<label class="custom-control-label" for="cHome">Home</label>
 											</div>
 										</div>
 										<div class="form-group col-md-6">
 											<div class="custom-control custom-switch">
-												<input type="checkbox" class="custom-control-input modal-cActive" id="cActive"
+												<input type="checkbox" class="custom-control-input modal-cActive"
+													   id="cActive"
 													   value="1" name="cActive">
 												<label class="custom-control-label" for="cActive">Active</label>
 											</div>
@@ -184,55 +192,77 @@
 		</div>
 
 		<script>
+            $('#formModal').on('show.bs.modal', function (event) {        // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+                var button = $(event.relatedTarget)
+                var id = button.data('id');
+                var url = "";
+                var modal = $(this);
+                var modalTittle = modal.find('.modal-title');
+                var modalcName = modal.find(' .modal-body .modal-cName');
+                var modalcHome = modal.find(' .modal-body .modal-cHome');
+                var modalcActive = modal.find(' .modal-body .modal-cActive');
+                var modalForm = modal.find('.modal-content form');
+                if (id !== "") {
+                    url = "${pageContext.request.contextPath}/admin/category/update?id=" + id;
+                    $.get(url, function (cat) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+                        modalTittle.text('Edit Category ID: ' + id);
+                        modalcName.val(cat.cName);
+                        if (cat.cHome !== 0) {
+                            modalcHome.prop('checked', true);
+                        } else modalcHome.prop('checked', false);
+                        if (cat.cActive !== 0) {
+                            modalcActive.prop('checked', true);
+                        } else modalcActive.prop('checked', false);
+                        modalForm.attr("action", url);
+                    });
+                } else if (id === "") {
+                    url = "${pageContext.request.contextPath}/admin/category/add";
+                    modalTittle.text('Create Category');
+                    modalcName.val("");
+                    modalcHome.prop('checked', false);
+                    modalcActive.prop('checked', false);
+                    modalForm.attr("action", url);
+                }
 
-            /*$('#dataTable').on('click', '.btnSelect', function () {
-                // get the current row
-                var currentRow = $(this).closest("tr");
+            });
 
-                var id = currentRow.find("td:eq(0)").text(); // get current row 1st TD value
-                var cName = currentRow.find("td:eq(1)").text(); // get current row 2nd TD
-                var cHome = currentRow.find("td:eq(2)").find("a").data('value'); // get current row 3rd TD
-                var cActive = currentRow.find("td:eq(3)").find("a").data('value'); // get current row 3rd TD
-                var data = id + "\n" + cName + "\n" + cHome + "\n" + cActive;
-
-                alert(data);
-
-            });*/
-            $('#formModal').on('show.bs.modal', function (event) {
+            /*$('#formModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) 	// Button that triggered the modal
                 var id = button.data('id'); 			// Extract info from data-* attributes
                 var cName = button.data('cname'); 		// Extract info from data-* attributes
                 var cHome = button.data('chome'); 		// Extract info from data-* attributes
                 var cActive = button.data('cactive'); 	// Extract info from data-* attributes
 
-                var data = id + "\n" + cName + "\n" + cHome + "\n" + cActive;
-
                 //alert(data);
 
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
                 var modal = $(this)
+                var modalTittle = modal.find('.modal-title');
+                var modalcName = modal.find(' .modal-body .modal-cName');
+                var modalcHome = modal.find(' .modal-body .modal-cHome');
+                var modalcActive = modal.find(' .modal-body .modal-cActive');
+                var modalForm = modal.find('.modal-content form');
                 var action = "";
                 //alert(action);
-				if(id!=="")
-				{
-                    modal.find('.modal-title').text(id===""?'Create Category':'Edit Category ID: '+id);
-                    modal.find(' .modal-body .modal-cName').val(cName);
-                    if (cHome !== 0)
-                    {
-                        modal.find(' .modal-body .modal-cHome').prop('checked', true);
-                    } else modal.find(' .modal-body .modal-cHome').prop('checked', false);
-                    if (cActive !== 0)
-                    {
-                        modal.find(' .modal-body .modal-cActive').prop('checked', true);
-                    } else modal.find(' .modal-body .modal-cActive').prop('checked', false);
+                if (id !== "") {
                     action = "${pageContext.request.contextPath}/admin/category/update?id=" + id;
-                    modal.find('.modal-content form').attr("action", action);
-                    /*alert( modal.find('.modal-content form').attr("action"));*/
-				}
+                } else {
+                    action = "${pageContext.request.contextPath}/admin/category/add";
+                }
+                modalTittle.text(id === "" ? 'Create Category' : 'Edit Category ID: ' + id);
+                modalcName.val(cName);
+                if (cHome !== 0) {
+                    modalcHome.prop('checked', true);
+                } else modalcHome.prop('checked', false);
+                if (cActive !== 0) {
+                    modalcActive.prop('checked', true);
+                } else modalcActive.prop('checked', false);
+                modalForm.attr("action", action);
+                /!*alert( modal.find('.modal-content form').attr("action"));*!/
 
-                /*modal.find('.modal-body input').val(recipient)*/
-            })
+                /!*modal.find('.modal-body input').val(recipient)*!/
+            })*/
 		</script>
 	</jsp:body>
 </mt:admin_template>

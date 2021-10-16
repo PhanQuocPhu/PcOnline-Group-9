@@ -2,6 +2,7 @@ package models;
 
 import entity.Admins;
 import entity.Categories;
+import entity.Products;
 import utils.DbUtil;
 
 import java.sql.Connection;
@@ -94,6 +95,13 @@ public class CategoriesModel {
                     .executeUpdate();
             conn.commit();
             return null;
+        }
+    }
+    //Sql2o - Lấy theo ID
+    public static Categories getById(int id) throws SQLException {
+        final String sql = "select * from categories where id=:id";
+        try ( org.sql2o.Connection con = DbUtil.openConn() ){
+            return con.createQuery(sql)/*.throwOnMappingFailure(false)*/.addParameter("id", id).executeAndFetchFirst(Categories.class);
         }
     }
 

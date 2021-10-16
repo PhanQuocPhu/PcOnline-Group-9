@@ -8,14 +8,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>${tittle}</title>
-
+		<%@include file="/views/Admin/components/css.jsp" %>
 	</head>
 
 	<body class="hold-transition sidebar-mini layout-fixed">
 		<div class="wrapper">
-			<%@include file="/views/Admin/components/css.jsp" %>
-
-
 			<!-- Preloader -->
 			<%--<div class="preloader flex-column justify-content-center align-items-center">
 				<img class="animation__shake" src="${pageContext.request.contextPath}/assets/admin/dist/img/AdminLTELogo.png"

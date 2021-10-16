@@ -70,7 +70,7 @@
 				</li>
 				<%--Product--%>
 				<li class="nav-item">
-					<a href="pages/kanban.html" class="nav-link">
+					<a href="${pageContext.request.contextPath}/admin/product" class="nav-link ${proActive}">
 						<i class="nav-icon fas fa-columns"></i>
 						<p>
 							Product
