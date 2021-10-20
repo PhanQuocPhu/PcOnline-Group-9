@@ -15,6 +15,8 @@ public class Payments {
     private String pTransactionCode;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private Transactions transactionsByPTransactionId;
+    private Users usersByPUserId;
 
     @Id
     @Column(name = "id")
@@ -152,5 +154,25 @@ public class Payments {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "pTransactionId", referencedColumnName = "id")
+    public Transactions getTransactionsByPTransactionId() {
+        return transactionsByPTransactionId;
+    }
+
+    public void setTransactionsByPTransactionId(Transactions transactionsByPTransactionId) {
+        this.transactionsByPTransactionId = transactionsByPTransactionId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "pUserId", referencedColumnName = "id")
+    public Users getUsersByPUserId() {
+        return usersByPUserId;
+    }
+
+    public void setUsersByPUserId(Users usersByPUserId) {
+        this.usersByPUserId = usersByPUserId;
     }
 }

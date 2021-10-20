@@ -2,13 +2,13 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 public class Products {
     private int id;
     private String proName;
     private String proSlug;
-    private int proCategoryId;
     private int proPrice;
     private int proAuthorId;
     private byte proSale;
@@ -27,37 +27,8 @@ public class Products {
     private int proTotalNumber;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private Collection<Orders> ordersById;
     private Categories categoriesByProCategoryId;
-
-
-    public Products(int id, String proName, String proSlug, int proPrice, int proAuthorId,
-                    byte proSale, byte proActive, byte proHot, int proView, String proDescription,
-                    String proAvatar, String proDescriptionSeo, String proKeywordSeo, String proTitleSeo,
-                    String proContent, byte proPay, byte proNumber, int proTotalRating, int proTotalNumber,
-                    Timestamp createdAt, Timestamp updatedAt, Categories categoriesByProCategoryId) {
-        this.id = id;
-        this.proName = proName;
-        this.proSlug = proSlug;
-        this.proPrice = proPrice;
-        this.proAuthorId = proAuthorId;
-        this.proSale = proSale;
-        this.proActive = proActive;
-        this.proHot = proHot;
-        this.proView = proView;
-        this.proDescription = proDescription;
-        this.proAvatar = proAvatar;
-        this.proDescriptionSeo = proDescriptionSeo;
-        this.proKeywordSeo = proKeywordSeo;
-        this.proTitleSeo = proTitleSeo;
-        this.proContent = proContent;
-        this.proPay = proPay;
-        this.proNumber = proNumber;
-        this.proTotalRating = proTotalRating;
-        this.proTotalNumber = proTotalNumber;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.categoriesByProCategoryId = categoriesByProCategoryId;
-    }
 
     @Id
     @Column(name = "id")
@@ -88,16 +59,6 @@ public class Products {
     public void setProSlug(String proSlug) {
         this.proSlug = proSlug;
     }
-    @Basic
-    @Column(name = "proCategoryId")
-    public int getProCategoryID() {
-        return proCategoryId;
-    }
-
-    public void setProCategoryID(int proCategoryID) {
-        this.proCategoryId = proCategoryID;
-    }
-
 
     @Basic
     @Column(name = "proPrice")
@@ -341,8 +302,17 @@ public class Products {
         return result;
     }
 
-    @ManyToOne(cascade = {})
-    @JoinColumn(name = "proCategoryId", referencedColumnName = "id", nullable = false, table = "")
+    @OneToMany(mappedBy = "productsByOrProductId")
+    public Collection<Orders> getOrdersById() {
+        return ordersById;
+    }
+
+    public void setOrdersById(Collection<Orders> ordersById) {
+        this.ordersById = ordersById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "proCategoryId", referencedColumnName = "id", nullable = false)
     public Categories getCategoriesByProCategoryId() {
         return categoriesByProCategoryId;
     }

@@ -3,6 +3,8 @@ package models;
 import entity.Admins;
 import entity.Categories;
 import entity.Products;
+import org.hibernate.Session;
+import utils.HibernateUtil;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -39,8 +41,15 @@ public class test {
         //createPro();
         //getProByCateId(10);
 
-        Categories cat = CategoriesModel.getById(25);
-        System.out.println("Id: " + cat.getId() + " || " + "Name: " + cat.getcName());
+        /*Categories cat = CategoriesModel.getById(10);
+        System.out.println("Id: " + cat.getId() + " || " + "Name: " + cat.getcName());*/
+        try (Session session = HibernateUtil.openSession()) {
+            String hql = "from Products";
+            List<Products> products = session.createQuery(hql).list();
+            for (Products pro : products) {
+                System.out.println("Id: " + pro.getId() + " || " + "Name: " + pro.getProName() + " || " + pro.getProSlug());
+            }
+        }
     }
 
     public static void getProByCateId(int proCategoryId) throws SQLException {

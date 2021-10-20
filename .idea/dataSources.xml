@@ -8,39 +8,6 @@
       <jdbc-url>jdbc:mysql://localhost:3306/pconlineweb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="default/OpenJPA" uuid="8c47b8b7-31a0-4392-a435-b93c36db7a0f">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>OpenJPA
-
-D:/Hoc Tap/GRADUATION/Web/Assignment/PcOnline/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/pconlineweb</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="default/EclipseLink" uuid="afa3d7c3-04cb-44ef-8411-4bf9c3cef39a">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>EclipseLink
-
-D:/Hoc Tap/GRADUATION/Web/Assignment/PcOnline/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/pconlineweb</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="default/TopLink" uuid="ed13c933-d0e5-46a5-a8cb-89d48d65fe10">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>TopLink
-
-D:/Hoc Tap/GRADUATION/Web/Assignment/PcOnline/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/pconlineweb</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="default/Hibernate" uuid="51ef1f6a-3804-4ada-b289-c9c72268f5af">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>

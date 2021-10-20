@@ -2,6 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 public class Users {
@@ -19,6 +20,7 @@ public class Users {
     private String providerId;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private Collection<Payments> paymentsById;
 
     @Id
     @Column(name = "id")
@@ -203,5 +205,14 @@ public class Users {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "usersByPUserId")
+    public Collection<Payments> getPaymentsById() {
+        return paymentsById;
+    }
+
+    public void setPaymentsById(Collection<Payments> paymentsById) {
+        this.paymentsById = paymentsById;
     }
 }

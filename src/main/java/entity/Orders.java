@@ -11,6 +11,8 @@ public class Orders {
     private byte orSale;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private Transactions transactionsByOrTransactionId;
+    private Products productsByOrProductId;
 
     @Id
     @Column(name = "id")
@@ -98,5 +100,25 @@ public class Orders {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "orTransactionId", referencedColumnName = "id", nullable = false)
+    public Transactions getTransactionsByOrTransactionId() {
+        return transactionsByOrTransactionId;
+    }
+
+    public void setTransactionsByOrTransactionId(Transactions transactionsByOrTransactionId) {
+        this.transactionsByOrTransactionId = transactionsByOrTransactionId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "orProductId", referencedColumnName = "id", nullable = false)
+    public Products getProductsByOrProductId() {
+        return productsByOrProductId;
+    }
+
+    public void setProductsByOrProductId(Products productsByOrProductId) {
+        this.productsByOrProductId = productsByOrProductId;
     }
 }

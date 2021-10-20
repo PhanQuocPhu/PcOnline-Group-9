@@ -1,10 +1,8 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 public class Categories {
@@ -13,16 +11,13 @@ public class Categories {
     private String cSlug;
     private String cIcon;
     private byte cActive;
-    private int cTotalProduct;
     private String cTitleSeo;
     private String cDescriptionSeo;
     private String cKeywordSeo;
     private byte cHome;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-
-    public Categories(String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
-    }
+    private Collection<Products> productsById;
 
     @Id
     @Column(name = "id")
@@ -64,7 +59,6 @@ public class Categories {
         this.cIcon = cIcon;
     }
 
-
     @Basic
     @Column(name = "cActive")
     public byte getcActive() {
@@ -73,16 +67,6 @@ public class Categories {
 
     public void setcActive(byte cActive) {
         this.cActive = cActive;
-    }
-
-    @Basic
-    @Column(name = "cTotalProduct")
-    public int getcTotalProduct() {
-        return cTotalProduct;
-    }
-
-    public void setcTotalProduct(int cTotalProduct) {
-        this.cTotalProduct = cTotalProduct;
     }
 
     @Basic
@@ -154,7 +138,6 @@ public class Categories {
 
         if (id != that.id) return false;
         if (cActive != that.cActive) return false;
-        if (cTotalProduct != that.cTotalProduct) return false;
         if (cHome != that.cHome) return false;
         if (cName != null ? !cName.equals(that.cName) : that.cName != null) return false;
         if (cSlug != null ? !cSlug.equals(that.cSlug) : that.cSlug != null) return false;
@@ -176,7 +159,6 @@ public class Categories {
         result = 31 * result + (cSlug != null ? cSlug.hashCode() : 0);
         result = 31 * result + (cIcon != null ? cIcon.hashCode() : 0);
         result = 31 * result + (int) cActive;
-        result = 31 * result + cTotalProduct;
         result = 31 * result + (cTitleSeo != null ? cTitleSeo.hashCode() : 0);
         result = 31 * result + (cDescriptionSeo != null ? cDescriptionSeo.hashCode() : 0);
         result = 31 * result + (cKeywordSeo != null ? cKeywordSeo.hashCode() : 0);
@@ -184,5 +166,14 @@ public class Categories {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "categoriesByProCategoryId")
+    public Collection<Products> getProductsById() {
+        return productsById;
+    }
+
+    public void setProductsById(Collection<Products> productsById) {
+        this.productsById = productsById;
     }
 }
