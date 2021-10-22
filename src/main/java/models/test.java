@@ -65,10 +65,14 @@ public class test {
     }
 
     public static void getProByCateId(int proCategoryId) throws SQLException {
-        ProductsModel productsModel = new ProductsModel();
-        List<Products> list = ProductsModel.getAll();
+        List<Products> listp = null;
+        try {
+            listp = ProductsModel.getByCId(proCategoryId);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         System.out.println("success");
-        for (Products pro : list) {
+        for (Products pro : listp) {
             System.out.println("Id: " + pro.getId() + " || " + "Name: " + pro.getProName() + " || " + pro.getProSlug());
         }
     }
@@ -86,19 +90,14 @@ public class test {
     }
 
     public static void createCate(String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
-        CategoriesModel.create(cName, cSlug, cIcon, cActive, cHome);
+
         System.out.println("Success!!!!");
     }
 
-    public static void updateCate(int id, String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
-        CategoriesModel.update(id, cName, cSlug, cIcon, cActive, cHome);
+    public static void updateCate() {
         System.out.println("Success!!!!");
     }
 
-    public static void deleteCate(int id) {
-        CategoriesModel.delete(id);
-        System.out.println("Success!!!!");
-    }
 
     public static void createPro() {
         System.out.println("Thêm sản phẩm thành công!!!!");

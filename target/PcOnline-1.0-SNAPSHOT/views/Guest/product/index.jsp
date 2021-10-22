@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<jsp:useBean id="products" scope="request" type="java.util.List<entity.Products>"/>
 <mt:guest_template tittle="Guest">
 	<jsp:body>
 		<!-- Begin Li's Breadcrumb Area -->
@@ -9,8 +9,8 @@
 			<div class="container">
 				<div class="breadcrumb-content">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li class="active">Shop 4 Column</li>
+						<li><a href="/home">Home</a></li>
+						<li class="active">${category.cName}</li>
 					</ul>
 				</div>
 			</div>
@@ -24,7 +24,8 @@
 						<!-- Begin Li's Banner Area -->
 						<div class="single-banner shop-page-banner">
 							<a href="#">
-								<img src="images/bg-banner/2.jpg" alt="Li's Static Banner">
+								<img src="<c:url value='/assets/guest/images/bg-banner/2.jpg'/>"
+									 alt="Li's Static Banner">
 							</a>
 						</div>
 						<!-- Li's Banner Area End Here -->
@@ -34,8 +35,14 @@
 								<div class="product-view-mode">
 									<!-- shop-item-filter-list start -->
 									<ul class="nav shop-item-filter-list" role="tablist">
-										<li class="active" role="presentation"><a aria-selected="true" class="active show" data-toggle="tab" role="tab" aria-controls="grid-view" href="#grid-view"><i class="fa fa-th"></i></a></li>
-										<li role="presentation"><a data-toggle="tab" role="tab" aria-controls="list-view" href="#list-view"><i class="fa fa-th-list"></i></a></li>
+										<li class="active" role="presentation"><a aria-selected="true"
+																				  class="active show" data-toggle="tab"
+																				  role="tab" aria-controls="grid-view"
+																				  href="#grid-view"><i
+												class="fa fa-th"></i></a></li>
+										<li role="presentation"><a data-toggle="tab" role="tab"
+																   aria-controls="list-view" href="#list-view"><i
+												class="fa fa-th-list"></i></a></li>
 									</ul>
 									<!-- shop-item-filter-list end -->
 								</div>
@@ -67,1032 +74,160 @@
 								<div id="grid-view" class="tab-pane fade active show" role="tabpanel">
 									<div class="product-area shop-product-area">
 										<div class="row">
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/1.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
+											<c:choose>
+												<c:when test="${products.size() == 0}">
+													<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
+														<h6>Tạm chưa có sản phẩm</h6>
 													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
+												</c:when>
+												<c:otherwise>
+													<c:forEach var="p" items="${products}" varStatus="status">
+														<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
+															<!-- single-product-wrap start -->
+															<div class="single-product-wrap">
+																<div class="product-image">
+																	<a href="<c:url value='/home/product/detail?id=${p.id}'/>">
+																		<div style="width: 250px; height: 250px">
+																			<img class="img mx-auto d-block"
+																				 style="width: auto; height: auto; max-width: 100%; max-height: 100%"
+																				 src="<c:url value='/public/images/${p.proAvatar}'/>"
+																				 alt="${p.proSlug}">
+																		</div>
+																	</a>
+																	<span class="sticker">New</span>
+																</div>
+																<div class="product_desc">
+																	<div class="product_desc_info">
+																		<div class="product-review">
+																			<h5 class="manufacturer">
+																				<a href="#">Graphic Corner</a>
+																			</h5>
+																			<div class="rating-box">
+																				<ul class="rating">
+																					<li><i class="fa fa-star-o"></i>
+																					</li>
+																					<li><i class="fa fa-star-o"></i>
+																					</li>
+																					<li><i class="fa fa-star-o"></i>
+																					</li>
+																					<li class="no-star"><i
+																							class="fa fa-star-o"></i>
+																					</li>
+																					<li class="no-star"><i
+																							class="fa fa-star-o"></i>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																		<h4><a class="product_name"
+																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proName}</a>
+																		</h4>
+																		<div class="price-box">
+																			<span class="new-price">${p.proPrice}</span>
+																		</div>
+																	</div>
+																	<div class="add-actions">
+																		<ul class="add-actions-link">
+																			<li class="add-cart active"><a href="3">Add
+																				to
+																				cart</a></li>
+																			<li><a href="#" title="quick view"
+																				   class="quick-view-btn"
+																				   data-toggle="modal"
+																				   data-target="#exampleModalCenter"><i
+																					class="fa fa-eye"></i></a></li>
+																			<li><a class="links-details" href="3"><i
+																					class="fa fa-heart-o"></i></a></li>
+																		</ul>
+																	</div>
 																</div>
 															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
+															<!-- single-product-wrap end -->
 														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/2.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/3.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/4.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/5.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/6.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/7.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/8.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/9.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/10.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/11.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
-												<!-- single-product-wrap start -->
-												<div class="single-product-wrap">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/12.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-														</div>
-														<div class="add-actions">
-															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="shopping-cart.html">Add to cart</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-																<li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<!-- single-product-wrap end -->
-											</div>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+
 										</div>
 									</div>
 								</div>
 								<div id="list-view" class="tab-pane product-list-view fade" role="tabpanel">
 									<div class="row">
 										<div class="col">
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/12.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
+											<c:choose>
+												<c:when test="${categories.size() == 0}">
+													<h3>Tạm chưa có sản phẩm</h3>
+												</c:when>
+												<c:otherwise>
+													<c:forEach var="p" items="${products}" varStatus="status">
+														<div class="row product-layout-list">
+															<div class="col-lg-3 col-md-5 ">
+																<div class="product-image">
+																	<a href="<c:url value='/home/product/detail?id=${p.id}'/>">
+																		<div style="width: 250px; height: 250px">
+																			<img class="img mx-auto d-block"
+																				 style="width: auto; height: auto; max-width: 100%; max-height: 100%"
+																				 src="<c:url value='/public/images/${p.proAvatar}'/>"
+																				 alt="${p.proSlug}">
+																		</div>
+																	</a>
+																	<span class="sticker">New</span>
+																</div>
+															</div>
+															<div class="col-lg-5 col-md-7">
+																<div class="product_desc">
+																	<div class="product_desc_info">
+																		<div class="product-review">
+																			<h5 class="manufacturer">
+																				<a href="#">Graphic Corner</a>
+																			</h5>
+																			<div class="rating-box">
+																				<ul class="rating">
+																					<li><i class="fa fa-star-o"></i>
+																					</li>
+																					<li><i class="fa fa-star-o"></i>
+																					</li>
+																					<li><i class="fa fa-star-o"></i>
+																					</li>
+																					<li class="no-star"><i
+																							class="fa fa-star-o"></i>
+																					</li>
+																					<li class="no-star"><i
+																							class="fa fa-star-o"></i>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																		<h4><a class="product_name"
+																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proName}</a>
+																		</h4>
+																		<div class="price-box">
+																			<span class="new-price">${p.proPrice}</span>
+																		</div>
+																		<p>${p.proDescription}</p>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-4">
+																<div class="shop-add-action mb-xs-30">
+																	<ul class="add-actions-link">
+																		<li class="add-cart"><a href="#">Add to cart</a>
+																		</li>
+																		<li class="wishlist"><a href="wishlist.html"><i
+																				class="fa fa-heart-o"></i>Add to
+																			wishlist</a></li>
+																		<li><a class="quick-view" data-toggle="modal"
+																			   data-target="#exampleModalCenter"
+																			   href="#"><i
+																				class="fa fa-eye"></i>Quick view</a>
+																		</li>
 																	</ul>
 																</div>
 															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
 														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/11.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/10.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/9.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/8.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/7.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/6.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/5.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/4.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/3.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/2.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action mb-xs-30">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row product-layout-list last-child">
-												<div class="col-lg-3 col-md-5 ">
-													<div class="product-image">
-														<a href="single-product.html">
-															<img src="images/product/large-size/1.jpg" alt="Li's Product Image">
-														</a>
-														<span class="sticker">New</span>
-													</div>
-												</div>
-												<div class="col-lg-5 col-md-7">
-													<div class="product_desc">
-														<div class="product_desc_info">
-															<div class="product-review">
-																<h5 class="manufacturer">
-																	<a href="product-details.html">Graphic Corner</a>
-																</h5>
-																<div class="rating-box">
-																	<ul class="rating">
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		<li class="no-star"><i class="fa fa-star-o"></i></li>
-																	</ul>
-																</div>
-															</div>
-															<h4><a class="product_name" href="single-product.html">Hummingbird printed t-shirt</a></h4>
-															<div class="price-box">
-																<span class="new-price">$46.80</span>
-															</div>
-															<p>Beach Camera Exclusive Bundle - Includes Two Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers. Fill The Entire Room With Exquisite Sound via Ring Radiator Technology. Stream And Control R3 Speakers Wirelessly With Your Smartphone. Sophisticated, Modern Desig</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="shop-add-action">
-														<ul class="add-actions-link">
-															<li class="add-cart"><a href="#">Add to cart</a></li>
-															<li class="wishlist"><a href="wishlist.html"><i class="fa fa-heart-o"></i>Add to wishlist</a></li>
-															<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Quick view</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
 										</div>
 									</div>
 								</div>
@@ -1103,13 +238,15 @@
 										</div>
 										<div class="col-lg-6 col-md-6">
 											<ul class="pagination-box">
-												<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i> Previous</a>
+												<li><a href="#" class="Previous"><i class="fa fa-chevron-left"></i>
+													Previous</a>
 												</li>
 												<li class="active"><a href="#">1</a></li>
 												<li><a href="#">2</a></li>
 												<li><a href="#">3</a></li>
 												<li>
-													<a href="#" class="Next"> Next <i class="fa fa-chevron-right"></i></a>
+													<a href="#" class="Next"> Next <i
+															class="fa fa-chevron-right"></i></a>
 												</li>
 											</ul>
 										</div>

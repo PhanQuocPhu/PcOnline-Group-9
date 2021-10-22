@@ -121,47 +121,15 @@
 			 aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
-					<form enctype="multipart/form-data" action="<c:url value='/admin/category/add'/>"
-						  method="post">
-						<div class="modal-header">
-							<h5 class="modal-title" id="formModalLabel">New Category</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<label for="cName">Tên danh mục</label>
-								<input type="text" class="form-control form-control-border modal-cName"
-									   id="cName"
-									   name="cName" placeholder="Tên danh mục" required>
-							</div>
-
-							<div class="row">
-								<div class="form-group col-md-6">
-									<div class="custom-control custom-switch">
-										<input type="checkbox" class="custom-control-input modal-cHome"
-											   id="cHome" value="1"
-											   name="cHome">
-										<label class="custom-control-label" for="cHome" readonly>Home</label>
-									</div>
-								</div>
-								<div class="form-group col-md-6">
-									<div class="custom-control custom-switch">
-										<input type="checkbox" class="custom-control-input modal-cActive"
-											   id="cActive"
-											   value="1" name="cActive">
-										<label class="custom-control-label" for="cActive" readonly>Active</label>
-									</div>
-								</div>
-							</div>
-							<!-- /.row -->
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</form>
+					<div class="modal-header">
+						<h5 class="modal-title" id="formModalLabel">New Category</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div id="formData">
+						<%@include file="/views/Admin/category/form.jsp"%>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -179,24 +147,17 @@
                 var modalForm = modal.find('.modal-content form');
                 if (id !== "") {
                     url = "${pageContext.request.contextPath}/admin/category/update?id=" + id;
-                    $.get(url, function (cat) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+                    $.get(url, function (responseXml) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+                        $('#formData').html(responseXml);
                         modalTittle.text('Edit Category ID: ' + id);
-                        modalcName.val(cat.cName);
-                        if (cat.cHome !== 0) {
-                            modalcHome.prop('checked', true);
-                        } else modalcHome.prop('checked', false);
-                        if (cat.cActive !== 0) {
-                            modalcActive.prop('checked', true);
-                        } else modalcActive.prop('checked', false);
-                        modalForm.attr("action", url);
                     });
                 } else if (id === "") {
                     url = "${pageContext.request.contextPath}/admin/category/add";
-                    modalTittle.text('Create Category');
-                    modalcName.val("");
-                    modalcHome.prop('checked', false);
-                    modalcActive.prop('checked', false);
-                    modalForm.attr("action", url);
+                    $.get(url, function (responseXml) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+                        $('#formData').html(responseXml);
+                        modalTittle.text('New Category');
+                        $('#imgPreview').attr("src", "${pageContext.request.contextPath}/public/images/noimg.jpg");
+                    });
                 }
 
             });

@@ -75,12 +75,7 @@ public class AdminProductController extends HttpServlet {
                 try {
                     int id = Integer.parseInt(request.getParameter("id"));
                     String URI = request.getRequestURI() + "?id=" + id;
-                    //System.out.println(URI);
                     Products pro = ProductsModel.getById(id);
-                    //String json = new Gson().toJson(pro);
-                    //response.setContentType("application/json");
-                    //response.getWriter().write(json);
-                    //System.out.println(json);
                     request.setAttribute("product", pro);
                     request.setAttribute("categories", listc);
                     request.setAttribute("action", URI);

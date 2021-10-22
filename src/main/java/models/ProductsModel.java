@@ -1,5 +1,6 @@
 package models;
 
+import entity.Categories;
 import entity.Products;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
@@ -12,7 +13,6 @@ public class ProductsModel {
     public static Session session = HibernateUtil.openSession();
     //Sql2o - Lấy hết
     public static List<Products> getAll() throws SQLException {
-        session.clear();
         final String hql = "FROM Products";
         return session.createQuery(hql, Products.class).list();
     }
@@ -38,6 +38,7 @@ public class ProductsModel {
             t.rollback();
         }
     }
+    //Update
     public static void update(Products entity) {
         session.clear();
         // TODO Auto-generated method stub

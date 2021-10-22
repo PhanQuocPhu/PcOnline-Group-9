@@ -280,7 +280,6 @@
 
 		<!-- Begin Body Wrapper -->
 		<div class="body-wrapper">
-
 			<jsp:doBody/>
 			
 		</div>

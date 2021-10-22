@@ -1,6 +1,5 @@
 package controllers;
 
-import com.google.gson.Gson;
 import entity.Categories;
 import models.CategoriesModel;
 import services.helper;
@@ -35,7 +34,11 @@ public class AdminCategoryController extends HttpServlet {
             case "/add":
             case "/update":
             case "/delete":
-                manageCategory(request, response, path);
+                try {
+                    manageCategory(request, response, path);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 break;
             /*default:
                 ServletUtils.redirect("/notfound", request, response);
@@ -50,57 +53,81 @@ public class AdminCategoryController extends HttpServlet {
         if (path == null || path.equals("/")) {
             path = "/index";
         }
-        if ("/index".equals(path)) {
-            List<Categories> list = null;
-            try {
-                list = CategoriesModel.getAll();
-            } catch (SQLException throwables) {
-                System.out.println("Lỗi lấy data rồi :D");
-                throwables.printStackTrace();
-            }
-            request.setAttribute("categories", list);
-            request.setAttribute("catActive", "active");
-            ServletUtils.forward("/views/Admin/category/index.jsp", request, response);
-        } else if ("/update".equals(path)){
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                System.out.println(id);
-                Categories cat = CategoriesModel.getById(id);
-                String json = new Gson().toJson(cat);
-                response.setContentType("application/json");
-                response.getWriter().write(json);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        } else {
-            ServletUtils.redirect("/notfound", request, response);
+        switch (path) {
+            case "/index":
+                List<Categories> list = null;
+                try {
+                    list = CategoriesModel.getAll();
+                } catch (SQLException throwables) {
+                    System.out.println("Lỗi lấy data rồi :D");
+                    throwables.printStackTrace();
+                }
+                request.setAttribute("categories", list);
+                request.setAttribute("catActive", "active");
+                ServletUtils.forward("/views/Admin/category/index.jsp", request, response);
+                break;
+            case "/update":
+                try {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    String URI = request.getRequestURI() + "?id=" + id;
+                    System.out.println(id);
+                    Categories cat = CategoriesModel.getById(id);
+                    request.setAttribute("category", cat);
+                    request.setAttribute("action", URI);
+                    ServletUtils.forward("/views/Admin/category/form.jsp", request, response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+            case "/add":
+                String URI = request.getRequestURI();
+                //System.out.println(URI);
+                request.setAttribute("action", URI);
+                ServletUtils.forward("/views/Admin/category/form.jsp", request, response);
+                break;
+            default:
+                ServletUtils.redirect("/notfound", request, response);
+                break;
         }
     }
 
-    private void manageCategory(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
+    private void manageCategory(HttpServletRequest request, HttpServletResponse response, String path) throws IOException, SQLException {
         int id = 0;
         if (request.getParameter("id") != null)
             id = Integer.parseInt(request.getParameter("id"));
         String cName = request.getParameter("cName");
         String cSlug = helper.createSlug(cName);
-        String cIcon = "";
+
         byte cActive = 0;
         if (request.getParameter("cActive") != null)
             cActive = Byte.parseByte(request.getParameter("cActive"));
+
         byte cHome = 0;
         if (request.getParameter("cHome") != null)
             cHome = Byte.parseByte(request.getParameter("cHome"));
+
+        Categories cat = new Categories();
+        Categories catUp = CategoriesModel.getById(id);
         switch (path) {
             case "/add":
-                CategoriesModel.create(cName, cSlug, cIcon, cActive, cHome);
+                cat.setcName(cName);
+                cat.setcSlug(cSlug);
+                cat.setcActive(cActive);
+                cat.setcHome(cHome);
+                CategoriesModel.create(cat);
                 response.sendRedirect("/admin/category/");
                 break;
             case "/update":
-                CategoriesModel.update(id, cName, cSlug, cIcon, cActive, cHome);
+                catUp.setcName(cName);
+                catUp.setcSlug(cSlug);
+                catUp.setcActive(cActive);
+                catUp.setcHome(cHome);
+                System.out.println(cName);
+                CategoriesModel.update(catUp);
                 response.sendRedirect("/admin/category/");
                 break;
             case "/delete":
-                CategoriesModel.delete(id);
+                CategoriesModel.delete(catUp);
                 response.sendRedirect("/admin/category/");
                 break;
         }

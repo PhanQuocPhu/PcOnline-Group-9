@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "ProductController", value = "/home/product/*")
-public class ProductController extends HttpServlet {
+@WebServlet(name = "ProductListController", value = "/home/product/lista")
+public class TestController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -25,36 +25,47 @@ public class ProductController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String path = request.getPathInfo();
-
+        int cid = Integer.parseInt(request.getParameter("cid"));
         if (path == null || path.equals("/")) {
-            ServletUtils.redirect("/home", request, response);
+            path = "/index";
         }
         List<Categories> listc = getCate();
-        List<Products> listp  = null;
-        Categories cat = new Categories();
+        List<Products> listp = getPro(cid);
+        Categories cat = getCateById(cid);
         switch (path) {
-            case "/list":
-                int cid = Integer.parseInt(request.getParameter("cid"));
-                listp = getPro(cid);
-                cat = getCateById(cid);
+            case "/index":
                 request.setAttribute("categories", listc);
                 request.setAttribute("products", listp);
                 request.setAttribute("category", cat);
                 ServletUtils.forward("/views/Guest/product/index.jsp", request, response);
                 break;
-            case "/detail":
-                int id = Integer.parseInt(request.getParameter("id"));
-                Products pro  = getProById(id);
-                cat = getCateById(pro.getCategoriesByProCategoryId().getId());
-                listp = getPro(pro.getCategoriesByProCategoryId().getId());
+            case "/update":
+                /*try {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    String URI = request.getRequestURI() + "?id=" + id;
+                    //System.out.println(URI);
+                    Products pro = ProductsModel.getById(id);
+                    //String json = new Gson().toJson(pro);
+                    //response.setContentType("application/json");
+                    //response.getWriter().write(json);
+                    //System.out.println(json);
+                    request.setAttribute("product", pro);
+                    request.setAttribute("categories", listc);
+                    request.setAttribute("action", URI);
+                    ServletUtils.forward("/views/Admin/product/form.jsp", request, response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }*/
+                break;
+            case "/add":
+               /* String URI = request.getRequestURI();
+                //System.out.println(URI);
                 request.setAttribute("categories", listc);
-                request.setAttribute("products", listp);
-                request.setAttribute("category", cat);
-                request.setAttribute("product", pro);
-                ServletUtils.forward("/views/Guest/product/proDetail.jsp", request, response);
+                request.setAttribute("action", URI);
+                ServletUtils.forward("/views/Admin/product/form.jsp", request, response);*/
                 break;
             default:
-                ServletUtils.redirect("/home", request, response);
+                ServletUtils.redirect("/notfound", request, response);
                 break;
         }
     }
@@ -86,14 +97,5 @@ public class ProductController extends HttpServlet {
             throwables.printStackTrace();
         }
         return cat;
-    }
-    private Products getProById(int id){
-        Products pro = new Products();
-        try {
-            pro = ProductsModel.getById(id);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return pro;
     }
 }

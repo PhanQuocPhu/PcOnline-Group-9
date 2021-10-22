@@ -163,15 +163,6 @@
                 var url = "";
                 var modal = $(this);
                 var modalTittle = modal.find('.modal-title');
-                var modalproName = modal.find(' .modal-body .modal-proName');
-                var modalproDescription = modal.find(' .modal-body .modal-proDescription');
-                var modalproCategoryId = modal.find(' .modal-body .modal-proCategoryId');
-                var modalproPrice = modal.find(' .modal-body .modal-proPrice');
-                var modalproSale = modal.find(' .modal-body .modal-proSale');
-                var modalproNumber = modal.find(' .modal-body .modal-proNumber');
-                var modalproAvatar = modal.find(' .modal-body .modal-proAvatar');
-                var modalproHome = modal.find(' .modal-body .modal-proHot');
-                var modalproActive = modal.find(' .modal-body .modal-proActive');
                 var modalForm = modal.find('.modal-content form');
                 if (id !== "") {
                     url = "${pageContext.request.contextPath}/admin/product/update?id=" + id;
@@ -180,7 +171,6 @@
                         modalTittle.text('Edit Product ID: ' + id);
                         CKEDITOR.replace('proContent');
                         modalForm.attr("action", url);
-                        $('#imgPreview').attr("src", "${pageContext.request.contextPath}/public/images/" + pro.proAvatar);
                     });
 
                 } else if (id === "") {
@@ -189,6 +179,7 @@
                         $('#formData').html(responseXml);
                         modalTittle.text('New Product');
                         CKEDITOR.replace('proContent');
+                        $('#imgPreview').attr("src", "${pageContext.request.contextPath}/public/images/noimg.jpg");
                     });
 
                 }

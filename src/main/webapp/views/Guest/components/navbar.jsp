@@ -7,8 +7,8 @@
 				<div class="hb-menu hb-menu-2">
 					<nav>
 						<ul>
-							<li><a href="about-us.html">Home</a></li>
-							<li class="dropdown-holder"><a href="index.html">Categories</a>
+							<li><a href="<c:url value='/home'/>">Home</a></li>
+							<li class="dropdown-holder"><a href="#">Categories</a>
 								<ul class="hb-dropdown">
 									<c:choose>
 										<c:when test="${categories.size() == 0}">
@@ -18,7 +18,7 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach var="c" items="${categories}" varStatus="status">
-												<li><a href="#">${c.cName}</a></li>
+												<li><a href="<c:url value = "/home/product/list?cid=${c.id}"/>">${c.cName}</a></li>
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>

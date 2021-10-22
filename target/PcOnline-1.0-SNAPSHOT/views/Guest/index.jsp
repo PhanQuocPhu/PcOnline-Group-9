@@ -27,7 +27,7 @@
 										<ul>
 											<c:forEach var="c" items="${categories}" varStatus="status">
 												<li class="${status.count >= 9 ? "rx-child" : ""}"><a
-														href="<c:url value = "/home/product/list"/>">${c.cName}</a></li>
+														href="<c:url value = "/home/product/list?cid=${c.id}"/>">${c.cName}</a></li>
 											</c:forEach>
 											<li class="rx-parent">
 												<a class="rx-default">More Categories</a>
