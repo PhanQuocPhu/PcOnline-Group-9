@@ -15,7 +15,7 @@ public class HibernateUtil {
         try {
             // Tạo đối tượng ServiceRegistry từ hibernate.cfg.xml
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                    .configure("hibernate.cfg.xml").build();
+                    .configure().build();
 
             // Tạo nguồn siêu dữ liệu (metadata) từ ServiceRegistry
             Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();

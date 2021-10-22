@@ -1,5 +1,6 @@
 package models;
 
+import com.google.gson.Gson;
 import entity.Admins;
 import entity.Categories;
 import entity.Products;
@@ -44,12 +45,23 @@ public class test {
         /*Categories cat = CategoriesModel.getById(10);
         System.out.println("Id: " + cat.getId() + " || " + "Name: " + cat.getcName());*/
         try (Session session = HibernateUtil.openSession()) {
-            String hql = "from Products";
-            List<Products> products = session.createQuery(hql).list();
-            for (Products pro : products) {
+            String hql = "from Categories ";
+            /*List<Products> Product  = ProductsModel.getByCId(10);
+            System.out.println("success");
+            for (Products pro : Product) {
                 System.out.println("Id: " + pro.getId() + " || " + "Name: " + pro.getProName() + " || " + pro.getProSlug());
-            }
+            }*/
+          /*  Products pro = ProductsModel.getById(8);
+            System.out.println("Id: " + pro.getId() + " || " + "Name: " + pro.getProName() + " || " + pro.getProSlug());*/
         }
+        getProByCateId(10);
+    }
+
+    public static void testGetJson(int id) throws SQLException {
+        Categories cate = CategoriesModel.getById(id);
+        System.out.println(cate.getId() + " || " + cate.getcName());
+        String json = new Gson().toJson(cate);
+        System.out.println(json);
     }
 
     public static void getProByCateId(int proCategoryId) throws SQLException {
@@ -89,20 +101,6 @@ public class test {
     }
 
     public static void createPro() {
-        String proName = "test";
-        String proSlug = "test";
-        int proCategoryId = 10;
-        int proPrice = 1;
-        int proAuthorId = 1;
-        byte proSale = 10;
-        byte proActive = 1;
-        byte proHot = 1;
-        String proDescription = "test";
-        String proAvatar = "test";
-        String proContent = "test";
-        byte proNumber = 0;
-        ProductsModel.create(proName, proSlug, proCategoryId, proPrice, proAuthorId, proSale, proActive, proHot,
-                proDescription, proAvatar, proContent, proNumber);
         System.out.println("Thêm sản phẩm thành công!!!!");
     }
 

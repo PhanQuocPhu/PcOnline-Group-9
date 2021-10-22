@@ -124,120 +124,21 @@
 			 aria-hidden="true">
 			<div class="modal-dialog modal-xl rounded" role="document">
 				<div class="modal-content">
-					<form enctype="multipart/form-data" action="<c:url value='/admin/product/add'/>"
-						  method="post">
-						<div class="modal-header bg-gradient-primary">
-							<h5 class="modal-title" id="formModalLabel">New Product</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="proName">Tên sản phẩm</label>
-										<input type="text" class="form-control form-control-border modal-proName"
-											   id="proName"
-											   name="proName" placeholder="Tên sản phẩm">
-									</div>
-									<div class="form-group">
-										<label for="proDescription">Mô tả ngắn gọn (Dưới 250 từ)</label>
-										<textarea class="form-control form-control-border modal-proDescription"
-												  id="proDescription"
-												  name="proDescription" rows="2" placeholder="Enter ..."
-												  style="margin-top: 0; margin-bottom: 0; height: 40px;"></textarea>
-									</div>
-									<div class="form-group">
-										<label for="proCategoryId" class="form-label">Danh mục:</label>
-										<select id="proCategoryId" name="proCategoryId"
-												class="form-control form-control-border modal-proCategoryId">
-											<option value="">--Chọn loại sản phẩm--</option>
-											<c:forEach var="c" items="${categories}">
-												<option value="${c.id}">${c.cName}</option>
-											</c:forEach>
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="proPrice" class="form-label">Đơn giá:</label>
-										<input type="number" name="proPrice"
-											   class="form-control form-control-border modal-proPrice"
-											   placeholder="Đơn giá" id="proPrice" min="0"
-											   value="0">
-									</div>
+					<div class="modal-header bg-gradient-primary">
+						<h5 class="modal-title" id="formModalLabel">New Product</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div id="formData">
+						<%@include file="/views/Admin/product/form.jsp"%>
+					</div>
 
-									<div class="form-group">
-										<label for="proSale" class="form-label">% Khuyến mãi:</label>
-										<input type="number" name="proSale"
-											   class="form-control form-control-border modal-proSale"
-											   placeholder="% giảm giá" id="proSale" min="0" max="90"
-											   value="0">
-									</div>
-
-									<div class="row">
-										<div class="form-group col-md-6">
-											<div class="custom-control custom-switch">
-												<input type="checkbox" class="custom-control-input modal-proActive"
-													   id="proActive"
-													   value="1"
-													   name="proActive" checked>
-												<label class="custom-control-label" for="proActive">Active</label>
-											</div>
-										</div>
-										<div class="form-group col-md-6">
-											<div class="custom-control custom-switch">
-												<input type="checkbox" class="custom-control-input modal-proHot"
-													   id="proHot"
-													   value="1" name="proHot" checked>
-												<label class="custom-control-label" for="proHot">Hot Product</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--/.col (left) -->
-								<!-- right column -->
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="proNumber" class="form-label">Số lượng sản phẩm:</label>
-										<input type="number" id="proNumber" name="proNumber"
-											   class="form-control form-control-border modal-proNumber"
-											   placeholder="Số lượng" min="0"
-											   value="0">
-									</div>
-
-									<div class="form-group text-center">
-										<div class="kv-avatar">
-											<div class="file-loading">
-												<input id="proAvatar" name="proAvatar" type="file"
-													   class="modal-proAvatar">
-											</div>
-										</div>
-										<div class="kv-avatar-hint">
-											<small>Select file < 5000 KB</small>
-										</div>
-									</div>
-								</div>
-								<!--/.col (right) -->
-							</div>
-							<!-- /.row -->
-							<div class="form-group">
-								<label for="proContent">Mô tả chi tiết</label>
-								<textarea class="form-control form-control-border modal-proContent ckeditor"
-										  id="proContent"
-										  name="proContent" rows="3" placeholder="Enter ..."
-										  style="margin-top: 0; margin-bottom: 0; height: 83px;"></textarea>
-							</div>
-
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</form>
 				</div>
 			</div>
 		</div>
+
+
 
 		<script>
 
@@ -254,27 +155,7 @@
                 alert(data);
 
             });*/
-            var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
-                'onclick="alert(\'Call your custom code here.\')">' +
-                '<i class="bi-tag"></i>' +
-                '</button>';
-            $("#proAvatar").fileinput({
-                overwriteInitial: true,
-                maxFileSize: 5000,
-                showClose: false,
-                showCaption: false,
-                browseLabel: '',
-                removeLabel: '',
-                browseIcon: '<i class="bi-folder2-open"></i>',
-                removeIcon: '<i class="bi-x-lg"></i>',
-                removeTitle: 'Cancel or reset changes',
-                elErrorContainer: '#kv-avatar-errors-1',
-                msgErrorClass: 'alert alert-block alert-danger',
-                defaultPreviewContent:
-                    '<div class="kv-file-content"><img id="imgPreview" style="width:100%; heigh:100%" src="<c:url value='/assets/admin/noimg.jpg'/>" alt="Ảnh sản phẩm"></div>',
-                layoutTemplates: {main2: '{preview} ' + btnCust + ' {remove} {browse}'},
-                allowedFileExtensions: ["jpg", "png", "gif"]
-            });
+
 
             $('#formModal').on('show.bs.modal', function (event) {        // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
                 var button = $(event.relatedTarget)
@@ -294,41 +175,23 @@
                 var modalForm = modal.find('.modal-content form');
                 if (id !== "") {
                     url = "${pageContext.request.contextPath}/admin/product/update?id=" + id;
-                    $.get(url, function (pro) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+                    $.get(url, function (responseXml) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+                        $('#formData').html(responseXml);
                         modalTittle.text('Edit Product ID: ' + id);
-                        modalproName.val(pro.proName);
-                        modalproDescription.val(pro.proDescription);
-                        CKEDITOR.instances['proContent'].setData(pro.proContent);
-                        modalproCategoryId.val(pro.proCategoryId);
-                        modalproPrice.val(pro.proPrice);
-                        modalproSale.val(pro.proSale);
-                        modalproNumber.val(pro.proNumber);
-                        $('#imgPreview').attr("src", "${pageContext.request.contextPath}/public/images/" + pro.proAvatar);
-                        if (pro.proHome !== 0) {
-                            modalproHome.prop('checked', true);
-                        } else modalproHome.prop('checked', false);
-                        if (pro.proActive !== 0) {
-                            modalproActive.prop('checked', true);
-                        } else modalproActive.prop('checked', false);
+                        CKEDITOR.replace('proContent');
                         modalForm.attr("action", url);
-                        /*alert(pro.proContent);*/
+                        $('#imgPreview').attr("src", "${pageContext.request.contextPath}/public/images/" + pro.proAvatar);
                     });
+
                 } else if (id === "") {
                     url = "${pageContext.request.contextPath}/admin/product/add";
-                    modalTittle.text('Create Product');
-                    modalproName.val("");
-                    modalproDescription.val("");
-                    CKEDITOR.instances['proContent'].setData("");
-                    modalproCategoryId.val("");
-                    modalproPrice.val("");
-                    modalproSale.val("");
-                    modalproNumber.val("");
-                    $('#imgPreview').attr("src", "${pageContext.request.contextPath}/assets/admin/noimg.jpg");
-                    modalproHome.prop('checked', false);
-                    modalproActive.prop('checked', false);
-                    modalForm.attr("action", url);
-                }
+                    $.get(url, function (responseXml) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+                        $('#formData').html(responseXml);
+                        modalTittle.text('New Product');
+                        CKEDITOR.replace('proContent');
+                    });
 
+                }
             });
 
 		</script>

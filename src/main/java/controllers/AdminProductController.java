@@ -1,6 +1,5 @@
 package controllers;
 
-import com.google.gson.Gson;
 import entity.Categories;
 import entity.Products;
 import models.CategoriesModel;
@@ -15,10 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -68,7 +64,43 @@ public class AdminProductController extends HttpServlet {
             System.out.println("Lỗi lấy data rồi :D");
             throwables.printStackTrace();
         }
-        if ("/index".equals(path)) {
+        switch (path) {
+            case "/index":
+                request.setAttribute("products", list);
+                request.setAttribute("categories", listc);
+                request.setAttribute("proActive", "active");
+                ServletUtils.forward("/views/Admin/product/index.jsp", request, response);
+                break;
+            case "/update":
+                try {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    String URI = request.getRequestURI() + "?id=" + id;
+                    //System.out.println(URI);
+                    Products pro = ProductsModel.getById(id);
+                    //String json = new Gson().toJson(pro);
+                    //response.setContentType("application/json");
+                    //response.getWriter().write(json);
+                    //System.out.println(json);
+                    request.setAttribute("product", pro);
+                    request.setAttribute("categories", listc);
+                    request.setAttribute("action", URI);
+                    ServletUtils.forward("/views/Admin/product/form.jsp", request, response);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
+            case "/add":
+                String URI = request.getRequestURI();
+                //System.out.println(URI);
+                request.setAttribute("categories", listc);
+                request.setAttribute("action", URI);
+                ServletUtils.forward("/views/Admin/product/form.jsp", request, response);
+                break;
+            default:
+                ServletUtils.redirect("/notfound", request, response);
+                break;
+        }
+       /* if ("/index".equals(path)) {
             request.setAttribute("products", list);
             request.setAttribute("categories", listc);
             request.setAttribute("proActive", "active");
@@ -79,17 +111,19 @@ public class AdminProductController extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 System.out.println(id);
                 Products pro = ProductsModel.getById(id);
-                String json = new Gson().toJson(pro);
-                response.setContentType("application/json");
-                response.getWriter().write(json);
-                /*System.out.println(json);*/
+                //String json = new Gson().toJson(pro);
+                //response.setContentType("application/json");
+                //response.getWriter().write(json);
+                //System.out.println(json);
+                request.setAttribute("product", pro);
                 request.setAttribute("categories", listc);
+                ServletUtils.forward("/views/Admin/product/form.jsp", request, response);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         } else {
             ServletUtils.redirect("/notfound", request, response);
-        }
+        }*/
     }
 
     private void manageProduct(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException, SQLException {
@@ -124,33 +158,56 @@ public class AdminProductController extends HttpServlet {
             proPrice = Integer.parseInt(request.getParameter("proPrice"));
         int proAuthorId = 1;
         String proDescription = request.getParameter("proDescription");
-        String proContent = request.getParameter("proContent") ;
-        String proAvatar = "";
+        String proContent = request.getParameter("proContent");
+        String proAvatar = "noimg.jpg";
 
+        Products pro = new Products();
+        Products proUp = ProductsModel.getById(id);
+        Categories cate = CategoriesModel.getById(proCategoryId);
         switch (path) {
             case "/add":
-                if(!request.getPart("proAvatar").getSubmittedFileName().equals(""))
+                if (!request.getPart("proAvatar").getSubmittedFileName().equals(""))
                     /*System.out.println("Không có file");*/
                     proAvatar = upload_image(request);
-                ProductsModel.create(proName, proSlug, proCategoryId, proPrice, proAuthorId, proSale, proActive, proHot,
-                        proDescription, proAvatar, proContent, proNumber);
+                pro.setProName(proName);
+                pro.setProSlug(proSlug);
+                pro.setCategoriesByProCategoryId(cate);
+                pro.setProPrice(proPrice);
+                pro.setProAuthorId(proAuthorId);
+                pro.setProSale(proSale);
+                pro.setProActive(proActive);
+                pro.setProHot(proHot);
+                pro.setProDescription(proDescription);
+                pro.setProAvatar(proAvatar);
+                pro.setProContent(proContent);
+                pro.setProNumber(proNumber);
+                ProductsModel.create(pro);
                 response.sendRedirect("/admin/product/");
                 break;
             case "/update":
-                Products pro = ProductsModel.getById(id);
-                if( request.getPart("proAvatar").getSubmittedFileName() != "")
-                    /*System.out.println("Không có file");*/
+                if (request.getPart("proAvatar").getSubmittedFileName() != "")
                     proAvatar = upload_image(request);
                 else {
-                    proAvatar = pro.getProAvatar();
+                    proAvatar = proUp.getProAvatar();
                     System.out.println(proAvatar);
                 }
-                ProductsModel.update(id, proName, proSlug, proCategoryId, proPrice, proAuthorId, proSale, proActive, proHot,
-                        proDescription, proAvatar, proContent, proNumber);
+                proUp.setProName(proName);
+                proUp.setProSlug(proSlug);
+                proUp.setCategoriesByProCategoryId(cate);
+                proUp.setProPrice(proPrice);
+                proUp.setProAuthorId(proAuthorId);
+                proUp.setProSale(proSale);
+                proUp.setProActive(proActive);
+                proUp.setProHot(proHot);
+                proUp.setProDescription(proDescription);
+                proUp.setProAvatar(proAvatar);
+                proUp.setProContent(proContent);
+                proUp.setProNumber(proNumber);
+                ProductsModel.update(proUp);
                 response.sendRedirect("/admin/product/");
                 break;
             case "/delete":
-                ProductsModel.delete(id);
+                ProductsModel.delete(proUp);
                 response.sendRedirect("/admin/product/");
                 break;
         }

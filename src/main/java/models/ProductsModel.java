@@ -1,31 +1,68 @@
 package models;
 
-import entity.Categories;
 import entity.Products;
-import utils.DbUtil;
+import org.hibernate.Transaction;
+import org.hibernate.Session;
+import utils.HibernateUtil;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class ProductsModel {
-
+    public static Session session = HibernateUtil.openSession();
     //Sql2o - Lấy hết
     public static List<Products> getAll() throws SQLException {
-        final String sql = "select * from products";
-        try ( org.sql2o.Connection con = DbUtil.openConn() ){
-            return con.createQuery(sql)/*.throwOnMappingFailure(false)*/.executeAndFetch(Products.class);
+        session.clear();
+        final String hql = "FROM Products";
+        return session.createQuery(hql, Products.class).list();
+    }
+    //Lấy hết theo cateID
+    public static List<Products> getByCId(int proCategoryId) throws SQLException {
+        session.clear();
+        final String hql = "FROM Products WHERE categoriesByProCategoryId.id=:proCategoryId";
+        return  session.createQuery(hql, Products.class).setParameter("proCategoryId", proCategoryId).list();
+    }
+    //Lấy theo ID
+    public static Products getById(int id) throws SQLException {
+        session.clear();
+        return (Products) session.get(Products.class, id);
+    }
+    //Thêm
+    public static void create(Products entity){
+        session.clear();
+        Transaction t = session.beginTransaction();
+        try {
+            session.save(entity);
+            t.commit();
+        } catch (Exception e) {
+            t.rollback();
         }
     }
-    //Sql2o - Lấy hết theo cateID
-    public static List<Products> getByCId(int proCategoryId) throws SQLException {
-        final String sql = "select * from products where proCategoryId=:proCategoryId and proActive=1";
-        try ( org.sql2o.Connection con = DbUtil.openConn() ){
-            return con.createQuery(sql)/*.throwOnMappingFailure(false)*/.executeAndFetch(Products.class);
+    public static void update(Products entity) {
+        session.clear();
+        // TODO Auto-generated method stub
+        Transaction t = session.beginTransaction();
+        try {
+            session.update(entity);
+            t.commit();
+        }catch(Exception e) {
+            t.rollback();
+        }
+    }
+    //Xóa
+    public static void delete(Products entity) {
+        session.clear();
+        Transaction t = session.beginTransaction();
+        try {
+            session.delete(entity);
+            t.commit();
+        }catch(Exception e) {
+            t.rollback();
         }
     }
 
     //Sql2o - Thêm
-    public static Products create(String proName, String proSlug,
+    /*public static Products create(String proName, String proSlug,
                                   int proCategoryId, int proPrice, int proAuthorId,
                                   byte proSale, byte proActive, byte proHot,
                                   String proDescription, String proAvatar,String proContent,
@@ -62,9 +99,9 @@ public class ProductsModel {
             conn.commit();
             return null;
         }
-    }
+    }*/
 
-    public static Products update(Integer id, String proName, String proSlug,
+   /* public static Products update(Integer id, String proName, String proSlug,
                                   int proCategoryId, int proPrice, int proAuthorId,
                                   byte proSale, byte proActive, byte proHot,
                                   String proDescription, String proAvatar,String proContent,
@@ -102,33 +139,9 @@ public class ProductsModel {
             conn.commit();
             return null;
         }
-    }
-    //Sql2o - Lấy theo ID
-    public static Products getById(int id) throws SQLException {
-        final String sql = "select * from products where id=:id";
-        try ( org.sql2o.Connection con = DbUtil.openConn() ){
-            return con.createQuery(sql)/*.throwOnMappingFailure(false)*/.addParameter("id", id).executeAndFetchFirst(Products.class);
-        }
-    }
+    }*/
 
 
-    //Sql2o - Xóa
-    public static Products delete(int id) {
-        String sql = "select * FROM Products WHERE id =:id";
 
-        try (org.sql2o.Connection conn = DbUtil.openConn()) {
-            Products product = conn.createQuery(sql).addParameter("id", id).throwOnMappingFailure(false).executeAndFetchFirst(Products.class);
-            if(product == null)
-            {
-                System.out.println("Sản phẩm không tồn tại!!!!");
-                return null;
-            } else {
-                sql = "DELETE from Products where id=:id";
-            }
-            conn.createQuery(sql)
-                    .addParameter("id", id)
-                    .executeUpdate();
-            return null;
-        }
-    }
+
 }

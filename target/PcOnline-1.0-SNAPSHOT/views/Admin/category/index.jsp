@@ -53,7 +53,6 @@
 													<th style="width: 5%">ID</th>
 													<th style="width: 50%">Tên Danh Mục</th>
 													<th class="text-center" style="width: 10%">HomePage</th>
-													<th class="text-center" style="width: 10%">Icon</th>
 													<th class="text-center" style="width: 10%">Status</th>
 													<th class="text-center" style="width: 10%">Thao Tác</th>
 												</tr>
@@ -64,13 +63,12 @@
 														<td>${c.id}</td>
 														<td>${c.cName}</td>
 														<td class="text-center">
-																${c.cHome == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Yes </a>' : '<a style="font-size: 14px" class="badge badge-danger"data-value="0" data-value="1"> Nope </a>'}
+																${c.cHome == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Yes </a>' :
+																		'<a style="font-size: 14px" class="badge badge-danger"data-value="0" data-value="1"> Nope </a>'}
 														</td>
 														<td class="text-center">
-															<img src="<c:url value = "/public/images/${c.cIcon}"/>">
-														</td>
-														<td class="text-center">
-																${c.cActive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' : '<a style="font-size: 14px" class="badge badge-danger" data-value="1"> Nope </a>'}
+																${c.cActive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' :
+																		'<a style="font-size: 14px" class="badge badge-danger" data-value="1"> Nope </a>'}
 														</td>
 														<td class="text-center">
 															<form action="${pageContext.request.contextPath}/admin/category/delete?id=${c.id}"
@@ -99,7 +97,6 @@
 													<th>ID</th>
 													<th>Tên Danh Mục</th>
 													<th class="text-center">HomePage</th>
-													<th class="text-center" style="width: 10%">Icon</th>
 													<th class="text-center">Status</th>
 													<th class="text-center">Thao Tác</th>
 												</tr>
@@ -133,52 +130,30 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<div class="row">
-								<!-- left column -->
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="cName">Tên danh mục</label>
-										<input type="text" class="form-control form-control-border modal-cName"
-											   id="cName"
-											   name="cName" placeholder="Tên danh mục" required>
-									</div>
+							<div class="form-group">
+								<label for="cName">Tên danh mục</label>
+								<input type="text" class="form-control form-control-border modal-cName"
+									   id="cName"
+									   name="cName" placeholder="Tên danh mục" required>
+							</div>
 
-									<div class="row">
-										<div class="form-group col-md-6">
-											<div class="custom-control custom-switch">
-												<input type="checkbox" class="custom-control-input modal-cHome"
-													   id="cHome" value="1"
-													   name="cHome">
-												<label class="custom-control-label" for="cHome">Home</label>
-											</div>
-										</div>
-										<div class="form-group col-md-6">
-											<div class="custom-control custom-switch">
-												<input type="checkbox" class="custom-control-input modal-cActive"
-													   id="cActive"
-													   value="1" name="cActive">
-												<label class="custom-control-label" for="cActive">Active</label>
-											</div>
-										</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<div class="custom-control custom-switch">
+										<input type="checkbox" class="custom-control-input modal-cHome"
+											   id="cHome" value="1"
+											   name="cHome">
+										<label class="custom-control-label" for="cHome" readonly>Home</label>
 									</div>
 								</div>
-								<!--/.col (left) -->
-								<!-- right column -->
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="cIcon">Icon</label>
-										<div class="input-group">
-											<div class="custom-file">
-												<input type="file" class="custom-file-input" id="cIcon" name="cIcon">
-												<label class="custom-file-label" for="cIcon">Choose file</label>
-											</div>
-											<div class="input-group-append">
-												<span class="input-group-text">Upload</span>
-											</div>
-										</div>
+								<div class="form-group col-md-6">
+									<div class="custom-control custom-switch">
+										<input type="checkbox" class="custom-control-input modal-cActive"
+											   id="cActive"
+											   value="1" name="cActive">
+										<label class="custom-control-label" for="cActive" readonly>Active</label>
 									</div>
 								</div>
-								<!--/.col (right) -->
 							</div>
 							<!-- /.row -->
 						</div>
