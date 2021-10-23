@@ -30,15 +30,15 @@ public class ProductController extends HttpServlet {
             ServletUtils.redirect("/home", request, response);
         }
         List<Categories> listc = getCate();
-        List<Products> listp  = null;
+        List<Products> listpc  = null;
         Categories cat = new Categories();
         switch (path) {
             case "/list":
                 int cid = Integer.parseInt(request.getParameter("cid"));
-                listp = getPro(cid);
+                listpc = getPro(cid);
                 cat = getCateById(cid);
                 request.setAttribute("categories", listc);
-                request.setAttribute("products", listp);
+                request.setAttribute("products", listpc);
                 request.setAttribute("category", cat);
                 ServletUtils.forward("/views/Guest/product/index.jsp", request, response);
                 break;
@@ -46,9 +46,9 @@ public class ProductController extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Products pro  = getProById(id);
                 cat = getCateById(pro.getCategoriesByProCategoryId().getId());
-                listp = getPro(pro.getCategoriesByProCategoryId().getId());
+                listpc = getPro(pro.getCategoriesByProCategoryId().getId());
                 request.setAttribute("categories", listc);
-                request.setAttribute("products", listp);
+                request.setAttribute("products", listpc);
                 request.setAttribute("category", cat);
                 request.setAttribute("product", pro);
                 ServletUtils.forward("/views/Guest/product/proDetail.jsp", request, response);
