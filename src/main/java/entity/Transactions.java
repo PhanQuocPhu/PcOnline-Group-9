@@ -1,23 +1,23 @@
 package entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Transactions {
     private int id;
-    private int trUserId;
-    private int trTotal;
-    private String trNote;
-    private String trAddress;
-    private String trPhone;
-    private byte trStatus;
-    private byte trPayment;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
-    private Collection<Orders> ordersById;
-    private Collection<Payments> paymentsById;
+    private int truserid;
+    private int trtotal;
+    private String trnote;
+    private String traddress;
+    private String trphone;
+    private byte trstatus;
+    private byte trpayment;
+    private Timestamp createdat;
+    private Timestamp updatedat;
 
     @Id
     @Column(name = "id")
@@ -30,93 +30,93 @@ public class Transactions {
     }
 
     @Basic
-    @Column(name = "trUserId")
-    public int getTrUserId() {
-        return trUserId;
+    @Column(name = "truserid")
+    public int getTruserid() {
+        return truserid;
     }
 
-    public void setTrUserId(int trUserId) {
-        this.trUserId = trUserId;
-    }
-
-    @Basic
-    @Column(name = "trTotal")
-    public int getTrTotal() {
-        return trTotal;
-    }
-
-    public void setTrTotal(int trTotal) {
-        this.trTotal = trTotal;
+    public void setTruserid(int truserid) {
+        this.truserid = truserid;
     }
 
     @Basic
-    @Column(name = "trNote")
-    public String getTrNote() {
-        return trNote;
+    @Column(name = "trtotal")
+    public int getTrtotal() {
+        return trtotal;
     }
 
-    public void setTrNote(String trNote) {
-        this.trNote = trNote;
-    }
-
-    @Basic
-    @Column(name = "trAddress")
-    public String getTrAddress() {
-        return trAddress;
-    }
-
-    public void setTrAddress(String trAddress) {
-        this.trAddress = trAddress;
+    public void setTrtotal(int trtotal) {
+        this.trtotal = trtotal;
     }
 
     @Basic
-    @Column(name = "trPhone")
-    public String getTrPhone() {
-        return trPhone;
+    @Column(name = "trnote")
+    public String getTrnote() {
+        return trnote;
     }
 
-    public void setTrPhone(String trPhone) {
-        this.trPhone = trPhone;
-    }
-
-    @Basic
-    @Column(name = "trStatus")
-    public byte getTrStatus() {
-        return trStatus;
-    }
-
-    public void setTrStatus(byte trStatus) {
-        this.trStatus = trStatus;
+    public void setTrnote(String trnote) {
+        this.trnote = trnote;
     }
 
     @Basic
-    @Column(name = "trPayment")
-    public byte getTrPayment() {
-        return trPayment;
+    @Column(name = "traddress")
+    public String getTraddress() {
+        return traddress;
     }
 
-    public void setTrPayment(byte trPayment) {
-        this.trPayment = trPayment;
-    }
-
-    @Basic
-    @Column(name = "createdAt")
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setTraddress(String traddress) {
+        this.traddress = traddress;
     }
 
     @Basic
-    @Column(name = "updatedAt")
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    @Column(name = "trphone")
+    public String getTrphone() {
+        return trphone;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setTrphone(String trphone) {
+        this.trphone = trphone;
+    }
+
+    @Basic
+    @Column(name = "trstatus")
+    public byte getTrstatus() {
+        return trstatus;
+    }
+
+    public void setTrstatus(byte trstatus) {
+        this.trstatus = trstatus;
+    }
+
+    @Basic
+    @Column(name = "trpayment")
+    public byte getTrpayment() {
+        return trpayment;
+    }
+
+    public void setTrpayment(byte trpayment) {
+        this.trpayment = trpayment;
+    }
+
+    @Basic
+    @Column(name = "createdat")
+    public Timestamp getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat(Timestamp createdat) {
+        this.createdat = createdat;
+    }
+
+    @Basic
+    @Column(name = "updatedat")
+    public Timestamp getUpdatedat() {
+        return updatedat;
+    }
+
+    public void setUpdatedat(Timestamp updatedat) {
+        this.updatedat = updatedat;
     }
 
     @Override
@@ -127,15 +127,15 @@ public class Transactions {
         Transactions that = (Transactions) o;
 
         if (id != that.id) return false;
-        if (trUserId != that.trUserId) return false;
-        if (trTotal != that.trTotal) return false;
-        if (trStatus != that.trStatus) return false;
-        if (trPayment != that.trPayment) return false;
-        if (trNote != null ? !trNote.equals(that.trNote) : that.trNote != null) return false;
-        if (trAddress != null ? !trAddress.equals(that.trAddress) : that.trAddress != null) return false;
-        if (trPhone != null ? !trPhone.equals(that.trPhone) : that.trPhone != null) return false;
-        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
+        if (truserid != that.truserid) return false;
+        if (trtotal != that.trtotal) return false;
+        if (trstatus != that.trstatus) return false;
+        if (trpayment != that.trpayment) return false;
+        if (trnote != null ? !trnote.equals(that.trnote) : that.trnote != null) return false;
+        if (traddress != null ? !traddress.equals(that.traddress) : that.traddress != null) return false;
+        if (trphone != null ? !trphone.equals(that.trphone) : that.trphone != null) return false;
+        if (createdat != null ? !createdat.equals(that.createdat) : that.createdat != null) return false;
+        if (updatedat != null ? !updatedat.equals(that.updatedat) : that.updatedat != null) return false;
 
         return true;
     }
@@ -143,33 +143,15 @@ public class Transactions {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + trUserId;
-        result = 31 * result + trTotal;
-        result = 31 * result + (trNote != null ? trNote.hashCode() : 0);
-        result = 31 * result + (trAddress != null ? trAddress.hashCode() : 0);
-        result = 31 * result + (trPhone != null ? trPhone.hashCode() : 0);
-        result = 31 * result + (int) trStatus;
-        result = 31 * result + (int) trPayment;
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+        result = 31 * result + truserid;
+        result = 31 * result + trtotal;
+        result = 31 * result + (trnote != null ? trnote.hashCode() : 0);
+        result = 31 * result + (traddress != null ? traddress.hashCode() : 0);
+        result = 31 * result + (trphone != null ? trphone.hashCode() : 0);
+        result = 31 * result + (int) trstatus;
+        result = 31 * result + (int) trpayment;
+        result = 31 * result + (createdat != null ? createdat.hashCode() : 0);
+        result = 31 * result + (updatedat != null ? updatedat.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "transactionsByOrTransactionId")
-    public Collection<Orders> getOrdersById() {
-        return ordersById;
-    }
-
-    public void setOrdersById(Collection<Orders> ordersById) {
-        this.ordersById = ordersById;
-    }
-
-    @OneToMany(mappedBy = "transactionsByPTransactionId")
-    public Collection<Payments> getPaymentsById() {
-        return paymentsById;
-    }
-
-    public void setPaymentsById(Collection<Payments> paymentsById) {
-        this.paymentsById = paymentsById;
     }
 }

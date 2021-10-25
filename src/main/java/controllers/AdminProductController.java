@@ -164,18 +164,20 @@ public class AdminProductController extends HttpServlet {
                 if (!request.getPart("proAvatar").getSubmittedFileName().equals(""))
                     /*System.out.println("Không có file");*/
                     proAvatar = upload_image(request);
-                pro.setProName(proName);
-                pro.setProSlug(proSlug);
-                pro.setCategoriesByProCategoryId(cate);
-                pro.setProPrice(proPrice);
-                pro.setProAuthorId(proAuthorId);
-                pro.setProSale(proSale);
-                pro.setProActive(proActive);
-                pro.setProHot(proHot);
-                pro.setProDescription(proDescription);
-                pro.setProAvatar(proAvatar);
-                pro.setProContent(proContent);
-                pro.setProNumber(proNumber);
+                id = ProductsModel.getLastId() + 1;
+                pro.setId(id);
+                pro.setProname(proName);
+                pro.setProslug(proSlug);
+                pro.setCategoriesByProcategoryid(cate);
+                pro.setProprice(proPrice);
+                pro.setProauthorid(proAuthorId);
+                pro.setProsale(proSale);
+                pro.setProactive(proActive);
+                pro.setProhot(proHot);
+                pro.setProdescription(proDescription);
+                pro.setProavatar(proAvatar);
+                pro.setProcontent(proContent);
+                pro.setPronumber(proNumber);
                 ProductsModel.create(pro);
                 response.sendRedirect("/admin/product/");
                 break;
@@ -183,21 +185,21 @@ public class AdminProductController extends HttpServlet {
                 if (request.getPart("proAvatar").getSubmittedFileName() != "")
                     proAvatar = upload_image(request);
                 else {
-                    proAvatar = proUp.getProAvatar();
+                    proAvatar = proUp.getProavatar();
                     System.out.println(proAvatar);
                 }
-                proUp.setProName(proName);
-                proUp.setProSlug(proSlug);
-                proUp.setCategoriesByProCategoryId(cate);
-                proUp.setProPrice(proPrice);
-                proUp.setProAuthorId(proAuthorId);
-                proUp.setProSale(proSale);
-                proUp.setProActive(proActive);
-                proUp.setProHot(proHot);
-                proUp.setProDescription(proDescription);
-                proUp.setProAvatar(proAvatar);
-                proUp.setProContent(proContent);
-                proUp.setProNumber(proNumber);
+                proUp.setProname(proName);
+                proUp.setProslug(proSlug);
+                proUp.setCategoriesByProcategoryid(cate);
+                proUp.setProprice(proPrice);
+                proUp.setProauthorid(proAuthorId);
+                proUp.setProsale(proSale);
+                proUp.setProactive(proActive);
+                proUp.setProhot(proHot);
+                proUp.setProdescription(proDescription);
+                proUp.setProavatar(proAvatar);
+                proUp.setProcontent(proContent);
+                proUp.setPronumber(proNumber);
                 ProductsModel.update(proUp);
                 response.sendRedirect("/admin/product/");
                 break;

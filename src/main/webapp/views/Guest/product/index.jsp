@@ -10,7 +10,7 @@
 				<div class="breadcrumb-content">
 					<ul>
 						<li><a href="/home">Home</a></li>
-						<li class="active">${category.cName}</li>
+						<li class="active">${category.cname}</li>
 					</ul>
 				</div>
 			</div>
@@ -90,8 +90,8 @@
 																		<div style="width: 250px; height: 250px">
 																			<img class="img mx-auto d-block"
 																				 style="width: auto; height: auto; max-width: 100%; max-height: 100%"
-																				 src="<c:url value='/public/images/${p.proAvatar}'/>"
-																				 alt="${p.proSlug}">
+																				 src="<c:url value='/public/images/${p.proavatar}'/>"
+																				 alt="${p.proslug}">
 																		</div>
 																	</a>
 																	<span class="sticker">New</span>
@@ -120,10 +120,10 @@
 																			</div>
 																		</div>
 																		<h4><a class="product_name"
-																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proName}</a>
+																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proname}</a>
 																		</h4>
 																		<div class="price-box">
-																			<span class="new-price">${p.proPrice}</span>
+																			<span class="new-price">${p.proprice}</span>
 																		</div>
 																	</div>
 																	<div class="add-actions">
@@ -167,8 +167,8 @@
 																		<div style="width: 250px; height: 250px">
 																			<img class="img mx-auto d-block"
 																				 style="width: auto; height: auto; max-width: 100%; max-height: 100%"
-																				 src="<c:url value='/public/images/${p.proAvatar}'/>"
-																				 alt="${p.proSlug}">
+																				 src="<c:url value='/public/images/${p.proavatar}'/>"
+																				 alt="${p.proslug}">
 																		</div>
 																	</a>
 																	<span class="sticker">New</span>
@@ -199,12 +199,12 @@
 																			</div>
 																		</div>
 																		<h4><a class="product_name"
-																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proName}</a>
+																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proname}</a>
 																		</h4>
 																		<div class="price-box">
-																			<span class="new-price">${p.proPrice}</span>
+																			<span class="new-price">${p.proprice}</span>
 																		</div>
-																		<p>${p.proDescription}</p>
+																		<p>${p.prodescription}</p>
 																	</div>
 																</div>
 															</div>

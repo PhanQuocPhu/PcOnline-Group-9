@@ -95,34 +95,36 @@ public class AdminCategoryController extends HttpServlet {
         int id = 0;
         if (request.getParameter("id") != null)
             id = Integer.parseInt(request.getParameter("id"));
-        String cName = request.getParameter("cName");
-        String cSlug = helper.createSlug(cName);
+        String cname = request.getParameter("cName");
+        String cslug = helper.createSlug(cname);
 
-        byte cActive = 0;
+        byte cactive = 0;
         if (request.getParameter("cActive") != null)
-            cActive = Byte.parseByte(request.getParameter("cActive"));
+            cactive = Byte.parseByte(request.getParameter("cActive"));
 
-        byte cHome = 0;
+        byte chome = 0;
         if (request.getParameter("cHome") != null)
-            cHome = Byte.parseByte(request.getParameter("cHome"));
+            chome = Byte.parseByte(request.getParameter("cHome"));
 
         Categories cat = new Categories();
         Categories catUp = CategoriesModel.getById(id);
         switch (path) {
             case "/add":
-                cat.setcName(cName);
-                cat.setcSlug(cSlug);
-                cat.setcActive(cActive);
-                cat.setcHome(cHome);
+                id = CategoriesModel.getLastId() + 1;
+                cat.setId(id);
+                cat.setCname(cname);
+                cat.setCslug(cslug);
+                cat.setCactive(cactive);
+                cat.setChome(chome);
                 CategoriesModel.create(cat);
                 response.sendRedirect("/admin/category/");
                 break;
             case "/update":
-                catUp.setcName(cName);
-                catUp.setcSlug(cSlug);
-                catUp.setcActive(cActive);
-                catUp.setcHome(cHome);
-                System.out.println(cName);
+                catUp.setCname(cname);
+                catUp.setCslug(cslug);
+                catUp.setCactive(cactive);
+                catUp.setChome(chome);
+                System.out.println(cactive);
                 CategoriesModel.update(catUp);
                 response.sendRedirect("/admin/category/");
                 break;

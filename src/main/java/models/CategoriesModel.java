@@ -1,12 +1,9 @@
 package models;
 
-import entity.Admins;
 import entity.Categories;
-import entity.Products;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
-import utils.DbUtil;
 import utils.HibernateUtil;
 
 import java.sql.SQLException;
@@ -15,9 +12,14 @@ import java.util.List;
 public class CategoriesModel {
     private static final Session session = HibernateUtil.openSession();
 
+    //Lấy Id cuối
+    public static int getLastId() throws SQLException {
+        String hql = "select max(id) from Categories";
+        return session.createQuery(hql, Integer.class).uniqueResult();
+    }
     //Lấy hết
     public static List<Categories> getAll() throws SQLException {
-        String hql = "from Categories";
+        String hql = "from Categories  order by id";
         return session.createQuery(hql, Categories.class).list();
     }
     //Lấy theo ID

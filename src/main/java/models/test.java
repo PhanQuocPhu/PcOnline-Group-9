@@ -6,7 +6,7 @@ import entity.Categories;
 import entity.Products;
 import org.hibernate.Session;
 import utils.HibernateUtil;
-
+import org.hibernate.query.Query;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -54,12 +54,14 @@ public class test {
           /*  Products pro = ProductsModel.getById(8);
             System.out.println("Id: " + pro.getId() + " || " + "Name: " + pro.getProName() + " || " + pro.getProSlug());*/
         }
-        getProByCateId(10);
+        int cate = CategoriesModel.getLastId();
+        System.out.println(cate);
+
     }
 
     public static void testGetJson(int id) throws SQLException {
         Categories cate = CategoriesModel.getById(id);
-        System.out.println(cate.getId() + " || " + cate.getcName());
+        System.out.println(cate.getId() + " || " + cate.getCname());
         String json = new Gson().toJson(cate);
         System.out.println(json);
     }
@@ -73,7 +75,7 @@ public class test {
         }
         System.out.println("success");
         for (Products pro : listp) {
-            System.out.println("Id: " + pro.getId() + " || " + "Name: " + pro.getProName() + " || " + pro.getProSlug());
+            System.out.println("Id: " + pro.getId() + " || " + "Name: " + pro.getProname() + " || " + pro.getProslug());
         }
     }
 
@@ -89,9 +91,12 @@ public class test {
         System.out.println(admins.getEmail() + "||" + AdminsModel.checkPass("123", admins.getPassword()));
     }
 
-    public static void createCate(String cName, String cSlug, String cIcon, Byte cActive, Byte cHome) {
-
+    public static void getCate() throws SQLException {
+        List<Categories> list = CategoriesModel.getAll();
         System.out.println("Success!!!!");
+        for (Categories cat : list) {
+            System.out.println("Id: " + cat.getId() + " || " + "Name: " + cat.getCname() + " || " + cat.getCslug());
+        }
     }
 
     public static void updateCate() {

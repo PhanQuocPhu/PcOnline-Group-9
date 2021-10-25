@@ -1,101 +1,102 @@
 package entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
 public class Payments {
-    private long id;
-    private Integer pMoney;
-    private String pNote;
-    private String pVnpResponseCode;
-    private String pCodeVnp;
-    private String pCodeBank;
-    private Timestamp pTime;
-    private String pTransactionCode;
+    private int id;
+    private Integer pmoney;
+    private String pnote;
+    private String pvnpresponsecode;
+    private String pcodevnp;
+    private String pcodebank;
+    private Timestamp ptime;
+    private String ptransactioncode;
     private Timestamp createdAt;
-    private Timestamp updatedAt;
-    private Transactions transactionsByPTransactionId;
-    private Users usersByPUserId;
+    private Timestamp updatedat;
 
     @Id
     @Column(name = "id")
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "pMoney")
-    public Integer getpMoney() {
-        return pMoney;
+    @Column(name = "pmoney")
+    public Integer getPmoney() {
+        return pmoney;
     }
 
-    public void setpMoney(Integer pMoney) {
-        this.pMoney = pMoney;
-    }
-
-    @Basic
-    @Column(name = "pNote")
-    public String getpNote() {
-        return pNote;
-    }
-
-    public void setpNote(String pNote) {
-        this.pNote = pNote;
+    public void setPmoney(Integer pmoney) {
+        this.pmoney = pmoney;
     }
 
     @Basic
-    @Column(name = "pVnpResponseCode")
-    public String getpVnpResponseCode() {
-        return pVnpResponseCode;
+    @Column(name = "pnote")
+    public String getPnote() {
+        return pnote;
     }
 
-    public void setpVnpResponseCode(String pVnpResponseCode) {
-        this.pVnpResponseCode = pVnpResponseCode;
-    }
-
-    @Basic
-    @Column(name = "pCodeVnp")
-    public String getpCodeVnp() {
-        return pCodeVnp;
-    }
-
-    public void setpCodeVnp(String pCodeVnp) {
-        this.pCodeVnp = pCodeVnp;
+    public void setPnote(String pnote) {
+        this.pnote = pnote;
     }
 
     @Basic
-    @Column(name = "pCodeBank")
-    public String getpCodeBank() {
-        return pCodeBank;
+    @Column(name = "pvnpresponsecode")
+    public String getPvnpresponsecode() {
+        return pvnpresponsecode;
     }
 
-    public void setpCodeBank(String pCodeBank) {
-        this.pCodeBank = pCodeBank;
-    }
-
-    @Basic
-    @Column(name = "pTime")
-    public Timestamp getpTime() {
-        return pTime;
-    }
-
-    public void setpTime(Timestamp pTime) {
-        this.pTime = pTime;
+    public void setPvnpresponsecode(String pvnpresponsecode) {
+        this.pvnpresponsecode = pvnpresponsecode;
     }
 
     @Basic
-    @Column(name = "pTransactionCode")
-    public String getpTransactionCode() {
-        return pTransactionCode;
+    @Column(name = "pcodevnp")
+    public String getPcodevnp() {
+        return pcodevnp;
     }
 
-    public void setpTransactionCode(String pTransactionCode) {
-        this.pTransactionCode = pTransactionCode;
+    public void setPcodevnp(String pcodevnp) {
+        this.pcodevnp = pcodevnp;
+    }
+
+    @Basic
+    @Column(name = "pcodebank")
+    public String getPcodebank() {
+        return pcodebank;
+    }
+
+    public void setPcodebank(String pcodebank) {
+        this.pcodebank = pcodebank;
+    }
+
+    @Basic
+    @Column(name = "ptime")
+    public Timestamp getPtime() {
+        return ptime;
+    }
+
+    public void setPtime(Timestamp ptime) {
+        this.ptime = ptime;
+    }
+
+    @Basic
+    @Column(name = "ptransactioncode")
+    public String getPtransactioncode() {
+        return ptransactioncode;
+    }
+
+    public void setPtransactioncode(String ptransactioncode) {
+        this.ptransactioncode = ptransactioncode;
     }
 
     @Basic
@@ -109,13 +110,13 @@ public class Payments {
     }
 
     @Basic
-    @Column(name = "updatedAt")
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    @Column(name = "updatedat")
+    public Timestamp getUpdatedat() {
+        return updatedat;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdatedat(Timestamp updatedat) {
+        this.updatedat = updatedat;
     }
 
     @Override
@@ -126,53 +127,33 @@ public class Payments {
         Payments payments = (Payments) o;
 
         if (id != payments.id) return false;
-        if (pMoney != null ? !pMoney.equals(payments.pMoney) : payments.pMoney != null) return false;
-        if (pNote != null ? !pNote.equals(payments.pNote) : payments.pNote != null) return false;
-        if (pVnpResponseCode != null ? !pVnpResponseCode.equals(payments.pVnpResponseCode) : payments.pVnpResponseCode != null)
+        if (pmoney != null ? !pmoney.equals(payments.pmoney) : payments.pmoney != null) return false;
+        if (pnote != null ? !pnote.equals(payments.pnote) : payments.pnote != null) return false;
+        if (pvnpresponsecode != null ? !pvnpresponsecode.equals(payments.pvnpresponsecode) : payments.pvnpresponsecode != null)
             return false;
-        if (pCodeVnp != null ? !pCodeVnp.equals(payments.pCodeVnp) : payments.pCodeVnp != null) return false;
-        if (pCodeBank != null ? !pCodeBank.equals(payments.pCodeBank) : payments.pCodeBank != null) return false;
-        if (pTime != null ? !pTime.equals(payments.pTime) : payments.pTime != null) return false;
-        if (pTransactionCode != null ? !pTransactionCode.equals(payments.pTransactionCode) : payments.pTransactionCode != null)
+        if (pcodevnp != null ? !pcodevnp.equals(payments.pcodevnp) : payments.pcodevnp != null) return false;
+        if (pcodebank != null ? !pcodebank.equals(payments.pcodebank) : payments.pcodebank != null) return false;
+        if (ptime != null ? !ptime.equals(payments.ptime) : payments.ptime != null) return false;
+        if (ptransactioncode != null ? !ptransactioncode.equals(payments.ptransactioncode) : payments.ptransactioncode != null)
             return false;
         if (createdAt != null ? !createdAt.equals(payments.createdAt) : payments.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(payments.updatedAt) : payments.updatedAt != null) return false;
+        if (updatedat != null ? !updatedat.equals(payments.updatedat) : payments.updatedat != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (pMoney != null ? pMoney.hashCode() : 0);
-        result = 31 * result + (pNote != null ? pNote.hashCode() : 0);
-        result = 31 * result + (pVnpResponseCode != null ? pVnpResponseCode.hashCode() : 0);
-        result = 31 * result + (pCodeVnp != null ? pCodeVnp.hashCode() : 0);
-        result = 31 * result + (pCodeBank != null ? pCodeBank.hashCode() : 0);
-        result = 31 * result + (pTime != null ? pTime.hashCode() : 0);
-        result = 31 * result + (pTransactionCode != null ? pTransactionCode.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (pmoney != null ? pmoney.hashCode() : 0);
+        result = 31 * result + (pnote != null ? pnote.hashCode() : 0);
+        result = 31 * result + (pvnpresponsecode != null ? pvnpresponsecode.hashCode() : 0);
+        result = 31 * result + (pcodevnp != null ? pcodevnp.hashCode() : 0);
+        result = 31 * result + (pcodebank != null ? pcodebank.hashCode() : 0);
+        result = 31 * result + (ptime != null ? ptime.hashCode() : 0);
+        result = 31 * result + (ptransactioncode != null ? ptransactioncode.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+        result = 31 * result + (updatedat != null ? updatedat.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "pTransactionId", referencedColumnName = "id")
-    public Transactions getTransactionsByPTransactionId() {
-        return transactionsByPTransactionId;
-    }
-
-    public void setTransactionsByPTransactionId(Transactions transactionsByPTransactionId) {
-        this.transactionsByPTransactionId = transactionsByPTransactionId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "pUserId", referencedColumnName = "id")
-    public Users getUsersByPUserId() {
-        return usersByPUserId;
-    }
-
-    public void setUsersByPUserId(Users usersByPUserId) {
-        this.usersByPUserId = usersByPUserId;
     }
 }

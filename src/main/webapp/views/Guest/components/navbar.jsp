@@ -18,7 +18,7 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach var="c" items="${categories}" varStatus="status">
-												<li><a href="<c:url value = "/home/product/list?cid=${c.id}"/>">${c.cName}</a></li>
+												<li><a href="<c:url value = "/home/product/list?cid=${c.id}"/>">${c.cname}</a></li>
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>

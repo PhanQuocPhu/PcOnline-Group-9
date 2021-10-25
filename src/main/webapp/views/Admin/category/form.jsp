@@ -9,7 +9,7 @@
 			<label for="cName">Tên danh mục</label>
 			<input type="text" class="form-control form-control-border modal-cName"
 				   id="cName"
-				   name="cName" placeholder="Tên danh mục" required value="${category.cName}">
+				   name="cName" placeholder="Tên danh mục" required value="${category.cname}">
 		</div>
 
 		<div class="row">
@@ -17,7 +17,7 @@
 				<div class="custom-control custom-switch">
 					<input type="checkbox" class="custom-control-input modal-cHome"
 						   id="cHome"
-						   value="1" name="cHome" ${category.cHome == 1 ? 'checked' : ''}>
+						   value="1" name="cHome" ${category.chome == 1 ? 'checked' : ''}>
 					<label class="custom-control-label" for="cHome" readonly>Home</label>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 				<div class="custom-control custom-switch">
 					<input type="checkbox" class="custom-control-input modal-cActive"
 						   id="cActive"
-						   value="1" name="cActive" ${category.cActive == 1 ? 'checked' : ''}>
+						   value="1" name="cActive" ${category.cactive == 1 ? 'checked' : ''}>
 					<label class="custom-control-label" for="cActive" readonly>Active</label>
 				</div>
 			</div>

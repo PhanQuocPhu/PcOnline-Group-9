@@ -2,22 +2,20 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Categories {
     private int id;
-    private String cName;
-    private String cSlug;
-    private String cIcon;
-    private byte cActive;
-    private String cTitleSeo;
-    private String cDescriptionSeo;
-    private String cKeywordSeo;
-    private byte cHome;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
-    private Collection<Products> productsById;
+    private String cname;
+    private String cslug;
+    private String cicon;
+    private byte cactive;
+    private String ctitleseo;
+    private String cdescriptionseo;
+    private String ckeywordseo;
+    private byte chome;
+    private Timestamp createdat;
+    private Timestamp updatedat;
 
     @Id
     @Column(name = "id")
@@ -30,103 +28,103 @@ public class Categories {
     }
 
     @Basic
-    @Column(name = "cName")
-    public String getcName() {
-        return cName;
+    @Column(name = "cname")
+    public String getCname() {
+        return cname;
     }
 
-    public void setcName(String cName) {
-        this.cName = cName;
-    }
-
-    @Basic
-    @Column(name = "cSlug")
-    public String getcSlug() {
-        return cSlug;
-    }
-
-    public void setcSlug(String cSlug) {
-        this.cSlug = cSlug;
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 
     @Basic
-    @Column(name = "cIcon")
-    public String getcIcon() {
-        return cIcon;
+    @Column(name = "cslug")
+    public String getCslug() {
+        return cslug;
     }
 
-    public void setcIcon(String cIcon) {
-        this.cIcon = cIcon;
-    }
-
-    @Basic
-    @Column(name = "cActive")
-    public byte getcActive() {
-        return cActive;
-    }
-
-    public void setcActive(byte cActive) {
-        this.cActive = cActive;
+    public void setCslug(String cslug) {
+        this.cslug = cslug;
     }
 
     @Basic
-    @Column(name = "cTitleSeo")
-    public String getcTitleSeo() {
-        return cTitleSeo;
+    @Column(name = "cicon")
+    public String getCicon() {
+        return cicon;
     }
 
-    public void setcTitleSeo(String cTitleSeo) {
-        this.cTitleSeo = cTitleSeo;
-    }
-
-    @Basic
-    @Column(name = "cDescriptionSeo")
-    public String getcDescriptionSeo() {
-        return cDescriptionSeo;
-    }
-
-    public void setcDescriptionSeo(String cDescriptionSeo) {
-        this.cDescriptionSeo = cDescriptionSeo;
+    public void setCicon(String cicon) {
+        this.cicon = cicon;
     }
 
     @Basic
-    @Column(name = "cKeywordSeo")
-    public String getcKeywordSeo() {
-        return cKeywordSeo;
+    @Column(name = "cactive")
+    public byte getCactive() {
+        return cactive;
     }
 
-    public void setcKeywordSeo(String cKeywordSeo) {
-        this.cKeywordSeo = cKeywordSeo;
-    }
-
-    @Basic
-    @Column(name = "cHome")
-    public byte getcHome() {
-        return cHome;
-    }
-
-    public void setcHome(byte cHome) {
-        this.cHome = cHome;
+    public void setCactive(byte cactive) {
+        this.cactive = cactive;
     }
 
     @Basic
-    @Column(name = "createdAt")
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    @Column(name = "ctitleseo")
+    public String getCtitleseo() {
+        return ctitleseo;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCtitleseo(String ctitleseo) {
+        this.ctitleseo = ctitleseo;
     }
 
     @Basic
-    @Column(name = "updatedAt")
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    @Column(name = "cdescriptionseo")
+    public String getCdescriptionseo() {
+        return cdescriptionseo;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setCdescriptionseo(String cdescriptionseo) {
+        this.cdescriptionseo = cdescriptionseo;
+    }
+
+    @Basic
+    @Column(name = "ckeywordseo")
+    public String getCkeywordseo() {
+        return ckeywordseo;
+    }
+
+    public void setCkeywordseo(String ckeywordseo) {
+        this.ckeywordseo = ckeywordseo;
+    }
+
+    @Basic
+    @Column(name = "chome")
+    public byte getChome() {
+        return chome;
+    }
+
+    public void setChome(byte chome) {
+        this.chome = chome;
+    }
+
+    @Basic
+    @Column(name = "createdat")
+    public Timestamp getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat(Timestamp createdat) {
+        this.createdat = createdat;
+    }
+
+    @Basic
+    @Column(name = "updatedat")
+    public Timestamp getUpdatedat() {
+        return updatedat;
+    }
+
+    public void setUpdatedat(Timestamp updatedat) {
+        this.updatedat = updatedat;
     }
 
     @Override
@@ -137,17 +135,17 @@ public class Categories {
         Categories that = (Categories) o;
 
         if (id != that.id) return false;
-        if (cActive != that.cActive) return false;
-        if (cHome != that.cHome) return false;
-        if (cName != null ? !cName.equals(that.cName) : that.cName != null) return false;
-        if (cSlug != null ? !cSlug.equals(that.cSlug) : that.cSlug != null) return false;
-        if (cIcon != null ? !cIcon.equals(that.cIcon) : that.cIcon != null) return false;
-        if (cTitleSeo != null ? !cTitleSeo.equals(that.cTitleSeo) : that.cTitleSeo != null) return false;
-        if (cDescriptionSeo != null ? !cDescriptionSeo.equals(that.cDescriptionSeo) : that.cDescriptionSeo != null)
+        if (cactive != that.cactive) return false;
+        if (chome != that.chome) return false;
+        if (cname != null ? !cname.equals(that.cname) : that.cname != null) return false;
+        if (cslug != null ? !cslug.equals(that.cslug) : that.cslug != null) return false;
+        if (cicon != null ? !cicon.equals(that.cicon) : that.cicon != null) return false;
+        if (ctitleseo != null ? !ctitleseo.equals(that.ctitleseo) : that.ctitleseo != null) return false;
+        if (cdescriptionseo != null ? !cdescriptionseo.equals(that.cdescriptionseo) : that.cdescriptionseo != null)
             return false;
-        if (cKeywordSeo != null ? !cKeywordSeo.equals(that.cKeywordSeo) : that.cKeywordSeo != null) return false;
-        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
+        if (ckeywordseo != null ? !ckeywordseo.equals(that.ckeywordseo) : that.ckeywordseo != null) return false;
+        if (createdat != null ? !createdat.equals(that.createdat) : that.createdat != null) return false;
+        if (updatedat != null ? !updatedat.equals(that.updatedat) : that.updatedat != null) return false;
 
         return true;
     }
@@ -155,25 +153,16 @@ public class Categories {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (cName != null ? cName.hashCode() : 0);
-        result = 31 * result + (cSlug != null ? cSlug.hashCode() : 0);
-        result = 31 * result + (cIcon != null ? cIcon.hashCode() : 0);
-        result = 31 * result + (int) cActive;
-        result = 31 * result + (cTitleSeo != null ? cTitleSeo.hashCode() : 0);
-        result = 31 * result + (cDescriptionSeo != null ? cDescriptionSeo.hashCode() : 0);
-        result = 31 * result + (cKeywordSeo != null ? cKeywordSeo.hashCode() : 0);
-        result = 31 * result + (int) cHome;
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+        result = 31 * result + (cname != null ? cname.hashCode() : 0);
+        result = 31 * result + (cslug != null ? cslug.hashCode() : 0);
+        result = 31 * result + (cicon != null ? cicon.hashCode() : 0);
+        result = 31 * result + (int) cactive;
+        result = 31 * result + (ctitleseo != null ? ctitleseo.hashCode() : 0);
+        result = 31 * result + (cdescriptionseo != null ? cdescriptionseo.hashCode() : 0);
+        result = 31 * result + (ckeywordseo != null ? ckeywordseo.hashCode() : 0);
+        result = 31 * result + (int) chome;
+        result = 31 * result + (createdat != null ? createdat.hashCode() : 0);
+        result = 31 * result + (updatedat != null ? updatedat.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "categoriesByProCategoryId")
-    public Collection<Products> getProductsById() {
-        return productsById;
-    }
-
-    public void setProductsById(Collection<Products> productsById) {
-        this.productsById = productsById;
     }
 }

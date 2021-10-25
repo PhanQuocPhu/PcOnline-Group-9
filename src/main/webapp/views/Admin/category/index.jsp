@@ -61,13 +61,13 @@
 												<c:forEach var="c" items="${categories}">
 													<tr>
 														<td>${c.id}</td>
-														<td>${c.cName}</td>
+														<td>${c.cname}</td>
 														<td class="text-center">
-																${c.cHome == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Yes </a>' :
+																${c.chome == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Yes </a>' :
 																		'<a style="font-size: 14px" class="badge badge-danger"data-value="0" data-value="1"> Nope </a>'}
 														</td>
 														<td class="text-center">
-																${c.cActive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' :
+																${c.cactive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' :
 																		'<a style="font-size: 14px" class="badge badge-danger" data-value="1"> Nope </a>'}
 														</td>
 														<td class="text-center">
@@ -78,9 +78,9 @@
 																	data-toggle="modal"
 																	data-target="#formModal"
 																	data-id="${c.id}"
-																	data-cname="${c.cName}"
-																	data-chome="${c.cHome }"
-																	data-cactive="${c.cActive}">
+																	data-cname="${c.cname}"
+																	data-chome="${c.chome }"
+																	data-cactive="${c.cactive}">
 																<i class="fa fa-pen" aria-hidden="true"></i>
 															</button>
 															<button class="btn btn-outline-danger"

@@ -1,18 +1,19 @@
 package entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
 public class Orders {
     private int id;
-    private byte orQty;
-    private int orPrice;
-    private byte orSale;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
-    private Transactions transactionsByOrTransactionId;
-    private Products productsByOrProductId;
+    private byte orqty;
+    private int orprice;
+    private byte orsale;
+    private Timestamp createdat;
+    private Timestamp updatedat;
 
     @Id
     @Column(name = "id")
@@ -25,53 +26,53 @@ public class Orders {
     }
 
     @Basic
-    @Column(name = "orQty")
-    public byte getOrQty() {
-        return orQty;
+    @Column(name = "orqty")
+    public byte getOrqty() {
+        return orqty;
     }
 
-    public void setOrQty(byte orQty) {
-        this.orQty = orQty;
-    }
-
-    @Basic
-    @Column(name = "orPrice")
-    public int getOrPrice() {
-        return orPrice;
-    }
-
-    public void setOrPrice(int orPrice) {
-        this.orPrice = orPrice;
+    public void setOrqty(byte orqty) {
+        this.orqty = orqty;
     }
 
     @Basic
-    @Column(name = "orSale")
-    public byte getOrSale() {
-        return orSale;
+    @Column(name = "orprice")
+    public int getOrprice() {
+        return orprice;
     }
 
-    public void setOrSale(byte orSale) {
-        this.orSale = orSale;
-    }
-
-    @Basic
-    @Column(name = "createdAt")
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setOrprice(int orprice) {
+        this.orprice = orprice;
     }
 
     @Basic
-    @Column(name = "updatedAt")
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    @Column(name = "orsale")
+    public byte getOrsale() {
+        return orsale;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setOrsale(byte orsale) {
+        this.orsale = orsale;
+    }
+
+    @Basic
+    @Column(name = "createdat")
+    public Timestamp getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat(Timestamp createdat) {
+        this.createdat = createdat;
+    }
+
+    @Basic
+    @Column(name = "updatedat")
+    public Timestamp getUpdatedat() {
+        return updatedat;
+    }
+
+    public void setUpdatedat(Timestamp updatedat) {
+        this.updatedat = updatedat;
     }
 
     @Override
@@ -82,11 +83,11 @@ public class Orders {
         Orders orders = (Orders) o;
 
         if (id != orders.id) return false;
-        if (orQty != orders.orQty) return false;
-        if (orPrice != orders.orPrice) return false;
-        if (orSale != orders.orSale) return false;
-        if (createdAt != null ? !createdAt.equals(orders.createdAt) : orders.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(orders.updatedAt) : orders.updatedAt != null) return false;
+        if (orqty != orders.orqty) return false;
+        if (orprice != orders.orprice) return false;
+        if (orsale != orders.orsale) return false;
+        if (createdat != null ? !createdat.equals(orders.createdat) : orders.createdat != null) return false;
+        if (updatedat != null ? !updatedat.equals(orders.updatedat) : orders.updatedat != null) return false;
 
         return true;
     }
@@ -94,31 +95,11 @@ public class Orders {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (int) orQty;
-        result = 31 * result + orPrice;
-        result = 31 * result + (int) orSale;
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+        result = 31 * result + (int) orqty;
+        result = 31 * result + orprice;
+        result = 31 * result + (int) orsale;
+        result = 31 * result + (createdat != null ? createdat.hashCode() : 0);
+        result = 31 * result + (updatedat != null ? updatedat.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "orTransactionId", referencedColumnName = "id", nullable = false)
-    public Transactions getTransactionsByOrTransactionId() {
-        return transactionsByOrTransactionId;
-    }
-
-    public void setTransactionsByOrTransactionId(Transactions transactionsByOrTransactionId) {
-        this.transactionsByOrTransactionId = transactionsByOrTransactionId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "orProductId", referencedColumnName = "id", nullable = false)
-    public Products getProductsByOrProductId() {
-        return productsByOrProductId;
-    }
-
-    public void setProductsByOrProductId(Products productsByOrProductId) {
-        this.productsByOrProductId = productsByOrProductId;
     }
 }

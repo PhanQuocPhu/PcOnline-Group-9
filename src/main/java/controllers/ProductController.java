@@ -45,8 +45,8 @@ public class ProductController extends HttpServlet {
             case "/detail":
                 int id = Integer.parseInt(request.getParameter("id"));
                 Products pro  = getProById(id);
-                cat = getCateById(pro.getCategoriesByProCategoryId().getId());
-                listpc = getPro(pro.getCategoriesByProCategoryId().getId());
+                cat = getCateById(pro.getCategoriesByProcategoryid().getId());
+                listpc = getPro(pro.getCategoriesByProcategoryid().getId());
                 request.setAttribute("categories", listc);
                 request.setAttribute("products", listpc);
                 request.setAttribute("category", cat);

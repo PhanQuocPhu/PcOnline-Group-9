@@ -65,14 +65,14 @@
 															<div style="width: 250px; height: 250px">
 																<img class="img img-thumbnail mx-auto d-block"
 																	 style="width: auto; height: auto; max-width: 100%; max-height: 100%"
-																	 src="<c:url value='/public/images/${p.proAvatar}'/>"
-																	 alt="${p.proSlug}">
+																	 src="<c:url value='/public/images/${p.proavatar}'/>"
+																	 alt="${p.proslug}">
 															</div>
 														</td>
-														<td>${p.proName}</td>
-														<td class="text-center">${p.proNumber}</td>
+														<td>${p.proname}</td>
+														<td class="text-center">${p.pronumber}</td>
 														<td class="text-center">
-																${p.proActive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' :
+																${p.proactive == 1 ? '<a style="font-size: 14px" class="badge badge-success" data-value="1"> Active </a>' :
 																		'<a style="font-size: 14px" class="badge badge-danger" data-value="1"> Nope </a>'}
 														</td>
 														<td class="text-center">

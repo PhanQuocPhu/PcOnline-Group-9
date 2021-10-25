@@ -11,15 +11,20 @@ import java.util.List;
 
 public class ProductsModel {
     public static Session session = HibernateUtil.openSession();
-    //Sql2o - Lấy hết
+    //Lấy Id cuối
+    public static int getLastId() throws SQLException {
+        String hql = "select max(id) from Products";
+        return session.createQuery(hql, Integer.class).uniqueResult();
+    }
+    //Lấy hết
     public static List<Products> getAll() throws SQLException {
-        final String hql = "FROM Products";
+        final String hql = "FROM Products order by id";
         return session.createQuery(hql, Products.class).list();
     }
     //Lấy hết theo cateID
     public static List<Products> getByCId(int proCategoryId) throws SQLException {
         session.clear();
-        final String hql = "FROM Products WHERE categoriesByProCategoryId.id=:proCategoryId";
+        final String hql = "FROM Products WHERE categoriesByProcategoryid.id=:proCategoryId";
         return  session.createQuery(hql, Products.class).setParameter("proCategoryId", proCategoryId).list();
     }
     //Lấy theo ID

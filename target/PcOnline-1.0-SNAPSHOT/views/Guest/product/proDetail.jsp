@@ -11,9 +11,9 @@
 					<ul>
 						<li><a href="/home">Home</a></li>
 						<li>
-							<a href="<c:url value = "/home/product/list?cid=${product.categoriesByProCategoryId.id}"/>">${product.categoriesByProCategoryId.cName}</a>
+							<a href="<c:url value = "/home/product/list?cid=${product.categoriesByProcategoryid.id}"/>">${product.categoriesByProcategoryid.cname}</a>
 						</li>
-						<li class="active">${product.proName}</li>
+						<li class="active">${product.proname}</li>
 					</ul>
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 						<div class="product-details-left">
 							<div class="product-details-images sslider-navigation-1">
 								<div class="lg-image" style="width: 470px; height: 470px">
-									<img src="<c:url value='/public/images/${product.proAvatar}'/>" alt="product image">
+									<img src="<c:url value='/public/images/${product.proavatar}'/>" alt="product image">
 								</div>
 									<%--<div class="lg-image">
 										<img src="images/product/large-size/2.jpg" alt="product image">
@@ -74,7 +74,7 @@
 					<div class="col-lg-7 col-md-6">
 						<div class="product-details-view-content sp-affiliate-content pt-60">
 							<div class="product-info">
-								<h2>${product.proName}</h2>
+								<h2>${product.proname}</h2>
 								<span class="product-details-ref">Reference: demo_15</span>
 								<div class="rating-box pt-20">
 									<ul class="rating rating-with-review-item">
@@ -88,12 +88,12 @@
 									</ul>
 								</div>
 								<div class="price-box pt-20">
-									<span class="new-price new-price-2">${product.proPrice} vnd</span>
+									<span class="new-price new-price-2">${product.proprice} vnd</span>
 								</div>
 								<div class="product-desc">
 									<p>
                                             <span>
-													${product.proDescription}
+													${product.prodescription}
 											</span>
 									</p>
 								</div>
@@ -133,7 +133,7 @@
 					</div>
 					<div id="product-details" class="tab-pane" role="tabpanel">
 						<div class="product-details-manufacturer">
-								${product.proContent}
+								${product.procontent}
 						</div>
 					</div>
 					<div id="reviews" class="tab-pane" role="tabpanel">
@@ -272,7 +272,7 @@
 										<div class="single-product-wrap">
 											<div class="product-image" style="width: 206px; height: 206px">
 												<a href="single-product.html">
-													<img src="<c:url value='/public/images/${p.proAvatar}'/>"
+													<img src="<c:url value='/public/images/${p.proavatar}'/>"
 														 alt="Li's Product Image">
 												</a>
 												<span class="sticker">New</span>
@@ -295,10 +295,10 @@
 													</div>
 													<h4>
 														<a class="product_name"
-														   href="single-product.html">${p.proName}</a>
+														   href="single-product.html">${p.proname}</a>
 													</h4>
 													<div class="price-box">
-														<span class="new-price">${p.proPrice}</span>
+														<span class="new-price">${p.proprice}</span>
 													</div>
 												</div>
 												<div class="add-actions">

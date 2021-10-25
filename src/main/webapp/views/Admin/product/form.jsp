@@ -11,14 +11,14 @@
 					<label for="proName">Tên sản phẩm</label>
 					<input type="text" class="form-control form-control-border modal-proName"
 						   id="proName"
-						   name="proName" placeholder="Tên sản phẩm" value="${product.proName}">
+						   name="proName" placeholder="Tên sản phẩm" value="${product.proname}">
 				</div>
 				<div class="form-group">
 					<label for="proDescription">Mô tả ngắn gọn (Dưới 250 từ)</label>
 					<textarea class="form-control form-control-border modal-proDescription"
 							  id="proDescription"
 							  name="proDescription" rows="2" placeholder="Enter ..."
-							  style="margin-top: 0; margin-bottom: 0; height: 40px;">${product.proDescription}</textarea>
+							  style="margin-top: 0; margin-bottom: 0; height: 40px;">${product.prodescription}</textarea>
 				</div>
 				<div class="form-group">
 					<label for="proCategoryId" class="form-label">Danh mục:</label>
@@ -29,11 +29,11 @@
 								<option value="">--Chọn loại sản phẩm--</option>
 							</c:when>
 							<c:otherwise>
-								<option value="${product.categoriesByProCategoryId.id}">${product.categoriesByProCategoryId.cName}</option>
+								<option value="${product.categoriesByProcategoryid.id}">${product.categoriesByProcategoryid.cname}</option>
 							</c:otherwise>
 						</c:choose>
 						<c:forEach var="c" items="${categories}">
-							<option value="${c.id}">${c.cName}</option>
+							<option value="${c.id}">${c.cname}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -42,7 +42,7 @@
 					<input type="number" name="proPrice"
 						   class="form-control form-control-border modal-proPrice"
 						   placeholder="Đơn giá" id="proPrice" min="0"
-						   value="${product.proPrice}">
+						   value="${product.proprice}">
 				</div>
 
 				<div class="form-group">
@@ -50,7 +50,7 @@
 					<input type="number" name="proSale"
 						   class="form-control form-control-border modal-proSale"
 						   placeholder="% giảm giá" id="proSale" min="0" max="90"
-						   value="${product.proSale}">
+						   value="${product.prosale}">
 				</div>
 
 				<div class="row">
@@ -59,7 +59,7 @@
 							<input type="checkbox" class="custom-control-input modal-proActive"
 								   id="proActive"
 								   value="1"
-								   name="proActive" ${product.proActive == 1 ? 'checked' : ''}>
+								   name="proActive" ${product.proactive == 1 ? 'checked' : ''}>
 							<label class="custom-control-label" for="proActive">Active</label>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 						<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input modal-proHot"
 								   id="proHot"
-								   value="1" name="proHot" ${product.proHot == 1 ? 'checked' : ''}>
+								   value="1" name="proHot" ${product.prohot == 1 ? 'checked' : ''}>
 							<label class="custom-control-label" for="proHot">Hot Product</label>
 						</div>
 					</div>
@@ -81,7 +81,7 @@
 					<input type="number" id="proNumber" name="proNumber"
 						   class="form-control form-control-border modal-proNumber"
 						   placeholder="Số lượng" min="0"
-						   value="${product.proNumber}">
+						   value="${product.pronumber}">
 				</div>
 
 				<div class="form-group text-center">
@@ -105,7 +105,7 @@
 					  id="proContent"
 					  name="proContent" rows="3" placeholder="Enter ..."
 					  style="margin-top: 0; margin-bottom: 0; height: 83px;">
-				${product.proContent}
+				${product.procontent}
 			</textarea>
 		</div>
 
@@ -134,7 +134,7 @@
         msgErrorClass: 'alert alert-block alert-danger',
         defaultPreviewContent:
             '<div class="kv-file-content">' +
-			'<img id="imgPreview" style="width:100%; heigh:100%" src="<c:url value='/public/images/${product.proAvatar}'/>" alt="Ảnh sản phẩm">' +
+			'<img id="imgPreview" style="width:100%; heigh:100%" src="<c:url value='/public/images/${product.proavatar}'/>" alt="Ảnh sản phẩm">' +
 			'</div>',
         layoutTemplates: {main2: '{preview} ' + btnCust + ' {remove} {browse}'},
         allowedFileExtensions: ["jpg", "png", "gif"]
