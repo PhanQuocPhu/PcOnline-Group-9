@@ -135,19 +135,6 @@ public class AdminCategoryController extends HttpServlet {
         }
     }
 
-    private String upload_image(HttpServletRequest request) throws ServletException, IOException {
-        Part imgPart = request.getPart("cIcon");
-        String uploadFolder = request.getServletContext().getRealPath("/public/images");
-        Path uploadPath = Paths.get(uploadFolder);
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-        String imgName = Path.of(imgPart.getSubmittedFileName()).getFileName().toString();
-
-        imgPart.write(Paths.get(uploadPath.toString(), imgName).toString());
-        return imgName;
-
-    }
 
 
 }
