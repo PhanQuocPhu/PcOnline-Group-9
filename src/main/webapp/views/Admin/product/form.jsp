@@ -18,7 +18,7 @@
 					<textarea class="form-control form-control-border modal-proDescription"
 							  id="proDescription"
 							  name="proDescription" rows="2" placeholder="Enter ..."
-							  style="margin-top: 0; margin-bottom: 0; height: 40px;">${product.prodescription}</textarea>
+							  style="margin-top: 0; margin-bottom: 0; height: 40px;" required>${product.prodescription}</textarea>
 				</div>
 				<div class="form-group">
 					<label for="proCategoryId" class="form-label">Danh mục:</label>
@@ -26,14 +26,14 @@
 							class="form-control form-control-border modal-proCategoryId">
 						<c:choose>
 							<c:when test="${product == null}">
-								<option value="">--Chọn loại sản phẩm--</option>
+								<option value="" required>--Chọn loại sản phẩm--</option>
 							</c:when>
 							<c:otherwise>
 								<option value="${product.categoriesByProcategoryid.id}">${product.categoriesByProcategoryid.cname}</option>
 							</c:otherwise>
 						</c:choose>
 						<c:forEach var="c" items="${categories}">
-							<option value="${c.id}">${c.cname}</option>
+							<option value="${c.id}" required>${c.cname}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -42,7 +42,7 @@
 					<input type="number" name="proPrice"
 						   class="form-control form-control-border modal-proPrice"
 						   placeholder="Đơn giá" id="proPrice" min="0"
-						   value="${product.proprice}">
+						   value="${product.proprice}" required>
 				</div>
 
 				<div class="form-group">
@@ -50,7 +50,7 @@
 					<input type="number" name="proSale"
 						   class="form-control form-control-border modal-proSale"
 						   placeholder="% giảm giá" id="proSale" min="0" max="90"
-						   value="${product.prosale}">
+						   value="${product.prosale}" required>
 				</div>
 
 				<div class="row">
@@ -59,7 +59,7 @@
 							<input type="checkbox" class="custom-control-input modal-proActive"
 								   id="proActive"
 								   value="1"
-								   name="proActive" ${product.proactive == 1 ? 'checked' : ''}>
+								   name="proActive" ${product.proactive == 1 ? 'checked' : ''} required>
 							<label class="custom-control-label" for="proActive">Active</label>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 						<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input modal-proHot"
 								   id="proHot"
-								   value="1" name="proHot" ${product.prohot == 1 ? 'checked' : ''}>
+								   value="1" name="proHot" ${product.prohot == 1 ? 'checked' : ''} required>
 							<label class="custom-control-label" for="proHot">Hot Product</label>
 						</div>
 					</div>
@@ -81,14 +81,14 @@
 					<input type="number" id="proNumber" name="proNumber"
 						   class="form-control form-control-border modal-proNumber"
 						   placeholder="Số lượng" min="0"
-						   value="${product.pronumber}">
+						   value="${product.pronumber} " required>
 				</div>
 
 				<div class="form-group text-center">
 					<div class="kv-avatar">
 						<div class="file-loading">
 							<input id="proAvatar" name="proAvatar" type="file"
-								   class="modal-proAvatar">
+								   class="modal-proAvatar" required>
 						</div>
 					</div>
 					<div class="kv-avatar-hint">
@@ -104,7 +104,7 @@
 			<textarea class="form-control form-control-border modal-proContent"
 					  id="proContent"
 					  name="proContent" rows="3" placeholder="Enter ..."
-					  style="margin-top: 0; margin-bottom: 0; height: 83px;">
+					  style="margin-top: 0; margin-bottom: 0; height: 83px;" required>
 				${product.procontent}
 			</textarea>
 		</div>

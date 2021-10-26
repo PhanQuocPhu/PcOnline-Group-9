@@ -218,7 +218,7 @@ public class AdminProductController extends HttpServlet {
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
-        String imgName = Path.of(imgPart.getSubmittedFileName()).getFileName().toString();
+        String imgName = Paths.get(imgPart.getSubmittedFileName()).getFileName().toString();
 
         /*System.out.println(imgName);*/
        /* try {
