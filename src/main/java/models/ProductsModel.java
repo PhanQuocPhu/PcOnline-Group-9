@@ -14,7 +14,11 @@ public class ProductsModel {
     //Lấy Id cuối
     public static int getLastId() throws SQLException {
         String hql = "select max(id) from Products";
-        return session.createQuery(hql, Integer.class).uniqueResult();
+        if (ProductsModel.getAll().size() != 0) {
+            return session.createQuery(hql, Integer.class).uniqueResult();
+        } else {
+            return 0;
+        }
     }
     //Lấy hết
     public static List<Products> getAll() throws SQLException {

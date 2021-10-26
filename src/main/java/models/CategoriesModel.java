@@ -15,7 +15,11 @@ public class CategoriesModel {
     //Lấy Id cuối
     public static int getLastId() throws SQLException {
         String hql = "select max(id) from Categories";
-        return session.createQuery(hql, Integer.class).uniqueResult();
+        if (CategoriesModel.getAll().size() != 0) {
+            return session.createQuery(hql, Integer.class).uniqueResult();
+        } else {
+            return 0;
+        }
     }
     //Lấy hết
     public static List<Categories> getAll() throws SQLException {
