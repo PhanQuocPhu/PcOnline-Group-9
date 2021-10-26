@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "AdminHomeController", urlPatterns = "/admin/*")
+@WebServlet(name = "AdminHomeController", urlPatterns = "/admin")
 public class AdminHomeController extends HttpServlet {
 
 
@@ -17,7 +17,9 @@ public class AdminHomeController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/Admin/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/Admin/index.jsp").forward(request, response);
 
     }
 }
+
+
