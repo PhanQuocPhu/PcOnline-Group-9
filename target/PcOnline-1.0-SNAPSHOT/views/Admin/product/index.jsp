@@ -185,6 +185,7 @@
                 }
             });
 
+
 		</script>
 	</jsp:body>
 </mt:admin_template>

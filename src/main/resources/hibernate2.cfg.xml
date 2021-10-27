@@ -10,10 +10,10 @@
     <property name="connection.username">root</property>
     <property name="connection.password"> </property>-->
     <!--Postgre-->
-    <property name="connection.url">jdbc:postgresql://localhost:5432/pconlineweb</property>
+    <property name="connection.url">jdbc:postgresql://ec2-34-193-46-89.compute-1.amazonaws.com:5432/des01f3hb7g934</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
-    <property name="connection.username">postgres</property>
-    <property name="connection.password">123</property>
+    <property name="connection.username">dupktjyxdmomyt</property>
+    <property name="connection.password">b7181a115e120038ba06ff975c83cb20db28d8d7d432d2d95698d142ef36e13f</property>
     <!-- JDBC connection pool (use the built-in) -->
     <!--<property name="connection.pool_size">1</property>-->
 
