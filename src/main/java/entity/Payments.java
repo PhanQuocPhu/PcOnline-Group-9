@@ -1,9 +1,6 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -18,6 +15,8 @@ public class Payments {
     private String ptransactioncode;
     private Timestamp createdAt;
     private Timestamp updatedat;
+    private Transactions transactionsByPtransactionid;
+    private Users usersByPuserid;
 
     @Id
     @Column(name = "id")
@@ -155,5 +154,25 @@ public class Payments {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedat != null ? updatedat.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ptransactionid", referencedColumnName = "id")
+    public Transactions getTransactionsByPtransactionid() {
+        return transactionsByPtransactionid;
+    }
+
+    public void setTransactionsByPtransactionid(Transactions transactionsByPtransactionid) {
+        this.transactionsByPtransactionid = transactionsByPtransactionid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "puserid", referencedColumnName = "id")
+    public Users getUsersByPuserid() {
+        return usersByPuserid;
+    }
+
+    public void setUsersByPuserid(Users usersByPuserid) {
+        this.usersByPuserid = usersByPuserid;
     }
 }

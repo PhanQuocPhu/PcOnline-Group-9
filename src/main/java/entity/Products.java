@@ -2,6 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 public class Products {
@@ -10,7 +11,7 @@ public class Products {
     private String proslug;
     private int proprice;
     private int proauthorid;
-    private byte prosale;
+    private short prosale;
     private byte proactive;
     private byte prohot;
     private int proview;
@@ -26,6 +27,7 @@ public class Products {
     private int prototalnumber;
     private Timestamp createdat;
     private Timestamp updatedat;
+    private Collection<Orders> ordersById;
     private Categories categoriesByProcategoryid;
 
     @Id
@@ -80,11 +82,11 @@ public class Products {
 
     @Basic
     @Column(name = "prosale")
-    public byte getProsale() {
+    public short getProsale() {
         return prosale;
     }
 
-    public void setProsale(byte prosale) {
+    public void setProsale(short prosale) {
         this.prosale = prosale;
     }
 
@@ -298,6 +300,15 @@ public class Products {
         result = 31 * result + (createdat != null ? createdat.hashCode() : 0);
         result = 31 * result + (updatedat != null ? updatedat.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "productsByOrproductid")
+    public Collection<Orders> getOrdersById() {
+        return ordersById;
+    }
+
+    public void setOrdersById(Collection<Orders> ordersById) {
+        this.ordersById = ordersById;
     }
 
     @ManyToOne

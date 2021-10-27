@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:useBean id="products" scope="request" type="java.util.List<entity.Products>"/>
 <jsp:useBean id="categories" scope="request" type="java.util.List<entity.Categories>"/>
@@ -11,7 +12,7 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1>Danh Mục</h1>
+						<h1></h1>
 					</div>
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
@@ -29,7 +30,7 @@
 						<!-- /.card -->
 						<div class="card">
 							<div class="card-header">
-								<h2 class="card-title"></h2>
+								<h2 class="card-title" style="font-size: 2.0rem"></h2>
 								<button type="button" class="btn btn-outline-success float-right"
 										data-toggle="modal"
 										data-target="#formModal"

@@ -1,10 +1,8 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 public class Users {
@@ -22,6 +20,8 @@ public class Users {
     private String providerId;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private Collection<Payments> paymentsById;
+    private Collection<Transactions> transactionsById;
 
     @Id
     @Column(name = "id")
@@ -206,5 +206,23 @@ public class Users {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "usersByPuserid")
+    public Collection<Payments> getPaymentsById() {
+        return paymentsById;
+    }
+
+    public void setPaymentsById(Collection<Payments> paymentsById) {
+        this.paymentsById = paymentsById;
+    }
+
+    @OneToMany(mappedBy = "usersByTruserid")
+    public Collection<Transactions> getTransactionsById() {
+        return transactionsById;
+    }
+
+    public void setTransactionsById(Collection<Transactions> transactionsById) {
+        this.transactionsById = transactionsById;
     }
 }

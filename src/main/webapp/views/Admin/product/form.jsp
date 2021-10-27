@@ -59,7 +59,7 @@
 							<input type="checkbox" class="custom-control-input modal-proActive"
 								   id="proActive"
 								   value="1"
-								   name="proActive" ${product.proactive == 1 ? 'checked' : ''} required>
+								   name="proActive" ${product.proactive == 1 ? 'checked' : ''} >
 							<label class="custom-control-label" for="proActive">Active</label>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 						<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input modal-proHot"
 								   id="proHot"
-								   value="1" name="proHot" ${product.prohot == 1 ? 'checked' : ''} required>
+								   value="1" name="proHot" ${product.prohot == 1 ? 'checked' : ''} >
 							<label class="custom-control-label" for="proHot">Hot Product</label>
 						</div>
 					</div>
@@ -78,17 +78,17 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="proNumber" class="form-label">Số lượng sản phẩm:</label>
-					<input type="number" id="proNumber" name="proNumber"
+					<input type="number"  name="proNumber"
 						   class="form-control form-control-border modal-proNumber"
-						   placeholder="Số lượng" min="0"
-						   value="${product.pronumber} " required>
+						   placeholder="Số lượng" id="proNumber" min="0"
+						   value="${product.pronumber}" required>
 				</div>
 
 				<div class="form-group text-center">
 					<div class="kv-avatar">
 						<div class="file-loading">
 							<input id="proAvatar" name="proAvatar" type="file"
-								   class="modal-proAvatar" required>
+								   class="modal-proAvatar" >
 						</div>
 					</div>
 					<div class="kv-avatar-hint">

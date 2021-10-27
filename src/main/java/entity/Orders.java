@@ -1,9 +1,6 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -14,6 +11,8 @@ public class Orders {
     private byte orsale;
     private Timestamp createdat;
     private Timestamp updatedat;
+    private Transactions transactionsByOrtransactionid;
+    private Products productsByOrproductid;
 
     @Id
     @Column(name = "id")
@@ -101,5 +100,25 @@ public class Orders {
         result = 31 * result + (createdat != null ? createdat.hashCode() : 0);
         result = 31 * result + (updatedat != null ? updatedat.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ortransactionid", referencedColumnName = "id", nullable = false)
+    public Transactions getTransactionsByOrtransactionid() {
+        return transactionsByOrtransactionid;
+    }
+
+    public void setTransactionsByOrtransactionid(Transactions transactionsByOrtransactionid) {
+        this.transactionsByOrtransactionid = transactionsByOrtransactionid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "orproductid", referencedColumnName = "id", nullable = false)
+    public Products getProductsByOrproductid() {
+        return productsByOrproductid;
+    }
+
+    public void setProductsByOrproductid(Products productsByOrproductid) {
+        this.productsByOrproductid = productsByOrproductid;
     }
 }

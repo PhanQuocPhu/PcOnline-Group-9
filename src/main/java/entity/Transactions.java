@@ -1,15 +1,12 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 public class Transactions {
     private int id;
-    private int truserid;
     private int trtotal;
     private String trnote;
     private String traddress;
@@ -18,6 +15,9 @@ public class Transactions {
     private byte trpayment;
     private Timestamp createdat;
     private Timestamp updatedat;
+    private Collection<Orders> ordersById;
+    private Collection<Payments> paymentsById;
+    private Users usersByTruserid;
 
     @Id
     @Column(name = "id")
@@ -27,16 +27,6 @@ public class Transactions {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "truserid")
-    public int getTruserid() {
-        return truserid;
-    }
-
-    public void setTruserid(int truserid) {
-        this.truserid = truserid;
     }
 
     @Basic
@@ -127,7 +117,6 @@ public class Transactions {
         Transactions that = (Transactions) o;
 
         if (id != that.id) return false;
-        if (truserid != that.truserid) return false;
         if (trtotal != that.trtotal) return false;
         if (trstatus != that.trstatus) return false;
         if (trpayment != that.trpayment) return false;
@@ -143,7 +132,6 @@ public class Transactions {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + truserid;
         result = 31 * result + trtotal;
         result = 31 * result + (trnote != null ? trnote.hashCode() : 0);
         result = 31 * result + (traddress != null ? traddress.hashCode() : 0);
@@ -153,5 +141,33 @@ public class Transactions {
         result = 31 * result + (createdat != null ? createdat.hashCode() : 0);
         result = 31 * result + (updatedat != null ? updatedat.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "transactionsByOrtransactionid")
+    public Collection<Orders> getOrdersById() {
+        return ordersById;
+    }
+
+    public void setOrdersById(Collection<Orders> ordersById) {
+        this.ordersById = ordersById;
+    }
+
+    @OneToMany(mappedBy = "transactionsByPtransactionid")
+    public Collection<Payments> getPaymentsById() {
+        return paymentsById;
+    }
+
+    public void setPaymentsById(Collection<Payments> paymentsById) {
+        this.paymentsById = paymentsById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "truserid", referencedColumnName = "id", nullable = false)
+    public Users getUsersByTruserid() {
+        return usersByTruserid;
+    }
+
+    public void setUsersByTruserid(Users usersByTruserid) {
+        this.usersByTruserid = usersByTruserid;
     }
 }
