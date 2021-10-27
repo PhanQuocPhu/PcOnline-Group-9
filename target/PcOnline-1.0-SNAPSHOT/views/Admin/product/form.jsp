@@ -59,7 +59,7 @@
 							<input type="checkbox" class="custom-control-input modal-proActive"
 								   id="proActive"
 								   value="1"
-								   name="proActive" ${product.proactive == 1 ? 'checked' : ''} >
+								   name="proActive" ${product.proactive == 1 ? 'checked' : ''} required>
 							<label class="custom-control-label" for="proActive">Active</label>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 						<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input modal-proHot"
 								   id="proHot"
-								   value="1" name="proHot" ${product.prohot == 1 ? 'checked' : ''} >
+								   value="1" name="proHot" ${product.prohot == 1 ? 'checked' : ''} required>
 							<label class="custom-control-label" for="proHot">Hot Product</label>
 						</div>
 					</div>
@@ -81,19 +81,19 @@
 					<input type="number" id="proNumber" name="proNumber"
 						   class="form-control form-control-border modal-proNumber"
 						   placeholder="Số lượng" min="0"
-						   value="${product.pronumber}" required>
+						   value="${product.pronumber} " required>
 				</div>
-				<div class="form-group text-center">
-					<input id="proAvatar" name="proAvatar" type="file"
-						   class="modal-proAvatar" accept="image/*">
-					<%--<div class="kv-avatar">
-						<div class="file-loading">
 
+				<div class="form-group text-center">
+					<div class="kv-avatar">
+						<div class="file-loading">
+							<input id="proAvatar" name="proAvatar" type="file"
+								   class="modal-proAvatar" required>
 						</div>
 					</div>
 					<div class="kv-avatar-hint">
 						<small>Select file < 5000 KB</small>
-					</div>--%>
+					</div>
 				</div>
 			</div>
 			<!--/.col (right) -->
@@ -112,75 +112,15 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		<button type="submit" class="btn btn-primary" id="form-submit">Submit</button>
+		<button type="submit" class="btn btn-primary">Submit</button>
 	</div>
 </form>
 <script>
-    $('document').ready(function () {
-        $('input[type=file]').on('change', function () {
-            var $files = $(this).get(0).files;
-            if ($files.length) {
-                if ($files[0].size > $(this).data('max-size') * 1024) {
-                    console.log('Vui lòng chọn file có dung lượng nhỏ hơn!');
-                    return false;
-                }
-
-                console.log('Đang upload hình ảnh lên imgur...');
-                var apiUrl = 'https://api.imgur.com/3/image';
-                var apiKey = '8f2645e187b4235'; // Thay bằng Client ID của ae
-                var settings = {
-                    async: false,
-                    crossDomain: true,
-                    processData: false,
-                    contentType: false,
-                    type: 'POST',
-                    url: apiUrl,
-                    headers: {
-                        Authorization: 'Client-ID ' + apiKey,
-                        Accept: 'application/json',
-                    },
-                    mimeType: 'multipart/form-data',
-                };
-                console.log('Client-ID ' + apiKey);
-                var formData = new FormData();
-                formData.append('image', $files[0]);
-                settings.data = formData;
-                $.ajax(settings).done(function (response) {
-                    console.log("haha");
-                });
-            }
-        });
-        /*$('#form-submit').on('click', function () {
-			var file =  $('input[type=file]').get(0).files;
-			var apiUrl = 'https://api.imgur.com/3/image';
-			var apiKey = '8f2645e187b4235';
-			var settings = {
-				async: false,
-				crossDomain: true,
-				processData: false,
-				contentType: false,
-				type: 'POST',
-				url: apiUrl,
-				headers: {
-					Authorization: 'Client-ID ' + apiKey,
-					Accept: 'application/json',
-				},
-				mimeType: 'multipart/form-data',
-			};
-			var formData = new FormData();
-			formData.append('image', $files[0]);
-			settings.data = formData;
-
-			$.ajax(settings).done(function (response) {
-				console.log(response)
-			});
-		});*/
-    });
-    /*var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
+    var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
         'onclick="alert(\'Call your custom code here.\')">' +
         '<i class="bi-tag"></i>' +
-        '</button>';*/
-    /*$("#proAvatar").fileinput({
+        '</button>';
+    $("#proAvatar").fileinput({
         overwriteInitial: true,
         maxFileSize: 5000,
         showClose: false,
@@ -198,7 +138,7 @@
 			'</div>',
         layoutTemplates: {main2: '{preview} ' + btnCust + ' {remove} {browse}'},
         allowedFileExtensions: ["jpg", "png", "gif"]
-    });*/
+    });
 
 
 </script>

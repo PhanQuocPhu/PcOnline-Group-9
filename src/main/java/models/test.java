@@ -1,12 +1,9 @@
-package utils;
+package models;
 
 import com.google.gson.Gson;
 import entity.Admins;
 import entity.Categories;
 import entity.Products;
-import models.AdminsModel;
-import models.CategoriesModel;
-import models.ProductsModel;
 import org.hibernate.Session;
 import utils.HibernateUtil;
 import org.hibernate.query.Query;
