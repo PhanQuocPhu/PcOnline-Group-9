@@ -1,9 +1,7 @@
 package controllers;
 
 import entity.Categories;
-import entity.Products;
 import models.CategoriesModel;
-import models.ProductsModel;
 import utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -15,19 +13,25 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-
-@WebServlet(name = "HomeController", urlPatterns = "/home")
-public class HomeController extends FrontEndController {
+@WebServlet(name = "TransactionController", value = "/home/cart/checkout/*")
+public class TransactionController extends FrontEndController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String path = request.getPathInfo();
+        if (path == null || path.equals("/")) {
+            path = "/index";
+        }
         List<Categories> listc = getAllCate();
-        setShoppingCart(request, response);
         request.setAttribute("categories", listc);
-        ServletUtils.forward("/views/Guest/index.jsp", request, response);
+        if ("/index".equals(path)) {
+            ServletUtils.forward("/views/Guest/cart/checkout.jsp", request, response);
+        }
     }
-
 
 }

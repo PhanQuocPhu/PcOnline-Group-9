@@ -2,7 +2,8 @@
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<mt:guest_template tittle="Guest">
+
+<mt:guest_template tittle="${product.proname}">
 	<jsp:body>
 		<!-- Begin Li's Breadcrumb Area -->
 		<div class="breadcrumb-area">
@@ -30,43 +31,7 @@
 								<div class="lg-image" style="width: 470px; height: 470px">
 									<img src="<c:url value='/public/images/${product.proavatar}'/>" alt="product image">
 								</div>
-									<%--<div class="lg-image">
-										<img src="images/product/large-size/2.jpg" alt="product image">
-									</div>
-									<div class="lg-image">
-										<img src="images/product/large-size/3.jpg" alt="product image">
-									</div>
-									<div class="lg-image">
-										<img src="images/product/large-size/4.jpg" alt="product image">
-									</div>
-									<div class="lg-image">
-										<img src="images/product/large-size/5.jpg" alt="product image">
-									</div>
-									<div class="lg-image">
-										<img src="images/product/large-size/6.jpg" alt="product image">
-									</div>--%>
 							</div>
-								<%--Thumbnail--%>
-								<%--<div class="product-details-thumbs sslider-thumbs-1">
-									<div class="sm-image"><img src="images/product/small-size/1.jpg"
-															   alt="product image thumb">
-									</div>
-									<div class="sm-image"><img src="images/product/small-size/2.jpg"
-															   alt="product image thumb">
-									</div>
-									<div class="sm-image"><img src="images/product/small-size/3.jpg"
-															   alt="product image thumb">
-									</div>
-									<div class="sm-image"><img src="images/product/small-size/4.jpg"
-															   alt="product image thumb">
-									</div>
-									<div class="sm-image"><img src="images/product/small-size/5.jpg"
-															   alt="product image thumb">
-									</div>
-									<div class="sm-image"><img src="images/product/small-size/6.jpg"
-															   alt="product image thumb">
-									</div>
-								</div>--%>
 						</div>
 						<!--// Product Details Left -->
 					</div>

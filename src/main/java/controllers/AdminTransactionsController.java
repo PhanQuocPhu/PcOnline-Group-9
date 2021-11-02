@@ -1,16 +1,13 @@
 package controllers;
 
-import entity.Categories;
 import entity.Orders;
 import entity.Products;
 import entity.Transactions;
-import models.CategoriesModel;
 import models.OrdersModel;
 import models.ProductsModel;
 import models.TransactionsModel;
 import utils.ServletUtils;
 
-import javax.persistence.criteria.Order;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,8 +43,13 @@ public class AdminTransactionsController extends HttpServlet {
                 try {
                     int id = Integer.parseInt(request.getParameter("id"));
                     String URI = request.getRequestURI() + "?id=" + id;
-                    Products pro = ProductsModel.getById(id);
-                    request.setAttribute("product", pro);
+                    Transactions tran = TransactionsModel.getById(id);
+                    List<Products> listp = getAllPro();
+                    List<Orders> listor = (List<Orders>) tran.getOrdersById();
+
+                    request.setAttribute("transaction", tran);
+                    request.setAttribute("products", listp);
+                    request.setAttribute("orders", listor);
                     request.setAttribute("action", URI);
                     ServletUtils.forward("/views/Admin/transaction/form.jsp", request, response);
                 } catch (SQLException throwables) {
@@ -87,5 +89,8 @@ public class AdminTransactionsController extends HttpServlet {
             throwables.printStackTrace();
         }
         return order;
+    }
+    private List<Products> getAllPro() throws SQLException {
+        return ProductsModel.getAll();
     }
 }

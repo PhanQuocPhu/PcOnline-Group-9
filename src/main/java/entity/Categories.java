@@ -17,7 +17,9 @@ public class Categories {
     private byte chome;
     private Timestamp createdat;
     private Timestamp updatedat;
-    private Collection<Products> productsById;
+    private transient Collection<Products> productsById;
+
+
 
     @Id
     @Column(name = "id")

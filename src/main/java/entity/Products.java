@@ -276,6 +276,7 @@ public class Products {
         return true;
     }
 
+
     @Override
     public int hashCode() {
         int result = id;

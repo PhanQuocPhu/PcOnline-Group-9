@@ -13,10 +13,10 @@ public class OrdersModel {
     public static Session session = HibernateUtil.openSession();
 
     //Lấy Id cuối
-    public static int getLastId() throws SQLException {
+    public static int getNewId() throws SQLException {
         String hql = "select max(id) from Orders";
         if (OrdersModel.getAll().size() != 0) {
-            return session.createQuery(hql, Integer.class).uniqueResult();
+            return session.createQuery(hql, Integer.class).uniqueResult() + 1;
         } else {
             return 0;
         }

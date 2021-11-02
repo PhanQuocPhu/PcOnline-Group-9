@@ -3,6 +3,7 @@ package entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Transactions {
@@ -15,7 +16,7 @@ public class Transactions {
     private byte trpayment;
     private Timestamp createdat;
     private Timestamp updatedat;
-    private Collection<Orders> ordersById;
+    private List<Orders> ordersById;
     private Collection<Payments> paymentsById;
     private Users usersByTruserid;
 
@@ -144,11 +145,11 @@ public class Transactions {
     }
 
     @OneToMany(mappedBy = "transactionsByOrtransactionid")
-    public Collection<Orders> getOrdersById() {
+    public List<Orders> getOrdersById() {
         return ordersById;
     }
 
-    public void setOrdersById(Collection<Orders> ordersById) {
+    public void setOrdersById(List<Orders> ordersById) {
         this.ordersById = ordersById;
     }
 

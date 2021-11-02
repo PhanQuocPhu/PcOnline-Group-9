@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="products" scope="request" type="java.util.List<entity.Products>"/>
 <mt:guest_template tittle="Guest">
 	<jsp:body>
@@ -123,14 +124,15 @@
 																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proname}</a>
 																		</h4>
 																		<div class="price-box">
-																			<span class="new-price">${p.proprice}</span>
+																			<span class="new-price"><fmt:formatNumber value="${p.proprice}" type="currency"/></span>
 																		</div>
 																	</div>
 																	<div class="add-actions">
 																		<ul class="add-actions-link">
-																			<li class="add-cart active"><a href="3">Add
-																				to
-																				cart</a></li>
+																			<li class="add-cart active">
+																				<form method="post" action="<c:url value='/home/cart/add?id=${p.id}'/>" id="addcart-${p.id}"> </form>
+																				<a class="addcart" data-id="${p.id}">Add to cart</a>
+																			</li>
 																			<li><a href="#" title="quick view"
 																				   class="quick-view-btn"
 																				   data-toggle="modal"
@@ -202,7 +204,7 @@
 																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proname}</a>
 																		</h4>
 																		<div class="price-box">
-																			<span class="new-price">${p.proprice}</span>
+																			<span class="new-price"><fmt:formatNumber value="${p.proprice}" type="currency"/></span>
 																		</div>
 																		<p>${p.prodescription}</p>
 																	</div>

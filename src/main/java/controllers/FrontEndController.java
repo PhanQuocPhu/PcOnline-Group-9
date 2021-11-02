@@ -1,11 +1,21 @@
 package controllers;
 
+import entity.Categories;
+import entity.Products;
+import entity.Transactions;
+import models.CategoriesModel;
+import models.OrdersModel;
+import models.ProductsModel;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "FrontEndController")
 public class FrontEndController extends HttpServlet {
@@ -16,5 +26,60 @@ public class FrontEndController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+     List<Categories> getAllCate() {
+        List<Categories> list = null;
+        try {
+            list = CategoriesModel.getAll();
+        } catch (SQLException throwables) {
+            System.out.println("Lỗi lấy data rồi :D");
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+    Categories getCateById(int id){
+        Categories cat = new Categories();
+        try {
+            cat = CategoriesModel.getById(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return cat;
+    }
+
+    List<Products> getAllPro(int cid){
+        List<Products> list = null;
+        try {
+            list = ProductsModel.getByCId(cid);
+        } catch (SQLException throwables) {
+            System.out.println("Lỗi lấy data rồi :D");
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+    Products getProById(int id){
+        Products pro = new Products();
+        try {
+            pro = ProductsModel.getById(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return pro;
+    }
+
+    int getNewOrderId() {
+        int id = 0;
+        try {
+            id = OrdersModel.getNewId();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return id;
+    }
+
+    void setShoppingCart(HttpServletRequest request, HttpServletResponse response){
+        HttpSession session = request.getSession();
+        Transactions transaction = new Transactions();
+        session.setAttribute("cart", transaction);
     }
 }
