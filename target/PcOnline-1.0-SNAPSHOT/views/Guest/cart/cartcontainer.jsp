@@ -91,7 +91,7 @@
 								</span>
 							</li>
 						</ul>
-						<a href="#">Proceed to checkout</a>
+						<a href="<c:url value='/home/cart/checkout'/>">Proceed to checkout</a>
 					</div>
 				</div>
 			</div>

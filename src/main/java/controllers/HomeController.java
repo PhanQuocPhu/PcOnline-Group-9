@@ -24,7 +24,7 @@ public class HomeController extends FrontEndController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Categories> listc = getAllCate();
-        setShoppingCart(request, response);
+        
         request.setAttribute("categories", listc);
         ServletUtils.forward("/views/Guest/index.jsp", request, response);
     }
