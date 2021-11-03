@@ -1,6 +1,7 @@
 package filters;
 
 import entity.Admins;
+import utils.ServletUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -33,7 +34,7 @@ public class AdminFilter implements Filter {
 
         if (admin == null && !request.getRequestURI().endsWith("admin/login")) {
             /*req.getRequestDispatcher("/WEB-INF/views/Admin/account/login.jsp").forward(req, resp);*/
-            response.sendRedirect("admin/login");
+            ServletUtils.redirect("/admin/login", request, response);
         } else {
             chain.doFilter(req, resp);
         }

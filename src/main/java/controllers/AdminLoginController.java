@@ -44,7 +44,8 @@ public class AdminLoginController extends HttpServlet {
                     response.addCookie(apassword);
                     /*System.out.println("Login Successfully");
                     System.out.println(session.getAttribute("admin"));*/
-                    response.sendRedirect("/admin");
+                    ServletUtils.redirect("/admin", request, response);
+                    //response.sendRedirect("/admin");
                 }
                 break;
             case "logout":

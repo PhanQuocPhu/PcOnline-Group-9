@@ -82,6 +82,7 @@ public class TransactionController extends FrontEndController {
                     order.setTransactionsByOrtransactionid(transaction);
                     OrdersModel.create(order);
                 }
+                session.removeAttribute("cart");
                 break;
             case "/vnpay":
                 break;
