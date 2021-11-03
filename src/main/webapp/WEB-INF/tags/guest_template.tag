@@ -22,6 +22,7 @@
 		<!-- jQuery-V1.12.4 -->
 		<script src="${pageContext.request.contextPath}/assets/guest/js/vendor/jquery-1.12.4.min.js"></script>
 	</head>
+
 	<style>
         /*Home Two | Slider Background Image*/
         .bg-4, .bg-5, .bg-6 {
@@ -41,11 +42,8 @@
             background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/6.jpg);
         }
 	</style>
+
 	<body>
-		<!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
-				href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
 		<!-- Begin Header Area -->
 		<header>
 			<!-- Begin Header Top Area -->
@@ -56,7 +54,7 @@
 						<div class="col-lg-3 col-md-4">
 							<div class="header-top-left">
 								<ul class="phone-wrap">
-									<li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
+									<li><span>Telephone Enquiry:</span><a href="#">(+84) 981183122</a></li>
 								</ul>
 							</div>
 						</div>
@@ -65,46 +63,35 @@
 						<div class="col-lg-9 col-md-8">
 							<div class="header-top-right">
 								<ul class="ht-menu">
-									<!-- Begin Setting Area -->
-									<li>
-										<div class="ht-setting-trigger"><span>Setting</span></div>
-										<div class="setting ht-setting">
-											<ul class="ht-setting-list">
-												<li><a href="login-register.html">My Account</a></li>
-												<li><a href="checkout.html">Checkout</a></li>
-												<li><a href="login-register.html">Sign In</a></li>
-											</ul>
-										</div>
-									</li>
-									<!-- Setting Area End Here -->
-									<!-- Begin Currency Area -->
-									<li>
-										<span class="currency-selector-wrapper">Currency :</span>
-										<div class="ht-currency-trigger"><span>USD $</span></div>
-										<div class="currency ht-currency">
-											<ul class="ht-setting-list">
-												<li><a href="#">EUR ?</a></li>
-												<li class="active"><a href="#">USD $</a></li>
-											</ul>
-										</div>
-									</li>
-									<!-- Currency Area End Here -->
-									<!-- Begin Language Area -->
-									<li>
-										<span class="language-selector-wrapper">Language :</span>
-										<div class="ht-language-trigger"><span>English</span></div>
-										<div class="language ht-language">
-											<ul class="ht-setting-list">
-												<li class="active"><a href="#"><img
-														src="${pageContext.request.contextPath}/assets/guest/images/menu/flag-icon/1.jpg"
-														alt="">English</a></li>
-												<li><a href="#"><img
-														src="${pageContext.request.contextPath}/assets/guest/images/menu/flag-icon/2.jpg"
-														alt="">Français</a></li>
-											</ul>
-										</div>
-									</li>
-									<!-- Language Area End Here -->
+									<c:choose>
+										<c:when test="${sessionScope.user != null}">
+											<!-- Begin Setting Area -->
+											<li>
+												<a href="#">${sessionScope.user.email}</a>
+												<div class="ht-setting-trigger"><span></span></div>
+												<div class="setting ht-setting">
+													<ul class="ht-setting-list">
+														<li><a href="#">My Account</a></li>
+													</ul>
+												</div>
+											</li>
+											<!-- Setting Area End Here -->
+											<!-- Begin Currency Area -->
+											<li>
+												<a href="#">Sign out</a>
+											</li>
+											<!-- Currency Area End Here -->
+										</c:when>
+										<c:otherwise>
+											<li>
+												<a href="<c:url value='/home/login/'/>">Sign in</a>
+											</li>
+											<li>
+												<span class="language-selector-wrapper">Time:</span>
+												<div class="ht-language-trigger"><span>English</span></div>
+											</li>
+										</c:otherwise>
+									</c:choose>
 								</ul>
 							</div>
 						</div>

@@ -1,6 +1,7 @@
 package filters;
 
 import entity.Admins;
+import entity.GoogleEn;
 import entity.Users;
 import utils.ServletUtils;
 
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "GuestFilter", urlPatterns = {"/homa/cart/checkout"})
+@WebFilter(filterName = "GuestFilter", urlPatterns = {"/home/cart/checkout"})
 public class GuestFilter implements Filter {
     public void destroy() {
     }
