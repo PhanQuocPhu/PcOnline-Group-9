@@ -1,105 +1,89 @@
-
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Pconline - Admin - Login</title>
-
-		<!-- Google Font: Source Sans Pro -->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-		<!-- Font Awesome -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/admin/plugins/fontawesome-free/css/all.min.css">
-		<!-- icheck bootstrap -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-		<!-- Theme style -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/admin/dist/css/adminlte.min.css">
-	</head>
-	<body class="hold-transition login-page">
-		<div class="register-box">
-			<div class="card card-outline card-primary">
-				<div class="card-header text-center">
-					<a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<mt:guest_template tittle="Login">
+	<jsp:body>
+		<div class="breadcrumb-area">
+			<div class="container">
+				<div class="breadcrumb-content">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li class="active">Login</li>
+					</ul>
 				</div>
-				<div class="card-body">
-					<p class="login-box-msg">Register a new membership</p>
-
-					<form action="../../index.html" method="post">
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" placeholder="Full name">
-							<div class="input-group-append">
-								<div class="input-group-text">
-									<span class="fas fa-user"></span>
-								</div>
-							</div>
-						</div>
-						<div class="input-group mb-3">
-							<input type="email" class="form-control" placeholder="Email">
-							<div class="input-group-append">
-								<div class="input-group-text">
-									<span class="fas fa-envelope"></span>
-								</div>
-							</div>
-						</div>
-						<div class="input-group mb-3">
-							<input type="password" class="form-control" placeholder="Password">
-							<div class="input-group-append">
-								<div class="input-group-text">
-									<span class="fas fa-lock"></span>
-								</div>
-							</div>
-						</div>
-						<div class="input-group mb-3">
-							<input type="password" class="form-control" placeholder="Retype password">
-							<div class="input-group-append">
-								<div class="input-group-text">
-									<span class="fas fa-lock"></span>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-8">
-								<div class="icheck-primary">
-									<input type="checkbox" id="agreeTerms" name="terms" value="agree">
-									<label for="agreeTerms">
-										I agree to the <a href="#">terms</a>
-									</label>
-								</div>
-							</div>
-							<!-- /.col -->
-							<div class="col-4">
-								<button type="submit" class="btn btn-primary btn-block">Register</button>
-							</div>
-							<!-- /.col -->
-						</div>
-					</form>
-
-					<div class="social-auth-links text-center">
-						<a href="#" class="btn btn-block btn-primary">
-							<i class="fab fa-facebook mr-2"></i>
-							Sign up using Facebook
-						</a>
-						<a href="#" class="btn btn-block btn-danger">
-							<i class="fab fa-google-plus mr-2"></i>
-							Sign up using Google+
-						</a>
-					</div>
-
-					<a href="login.html" class="text-center">I already have a membership</a>
-				</div>
-				<!-- /.form-box -->
-			</div><!-- /.card -->
+			</div>
 		</div>
-		<!-- /.register-box -->
-
-
-	</body>
-	<footer>
-		<!-- jQuery -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/jquery/jquery.min.js"></script>
-		<!-- Bootstrap 4 -->
-		<script src="${pageContext.request.contextPath}/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<!-- AdminLTE App -->
-		<script src="${pageContext.request.contextPath}/assets/admin/dist/js/adminlte.min.js"></script>
-	</footer>
-</html>
+		<!-- Li's Breadcrumb Area End Here -->
+		<!-- Begin Login Content Area -->
+		<div class="page-section mb-60">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
+						<!-- Login Form s-->
+						<form action="#">
+							<div class="login-form">
+								<h4 class="login-title">Login</h4>
+								<div class="row">
+									<div class="col-md-12 col-12 mb-20">
+										<label>Email Address*</label>
+										<input class="mb-0" type="email" placeholder="Email Address">
+									</div>
+									<div class="col-12 mb-20">
+										<label>Password</label>
+										<input class="mb-0" type="password" placeholder="Password">
+									</div>
+									<div class="col-md-8">
+										<div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
+											<input type="checkbox" id="remember_me">
+											<label for="remember_me">Remember me</label>
+										</div>
+									</div>
+									<div class="col-md-4 mt-10 mb-20 text-left text-md-right">
+										<a href="#"> Forgotten pasward?</a>
+									</div>
+									<div class="col-md-12">
+										<button class="register-button mt-0">Login</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+						<form action="#">
+							<div class="login-form">
+								<h4 class="login-title">Register</h4>
+								<div class="row">
+									<div class="col-md-6 col-12 mb-20">
+										<label>First Name</label>
+										<input class="mb-0" type="text" placeholder="First Name">
+									</div>
+									<div class="col-md-6 col-12 mb-20">
+										<label>Last Name</label>
+										<input class="mb-0" type="text" placeholder="Last Name">
+									</div>
+									<div class="col-md-12 mb-20">
+										<label>Email Address*</label>
+										<input class="mb-0" type="email" placeholder="Email Address">
+									</div>
+									<div class="col-md-6 mb-20">
+										<label>Password</label>
+										<input class="mb-0" type="password" placeholder="Password">
+									</div>
+									<div class="col-md-6 mb-20">
+										<label>Confirm Password</label>
+										<input class="mb-0" type="password" placeholder="Confirm Password">
+									</div>
+									<div class="col-12">
+										<button class="register-button mt-0">Register</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Login Content Area End Here -->
+	</jsp:body>
+</mt:guest_template>

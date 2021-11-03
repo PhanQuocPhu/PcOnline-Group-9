@@ -3,11 +3,12 @@ package controllers;
 import entity.Categories;
 import entity.Orders;
 import entity.Transactions;
-import models.CategoriesModel;
+import entity.Users;
 import models.OrdersModel;
-import models.ProductsModel;
 import models.TransactionsModel;
+import models.UsersModel;
 import utils.ServletUtils;
+import services.helper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @WebServlet(name = "TransactionController", value = "/home/cart/checkout/*")
@@ -30,10 +32,11 @@ public class TransactionController extends FrontEndController {
         }
         switch (path){
             case "/placeorder":
-                break;
             case "/vnpay":
+                manageTransaction(request, response, path);
                 break;
         }
+        ServletUtils.redirect("/home", request, response);
 
     }
 
@@ -51,16 +54,32 @@ public class TransactionController extends FrontEndController {
         }
     }
 
-    private void manageTransaction(HttpServletRequest request, HttpServletResponse response, String path){
+    private void manageTransaction(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Transactions transaction = (Transactions) session.getAttribute("cart");
         List<Orders> listo = transaction.getOrdersById();
         int id = getNewTransId();
+        Users user = getUserById(5);
+        String name = request.getParameter("name");
+        String address = request.getParameter("address") + " TP." + request.getParameter("city");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String note =request.getParameter("note");
+        Timestamp timestamp = helper.getCurrentTimeStamp();
         switch (path){
             case "/placeorder":
                 transaction.setId(id);
+                transaction.setUsersByTruserid(user);
+                transaction.setTraddress(address);
+                transaction.setTrphone(phone);
+                transaction.setTrnote(note);
+                transaction.setCreatedat(timestamp);
+                transaction.setUpdatedat(timestamp);
+                System.out.println(transaction.getTrtotal());
                 TransactionsModel.create(transaction);
                 for (Orders order : listo) {
+                    System.out.println(order.getProductsByOrproductid().getProname());
+                    order.setTransactionsByOrtransactionid(transaction);
                     OrdersModel.create(order);
                 }
                 break;

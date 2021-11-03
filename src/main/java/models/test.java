@@ -2,14 +2,15 @@ package models;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import entity.Admins;
-import entity.Categories;
-import entity.Orders;
-import entity.Products;
+import entity.*;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import services.helper;
 import utils.HibernateUtil;
 import org.hibernate.query.Query;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.List;
 
 public class test {
@@ -33,9 +34,34 @@ public class test {
         System.out.println(cate);*/
         //getOrdersById(128);
 
-        testGetJson(10);
+        //testGetJson(10);
+        testCreateTrans();
 
     }
+    public static void testCreateTrans() throws SQLException {
+        Transactions transaction = new Transactions();
+        Transactions trans = TransactionsModel.getById(128);
+        int id = TransactionsModel.getNewId();
+        System.out.println(id);
+        String address = "asd";
+        String phone = "123";
+        String note = "qweqw e";
+        Users user = UsersModel.getById(5);
+        Timestamp timestamp = helper.getCurrentTimeStamp();
+        transaction.setId(id);
+        transaction.setUsersByTruserid(user);
+        transaction.setTraddress(address);
+        transaction.setTrphone(phone);
+        transaction.setTrtotal(1000);
+        transaction.setTrstatus((byte) 1);
+        transaction.setTrpayment((byte) 0);
+        transaction.setTrnote(note);
+        //transaction.setCreatedat(timestamp);
+        //transaction.setUpdatedat(timestamp);
+        trans.setTrpayment((byte) 0);
+        TransactionsModel.update(trans);
+    }
+
     public static void getOrdersById(int id) throws SQLException {
         List<Orders> listor = TransactionsModel.getById(id).getOrdersById();
         System.out.println(listor.size());

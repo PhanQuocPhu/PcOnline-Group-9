@@ -3,9 +3,11 @@ package controllers;
 import entity.Categories;
 import entity.Products;
 import entity.Transactions;
+import entity.Users;
 import models.CategoriesModel;
 import models.OrdersModel;
 import models.ProductsModel;
+import models.UsersModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -81,5 +83,14 @@ public class FrontEndController extends HttpServlet {
         HttpSession session = request.getSession();
         Transactions transaction = new Transactions();
         session.setAttribute("cart", transaction);
+    }
+    Users getUserById(int id){
+        Users user = new Users();
+        try {
+            user = UsersModel.getById(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return user;
     }
 }

@@ -1,7 +1,6 @@
 package models;
 
-import entity.Products;
-import entity.Transactions;
+import entity.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
@@ -9,64 +8,64 @@ import utils.HibernateUtil;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TransactionsModel {
+public class UsersModel {
     public static Session session = HibernateUtil.openSession();
-
-    //Lấy Id cuối
-    public static int getNewId() throws SQLException {
-        String hql = "select max(id) from Transactions";
-        if (TransactionsModel.getAll().size() != 0) {
+    //Lấy Id mới
+    public static int getLastId() throws SQLException {
+        String hql = "select max(id) from Users ";
+        if (UsersModel.getAll().size() != 0) {
             return session.createQuery(hql, Integer.class).uniqueResult() + 1;
         } else {
             return 0;
         }
     }
+
     //Lấy hết
-    public static List<Transactions> getAll() throws SQLException {
-        final String hql = "FROM Transactions order by id";
-        return session.createQuery(hql, Transactions.class).list();
+    public static List<Users> getAll() throws SQLException {
+        final String hql = "FROM Users order by id";
+        return session.createQuery(hql, Users.class).list();
     }
+
     //Lấy theo ID
-    public static Transactions getById(int id) throws SQLException {
+    public static Users getById(int id) throws SQLException {
         session.clear();
-        return (Transactions) session.get(Transactions.class, id);
+        return (Users) session.get(Users.class, id);
     }
+
     //Thêm
-    public static void create(Transactions entity){
+    public static void create(Users entity) {
         session.clear();
         Transaction t = session.beginTransaction();
         try {
             session.save(entity);
             t.commit();
-            System.out.println("commit");
         } catch (Exception e) {
             t.rollback();
-            System.out.println("rollback");
         }
     }
+
     //Update
-    public static void update(Transactions entity) {
+    public static void update(Users entity) {
         session.clear();
         // TODO Auto-generated method stub
         Transaction t = session.beginTransaction();
         try {
             session.update(entity);
             t.commit();
-        }catch(Exception e) {
+        } catch (Exception e) {
             t.rollback();
         }
     }
+
     //Xóa
-    public static void delete(Transactions entity) {
+    public static void delete(Users entity) {
         session.clear();
         Transaction t = session.beginTransaction();
         try {
             session.delete(entity);
             t.commit();
-        }catch(Exception e) {
+        } catch (Exception e) {
             t.rollback();
         }
     }
-
-
 }

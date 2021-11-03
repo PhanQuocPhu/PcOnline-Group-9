@@ -1,7 +1,6 @@
 package models;
 
-import entity.Orders;
-import entity.Products;
+import entity.Payments;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
@@ -9,49 +8,50 @@ import utils.HibernateUtil;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrdersModel {
+public class PaymentsModel {
     public static Session session = HibernateUtil.openSession();
 
     //Lấy Id cuối
     public static int getNewId() throws SQLException {
-        String hql = "select max(id) from Orders";
-        if (OrdersModel.getAll().size() != 0) {
+        String hql = "select max(id) from Payments";
+        if (PaymentsModel.getAll().size() != 0) {
             return session.createQuery(hql, Integer.class).uniqueResult() + 1;
         } else {
             return 0;
         }
     }
     //Lấy hết
-    public static List<Orders> getAll() throws SQLException {
-        final String hql = "FROM Orders order by id";
-        return session.createQuery(hql, Orders.class).list();
-    }
-    //Lấy hết theo TranID
-    public static List<Orders> getByTranId(int ortransactionid) throws SQLException {
-        session.clear();
-        final String hql = "FROM Orders WHERE transactionsByOrtransactionid.id=:ortransactionid";
-        return  session.createQuery(hql, Orders.class).setParameter("ortransactionid", ortransactionid).list();
+    public static List<Payments> getAll() throws SQLException {
+        final String hql = "FROM Payments order by id";
+        return session.createQuery(hql, Payments.class).list();
     }
     //Lấy theo ID
-    public static Orders getById(int id) throws SQLException {
+    public static Payments getById(int id) throws SQLException {
         session.clear();
-        return (Orders) session.get(Orders.class, id);
+        return (Payments) session.get(Payments.class, id);
     }
     //Thêm
-    public static void create(Orders entity){
+    public static void create(Payments entity){
         session.clear();
-        Transaction t = session.beginTransaction();
-        try {
+        //Transaction t = session.beginTransaction();
+        /*try {
             session.save(entity);
             t.commit();
             System.out.println("commit");
         } catch (Exception e) {
             t.rollback();
             System.out.println("rollback");
+        }*/
+        try{
+            session.save(entity);
+        } catch (Exception e){
+            System.out.println("error");
+            throw e;
         }
+
     }
     //Update
-    public static void update(Orders entity) {
+    public static void update(Payments entity) {
         session.clear();
         // TODO Auto-generated method stub
         Transaction t = session.beginTransaction();
@@ -63,7 +63,7 @@ public class OrdersModel {
         }
     }
     //Xóa
-    public static void delete(Orders entity) {
+    public static void delete(Payments entity) {
         session.clear();
         Transaction t = session.beginTransaction();
         try {
@@ -73,5 +73,4 @@ public class OrdersModel {
             t.rollback();
         }
     }
-
 }
