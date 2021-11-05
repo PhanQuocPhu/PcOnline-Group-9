@@ -54,7 +54,7 @@
 						<div class="col-lg-3 col-md-4">
 							<div class="header-top-left">
 								<ul class="phone-wrap">
-									<li><span>Telephone Enquiry:</span><a href="#">(+84) 981183122</a></li>
+									<li><span>Group 9 - Java Web</span></li>
 								</ul>
 							</div>
 						</div>

@@ -1,8 +1,12 @@
 package models;
 
+import entity.Admins;
 import entity.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.mindrot.jbcrypt.BCrypt;
+import org.sql2o.Connection;
+import utils.DbUtil;
 import utils.HibernateUtil;
 
 import java.sql.SQLException;
@@ -56,7 +60,14 @@ public class UsersModel {
             t.rollback();
         }
     }
-
+    //lấy email
+    public static Users get(String email) {
+        String sql = "select * FROM users WHERE email =:email";
+        Connection conn = DbUtil.openConn();
+        Users users = conn.createQuery(sql).addParameter("email", email).throwOnMappingFailure(false).executeAndFetchFirst(Users.class);
+        /*conn.close();*/
+        return users;
+    }
     //Xóa
     public static void delete(Users entity) {
         session.clear();
@@ -67,5 +78,13 @@ public class UsersModel {
         } catch (Exception e) {
             t.rollback();
         }
+    }
+    //Mã hóa mật khẩu
+    public static String encryptPass(String pass) {
+        return BCrypt.hashpw(pass, BCrypt.gensalt());
+    }
+    //Kiểm tra mật khẩu
+    public static boolean checkPass(String pass, String encryptedpass) {
+        return BCrypt.checkpw(pass, encryptedpass);
     }
 }

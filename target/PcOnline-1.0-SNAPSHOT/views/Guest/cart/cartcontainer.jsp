@@ -42,7 +42,7 @@
 								<td class="li-product-price"><span
 										class="amount"><fmt:formatNumber
 										value="${order.productsByOrproductid.proprice}"
-										type="currency"/></span></td>
+										/> VNĐ</span></td>
 								<td class="quantity">
 									<div class="cart-plus-minus">
 										<quality-${order.id}>
@@ -59,7 +59,7 @@
 								<td class="product-subtotal">
 									<span class="amount">
 										<orderprice-${order.id}>
-											<fmt:formatNumber value="${order.orprice}" type="currency"/>
+											<fmt:formatNumber value="${order.orprice}"/> VNĐ
 										</orderprice-${order.id}>
 									</span>
 								</td>
@@ -86,7 +86,7 @@
 								Total
 								<span>
 									<trtotal>
-										<fmt:formatNumber value="${cart.trtotal}" type="currency"/>
+										<fmt:formatNumber value="${cart.trtotal}"/> VNĐ
 									</trtotal>
 								</span>
 							</li>
