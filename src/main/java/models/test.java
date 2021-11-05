@@ -3,6 +3,7 @@ package models;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.*;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import services.helper;
@@ -35,7 +36,8 @@ public class test {
         //getOrdersById(128);
 
         //testGetJson(10);
-        testCreateTrans();
+        //testCreateTrans();
+
 
     }
     public static void testCreateTrans() throws SQLException {
