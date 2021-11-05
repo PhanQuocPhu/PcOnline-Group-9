@@ -26,7 +26,6 @@ public class LoginController extends FrontEndController {
         Users users = UsersModel.get(email);
         switch (action) {
             case "login":
-
                 if (users == null) {
                     request.setAttribute("LoginMess", "Username doesn't exist");
                     ServletUtils.forward("/views/Guest/account/login.jsp", request, response);
