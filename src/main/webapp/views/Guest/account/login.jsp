@@ -22,10 +22,7 @@
 					<div class="col-lg-3"></div>
 					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
 						<!-- Login Form s-->
-						<form
-								action="${pageContext.request.contextPath}/home/login?command=login"
-								method="post"
-						>
+						<form action="${pageContext.request.contextPath}/home/login?command=login" method="post">
 							<div class="login-form">
 								<h4 class="login-title">Login</h4>
 
@@ -37,10 +34,9 @@
 									</div>
 									<div class="col-12 mb-20">
 										<label>Password</label>
-										<input class="mb-0" type="password" placeholder="Password" name="password"
-											   required>
+										<input class="mb-0" type="password" placeholder="Password" name="password" required>
 									</div>
-<%--									<p class="login-box-msg">${LoginMess}</p>--%>
+										<%--							<p class="login-box-msg">${LoginMess}</p>--%>
 									<div class="col-md-8">
 										<div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
 											<input type="checkbox" id="remember_me" name="rem">
@@ -72,7 +68,8 @@
 										   class="btn btn-danger text-white col-md-5 p-0" style="font-size: 25px">
 											<i class="fa fa-google-plus-square"></i>
 										</a>
-										<a href="" class="btn btn-primary text-white col-md-5 p-0" style="font-size: 25px">
+										<a href="" class="btn btn-primary text-white col-md-5 p-0"
+										   style="font-size: 25px">
 											<i class="fa fa-facebook-square"></i>
 										</a>
 									</div>
