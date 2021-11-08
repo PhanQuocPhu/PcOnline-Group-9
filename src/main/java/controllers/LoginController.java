@@ -1,5 +1,6 @@
 package controllers;
 
+import entity.Admins;
 import entity.Categories;
 import entity.GoogleEn;
 import entity.Users;
@@ -21,25 +22,25 @@ public class LoginController extends FrontEndController {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String rem = request.getParameter("remember");
+
         HttpSession session = request.getSession();
-        String action = request.getParameter("command");
-        Users users = UsersModel.get(email);
-        switch (action) {
-            case "login":
-                if (users == null) {
-                    request.setAttribute("LoginMess", "Username doesn't exist");
+
+        Users user = get(email);
+        String path = request.getPathInfo();
+        switch (path) {
+            case "/signin":
+                if (user == null) {
+                    request.setAttribute("LoginMess", "Email doesn't exist");
                     ServletUtils.forward("/views/Guest/account/login.jsp", request, response);
-                }
-//                else if (!(password.equals("123"))) {
-                    else if (!UsersModel.checkPass(password, users.getPassword())) {
+                } else if (!UsersModel.checkPass(password, user.getPassword())) {
                     System.out.println(password);
                     request.setAttribute("LoginMess", "Wrong password");
                     request.setAttribute("email", email);
                     ServletUtils.forward("/views/Guest/account/login.jsp", request, response);
                 } else {
-                    session.setAttribute("users", users);
+                    session.setAttribute("user", user);
                     Cookie aemail = new Cookie("email", email);
-                    Cookie apassword = new Cookie("password", users.getPassword());
+                    Cookie apassword = new Cookie("password", user.getPassword());
                     if (rem != null) {
                         aemail.setMaxAge(30 * 24 * 60 * 60);
                         apassword.setMaxAge(30 * 24 * 60 * 60);
@@ -50,20 +51,15 @@ public class LoginController extends FrontEndController {
                     response.addCookie(aemail);
                     response.addCookie(apassword);
                     System.out.println("Login Successfully");
-                    Users user = new Users();
-                    user.setEmail(users.getEmail());
-                    user.setName(users.getName());
 
-//                    System.out.println(session.getAttribute("admin"));
                     session.setAttribute("user", user);
                     ServletUtils.redirect("/home", request, response);
-//                    response.sendRedirect("/home");
                 }
                 break;
-            case "logout":
-                session.setAttribute("users", null);
+            case "/signout":
+                session.setAttribute("user", null);
                 System.out.println("Log out Successfully");
-                response.sendRedirect("/users/login");
+                ServletUtils.redirect("/home", request, response);
                 break;
         }
     }
@@ -99,13 +95,21 @@ public class LoginController extends FrontEndController {
                     session.setAttribute("user", user);
                     ServletUtils.redirect("/home", request, response);
                 }
+            case "/signout":
+                session.setAttribute("user", null);
+                System.out.println("Log out Successfully");
+                ServletUtils.redirect("/home", request, response);
                 break;
         }
 
     }
-
-    private void manageLogin(HttpServletRequest request, HttpServletResponse response)
-    {
-
+    private Users get(String email){
+        Users user = null;
+        try {
+            user = UsersModel.getByEmail(email);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return user;
     }
 }

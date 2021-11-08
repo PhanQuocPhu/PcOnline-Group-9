@@ -78,7 +78,7 @@
 											<!-- Setting Area End Here -->
 											<!-- Begin Currency Area -->
 											<li>
-												<a href="#">Sign out</a>
+												<a href="<c:url value='/home/login/signout'/>">Sign out</a>
 											</li>
 											<!-- Currency Area End Here -->
 										</c:when>

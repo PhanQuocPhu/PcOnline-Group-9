@@ -15,12 +15,12 @@ import java.util.List;
 public class UsersModel {
     public static Session session = HibernateUtil.openSession();
     //Lấy Id mới
-    public static int getLastId() throws SQLException {
+    public static int getNewId() throws SQLException {
         String hql = "select max(id) from Users ";
         if (UsersModel.getAll().size() != 0) {
             return session.createQuery(hql, Integer.class).uniqueResult() + 1;
         } else {
-            return 0;
+            return 1;
         }
     }
 
@@ -41,10 +41,13 @@ public class UsersModel {
         session.clear();
         Transaction t = session.beginTransaction();
         try {
+            entity.setPassword(encryptPass(entity.getPassword()));
             session.save(entity);
             t.commit();
+            System.out.println("Commit");
         } catch (Exception e) {
             t.rollback();
+            System.out.println("Rollback");
         }
     }
 
@@ -61,12 +64,10 @@ public class UsersModel {
         }
     }
     //lấy email
-    public static Users get(String email) {
-        String sql = "select * FROM users WHERE email =:email";
-        Connection conn = DbUtil.openConn();
-        Users users = conn.createQuery(sql).addParameter("email", email).throwOnMappingFailure(false).executeAndFetchFirst(Users.class);
-        /*conn.close();*/
-        return users;
+    public static Users getByEmail(String email) throws SQLException {
+        session.clear();
+        final String hql = "FROM Users WHERE email=:email";
+        return  session.createQuery(hql, Users.class).setParameter("email", email).uniqueResult();
     }
     //Xóa
     public static void delete(Users entity) {

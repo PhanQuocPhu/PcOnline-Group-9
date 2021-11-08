@@ -22,21 +22,18 @@
 					<div class="col-lg-3"></div>
 					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
 						<!-- Login Form s-->
-						<form action="${pageContext.request.contextPath}/home/login?command=login" method="post">
+						<form action="${pageContext.request.contextPath}/home/login/signin" method="post">
 							<div class="login-form">
-								<h4 class="login-title">Login</h4>
-
+								<h3 class="login-title">Login</h3>
 								<div class="row">
 									<div class="col-md-12 col-12 mb-20">
 										<label>Email Address*</label>
-										<input class="mb-0" type="email" placeholder="Email Address" name="email"
-											   required>
+										<input class="mb-0" type="email" placeholder="Email Address" name="email" required>
 									</div>
 									<div class="col-12 mb-20">
 										<label>Password</label>
 										<input class="mb-0" type="password" placeholder="Password" name="password" required>
 									</div>
-										<%--							<p class="login-box-msg">${LoginMess}</p>--%>
 									<div class="col-md-8">
 										<div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
 											<input type="checkbox" id="remember_me" name="rem">
@@ -46,12 +43,11 @@
 									<div class="col-md-4 mt-10 mb-20 text-left text-md-right">
 										<a href="#"> Forgotten pasword?</a>
 									</div>
-									<div class="col-12">
-										<p class="login-box-msg text-center" style="color: #333333">${LoginMess}</p>
-									</div>
 									<div class="col-md-12" id="flex-login">
-										<button type="submit" class="register-button ml-0 mt-0">Login</button>
-										<a href="#" class="register-button ml-2 mt-0">Register Now</a>
+										<button type="submit" class="register-button ml-0 mt-0" style="width: 100%">Login</button>
+									</div>
+									<div class="col-md-12 mt-3 text-end">
+										<a href="#" >Register Now</a>
 									</div>
 
 									<div class="col-md-12">

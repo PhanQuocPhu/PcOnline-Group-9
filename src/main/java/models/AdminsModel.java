@@ -1,25 +1,30 @@
 package models;
 
 import entity.Admins;
+import entity.Products;
+import entity.Users;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.mindrot.jbcrypt.BCrypt;
 import org.sql2o.Connection;
 import utils.DbUtil;
+import utils.HibernateUtil;
 
 import java.sql.SQLException;
 import java.time.Instant;
+import java.util.List;
 
 public class AdminsModel {
+    public static Session session = HibernateUtil.openSession();
 
-    //Lấy 1 hàng
-    /*public static Admins get(String id) throws SQLException {
-        final String sql = "select * from Admins where id=:id";
-        try ( org.sql2o.Connection con = DbUtil.openConn() ){
-            Admins a = con.createQuery(sql).addParameter("id", id).executeAndFetchFirst(Admins.class);
-            con.close();
-            return a;
-        }
-    }*/
+    //Lấy theo email
+    //Lấy hết theo cateID
+    public static Admins getByEmail(String email) throws SQLException {
+        session.clear();
+        final String hql = "FROM Admins WHERE email=:email";
+        return  session.createQuery(hql, Admins.class).setParameter("email", email).uniqueResult();
+    }
+
     public static Admins get(String email) {
         String sql = "select * FROM Admins WHERE email =:email";
         Connection conn = DbUtil.openConn();
