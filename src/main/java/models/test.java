@@ -38,7 +38,7 @@ public class test {
         //testGetJson(10);
         //testCreateTrans();
 
-
+        CreateUser();
     }
     public static void testCreateTrans() throws SQLException {
         Transactions transaction = new Transactions();
@@ -62,6 +62,22 @@ public class test {
         //transaction.setUpdatedat(timestamp);
         trans.setTrpayment((byte) 0);
         TransactionsModel.update(trans);
+    }
+    public static void CreateUser() throws SQLException {
+        Users user = new Users();
+        int id = UsersModel.getNewId();
+        System.out.println(id);
+        String email = "test@gmail.com";
+        String name = "testBot";
+        String pass = "123";
+        Timestamp timestamp = helper.getCurrentTimeStamp();
+        user.setId(id);
+        user.setEmail(email);
+        user.setName(name);
+        user.setPassword(pass);
+        user.setCreatedAt(timestamp);
+        user.setUpdatedAt(timestamp);
+        UsersModel.create(user);
     }
 
     public static void getOrdersById(int id) throws SQLException {

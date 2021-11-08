@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "AdminLoginController", urlPatterns = {"/admin/login"})
 public class AdminLoginController extends HttpServlet {
@@ -18,12 +19,11 @@ public class AdminLoginController extends HttpServlet {
         String action = request.getParameter("command");
         HttpSession session = request.getSession();
 
-        Admins admin = AdminsModel.get(email);
-
+        Admins admin = get(email);
         switch (action) {
             case "login":
                 if (admin == null) {
-                    request.setAttribute("LoginMess", "Username doesn't exist");
+                    request.setAttribute("LoginMess", "Email doesn't exist");
                     ServletUtils.forward("/views/Admin/account/login.jsp", request, response);
                 } else if (!AdminsModel.checkPass(password, admin.getPassword())) {
                     request.setAttribute("LoginMess", "Wrong password");
@@ -61,5 +61,15 @@ public class AdminLoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("LoginMess", "Welcome back!!");
         request.getRequestDispatcher("/views/Admin/account/login.jsp").forward(request, response);
+    }
+
+    private Admins get(String email){
+        Admins admin = null;
+        try {
+            admin = AdminsModel.getByEmail(email);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return admin;
     }
 }
