@@ -95,10 +95,6 @@ public class LoginController extends FrontEndController {
                     session.setAttribute("user", user);
                     ServletUtils.redirect("/home", request, response);
                 }
-            case "/signout":
-                session.setAttribute("user", null);
-                System.out.println("Log out Successfully");
-                ServletUtils.redirect("/home", request, response);
                 break;
         }
 

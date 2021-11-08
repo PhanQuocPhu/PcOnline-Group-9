@@ -4,7 +4,7 @@
 <div class="hm-minicart-trigger">
 	<span class="item-icon"></span>
 	<span class="item-text">
-		<fmt:formatNumber value="${cart.trtotal}" type="currency"/>
+		<fmt:formatNumber value="${cart.trtotal}"/> VND
 		<span class="cart-item-count">
 			${cart.ordersById.size()}
 		</span>

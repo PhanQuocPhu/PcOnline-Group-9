@@ -124,7 +124,7 @@
 																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proname}</a>
 																		</h4>
 																		<div class="price-box">
-																			<span class="new-price"><fmt:formatNumber value="${p.proprice}" type="currency"/></span>
+																			<span class="new-price"><fmt:formatNumber value="${p.proprice}"/> VNĐ</span>
 																		</div>
 																	</div>
 																	<div class="add-actions">

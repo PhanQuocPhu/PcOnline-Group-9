@@ -26,12 +26,10 @@
 							</li>
 
 
-							<li><a href="about-us.html">About Us</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="https://hcmute-group-9-assignment-link.herokuapp.com/">About Us</a></li>
+
 							<!-- Begin Header Bottom Menu Information Area -->
-							<li class="hb-info f-right p-0 d-sm-none d-lg-block">
-								<span>6688 London, Greater London BAS 23JK, UK</span>
-							</li>
+
 							<!-- Header Bottom Menu Information Area End Here -->
 						</ul>
 					</nav>

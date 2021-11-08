@@ -47,7 +47,7 @@
 										<button type="submit" class="register-button ml-0 mt-0" style="width: 100%">Login</button>
 									</div>
 									<div class="col-md-12 mt-3 text-end">
-										<a href="#" >Register Now</a>
+										<a href="<c:url value = "/home/register"/>" >Register Now</a>
 									</div>
 
 									<div class="col-md-12">
