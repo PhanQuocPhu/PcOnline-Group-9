@@ -41,8 +41,7 @@
 										href="#">${order.productsByOrproductid.proname}</a></td>
 								<td class="li-product-price"><span
 										class="amount"><fmt:formatNumber
-										value="${order.productsByOrproductid.proprice}"
-										/> VNĐ</span></td>
+										value="${order.productsByOrproductid.proprice}"/> VNĐ</span></td>
 								<td class="quantity">
 									<div class="cart-plus-minus">
 										<quality-${order.id}>

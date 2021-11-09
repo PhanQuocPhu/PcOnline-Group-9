@@ -18,7 +18,7 @@ public class OrdersModel {
         if (OrdersModel.getAll().size() != 0) {
             return session.createQuery(hql, Integer.class).uniqueResult() + 1;
         } else {
-            return 0;
+            return 1;
         }
     }
     //Lấy hết

@@ -469,8 +469,8 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
     /*----------------------------------------*/
     /* 22. Cart Plus Minus Button
     /*----------------------------------------*/
-    $(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
-    $(document).on("click", ".qtybutton", function () {
+    //$(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
+    /*$(document).on("click", ".qtybutton", function () {
         var $button = $(this);
         var oldValue = $button.parent().find("input").val();
         if ($button.hasClass('inc')) {
@@ -484,7 +484,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
             }
         }
         $button.parent().find("input").val(newVal);
-    });
+    });*/
     /*----------------------------------------*/
     /* 23. Single Prduct Carousel Activision
     /*----------------------------------------*/

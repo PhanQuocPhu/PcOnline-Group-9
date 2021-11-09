@@ -577,10 +577,73 @@
 
             }
 
+            $(document).on("click", ".qtybutton", function () {
+                var inputqty = $(this).closest('.cart-plus-minus').find('input');
+                var closettr = $(this).closest('tr');
+                var oqty = inputqty.val();
+                var oid = inputqty.attr('data-id');
+                var qtyid = inputqty.attr('data-qtyid');
+                var orpid = inputqty.attr('data-orpid');
+                var trtotalid = 'trtotal';
+                var carturl = inputqty.attr('data-url');
+
+                var $button = $(this);
+                var oldValue = $button.parent().find("input").val();
+                if ($button.hasClass('inc')) {
+                    $.ajax({
+                        type: "POST",
+                        url: inputqty.attr('data-url'),
+                        data: {qty: oqty, id: oid},
+                        success: function (responseXml) {
+                            inputqty.val($(responseXml).find(qtyid).children().val())
+                            closettr.find(orpid).html($(responseXml).find(orpid).html());
+                            $(document).find(trtotalid).html($(responseXml).find(trtotalid).html());
+                        },
+                        error: function (data) {
+                            alert("Lỗi");
+                        }
+                    });
+                } else {
+                    if(oqty == 0){
+                        carturl = '<c:url value='/home/cart/delete'/>';
+                        $.ajax({
+                            type: "POST",
+                            url: carturl,
+                            data: {qty: oqty, id: oid},
+                            success: function (responseXml) {
+                                closettr.html("");
+                                $(document).find(trtotalid).html($(responseXml).find(trtotalid).html());
+                            },
+                            error: function (data) {
+                                alert("Lỗi");
+                            }
+                        });
+                        //console.log(carturl);
+                    } else{
+                        $.ajax({
+                            type: "POST",
+                            url: carturl,
+                            data: {qty: oqty, id: oid},
+                            success: function (responseXml) {
+                                //$('#formCart').html($(responseXml).html());
+                                //$(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
+                                inputqty.val($(responseXml).find(qtyid).children().val())
+                                closettr.find(orpid).html($(responseXml).find(orpid).html());
+                                $(document).find(trtotalid).html($(responseXml).find(trtotalid).html());
+                            },
+                            error: function (data) {
+                                alert("Lỗi");
+                            }
+                        });
+                    }
+                }
+            });
+
             $(document).ready(function() {
                 $('.hm-minicart').click(function() {
                     window.location.replace("<c:url value='/home/cart/'/>");
 				});
+
                 $('.addcart').click(function() {
                     var href = '<c:url value='/home/cart/add?id='/>' + $(this).attr('data-id');
                     $.ajax({
@@ -596,7 +659,8 @@
                     });
                 });
 
-                $('.inc.qtybutton').click(function () {
+                //ajax sửa số lượng đơn hàng (Tạm không dùng - Nhưng đừng xóa)
+                $('.inc.qtybuttoni').click(function () {
                     var inputqty = $(this).closest('.cart-plus-minus').find('input');
                     var closettr = $(this).closest('tr');
                     var oqty = inputqty.val();
@@ -618,7 +682,7 @@
                         }
                     });
                 });
-                $('.dec.qtybutton').click(function (){
+                $('.dec.qtybuttoni').click(function (){
                     var inputqty = $(this).closest('.cart-plus-minus').find('input');
                     var closettr = $(this).closest('tr');
                     var button = $(this);
