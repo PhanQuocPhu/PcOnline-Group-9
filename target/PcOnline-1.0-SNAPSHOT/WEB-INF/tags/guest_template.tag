@@ -12,6 +12,7 @@
 		<title>${tittle}</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="google-signin-scope" content="profile email">
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/guest/images/favicon.png'/>">
 

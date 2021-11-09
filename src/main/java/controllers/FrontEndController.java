@@ -93,4 +93,13 @@ public class FrontEndController extends HttpServlet {
         }
         return user;
     }
+    Users getUserByEmail(String email){
+        Users user = null;
+        try {
+            user = UsersModel.getByEmail(email);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return user;
+    }
 }

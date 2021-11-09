@@ -21,11 +21,13 @@ public class OrdersModel {
             return 1;
         }
     }
+
     //Lấy hết
     public static List<Orders> getAll() throws SQLException {
         final String hql = "FROM Orders order by id";
         return session.createQuery(hql, Orders.class).list();
     }
+
     //Lấy hết theo TranID
     public static List<Orders> getByTranId(int ortransactionid) throws SQLException {
         session.clear();
@@ -44,10 +46,10 @@ public class OrdersModel {
         try {
             session.save(entity);
             t.commit();
-            System.out.println("commit");
+            System.out.println("commit order");
         } catch (Exception e) {
             t.rollback();
-            System.out.println("rollback");
+            System.out.println("rollback order");
         }
     }
     //Update

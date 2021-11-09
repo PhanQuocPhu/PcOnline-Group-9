@@ -38,10 +38,10 @@ public class TransactionsModel {
         try {
             session.save(entity);
             t.commit();
-            System.out.println("commit");
+            System.out.println("commit trans");
         } catch (Exception e) {
             t.rollback();
-            System.out.println("rollback");
+            System.out.println("rollback trans");
         }
     }
     //Update

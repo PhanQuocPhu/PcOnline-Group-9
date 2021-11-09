@@ -67,8 +67,8 @@ public class test {
         Users user = new Users();
         int id = UsersModel.getNewId();
         System.out.println(id);
-        String email = "test@gmail.com";
-        String name = "testBot";
+        String email = "test1@gmail.com";
+        String name = "testBot1";
         String pass = "123";
         Timestamp timestamp = helper.getCurrentTimeStamp();
         user.setId(id);

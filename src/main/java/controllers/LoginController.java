@@ -5,10 +5,12 @@ import entity.Categories;
 import entity.GoogleEn;
 import entity.Users;
 import models.AdminsModel;
+import models.TransactionsModel;
 import models.UsersModel;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.GoogleUtil;
 import utils.ServletUtils;
-
+import services.helper;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -25,7 +27,7 @@ public class LoginController extends FrontEndController {
 
         HttpSession session = request.getSession();
 
-        Users user = get(email);
+        Users user = getUserByEmail(email);
         String path = request.getPathInfo();
         switch (path) {
             case "/signin":
@@ -87,11 +89,21 @@ public class LoginController extends FrontEndController {
                     String accessToken = GoogleUtil.getToken(code);
                     GoogleEn googleEn = GoogleUtil.getUserInfo(accessToken);
 
-                    Users user = new Users();
-                    user.setEmail(googleEn.getEmail());
-                    user.setName(googleEn.getName() + googleEn.getFamily_name());
-                    user.setAvatar(googleEn.getPicture());
-
+                    Users user = getUserByEmail(googleEn.getEmail());
+                    if(user == null){
+                        user = new Users();
+                        user.setId(getNewUserId());
+                        user.setEmail(googleEn.getEmail());
+                        user.setPassword(helper.randString(10));
+                        user.setName(googleEn.getName() + googleEn.getFamily_name());
+                        user.setAvatar(googleEn.getPicture());
+                        UsersModel.create(user);
+                    }else{
+                        user.setEmail(googleEn.getEmail());
+                        user.setName(googleEn.getName() + googleEn.getFamily_name());
+                        user.setAvatar(googleEn.getPicture());
+                    }
+                    user.setPassword(null);
                     session.setAttribute("user", user);
                     ServletUtils.redirect("/home", request, response);
                 }
@@ -104,13 +116,13 @@ public class LoginController extends FrontEndController {
         }
 
     }
-    private Users get(String email){
-        Users user = null;
+    private int getNewUserId() {
+        int id = 0;
         try {
-            user = UsersModel.getByEmail(email);
+            id = UsersModel.getNewId();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return user;
+        return id;
     }
 }

@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/admin_template.tag" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/guest_template.tag" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Admin/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Admin/category/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/Admin/category" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Admin/product/form.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/Admin/product" />

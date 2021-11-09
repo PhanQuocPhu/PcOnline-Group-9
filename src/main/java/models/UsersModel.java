@@ -35,7 +35,12 @@ public class UsersModel {
         session.clear();
         return (Users) session.get(Users.class, id);
     }
-
+    //Lấy theo email
+    public static Users getByEmail(String email) throws SQLException {
+        session.clear();
+        final String hql = "FROM Users WHERE email=:email";
+        return  session.createQuery(hql, Users.class).setParameter("email", email).uniqueResult();
+    }
     //Thêm
     public static void create(Users entity) {
         session.clear();
@@ -44,10 +49,10 @@ public class UsersModel {
             entity.setPassword(encryptPass(entity.getPassword()));
             session.save(entity);
             t.commit();
-            System.out.println("Commit");
+            System.out.println("Commit user");
         } catch (Exception e) {
             t.rollback();
-            System.out.println("Rollback");
+            System.out.println("Rollback user");
         }
     }
 
@@ -63,12 +68,7 @@ public class UsersModel {
             t.rollback();
         }
     }
-    //lấy email
-    public static Users getByEmail(String email) throws SQLException {
-        session.clear();
-        final String hql = "FROM Users WHERE email=:email";
-        return  session.createQuery(hql, Users.class).setParameter("email", email).uniqueResult();
-    }
+
     //Xóa
     public static void delete(Users entity) {
         session.clear();

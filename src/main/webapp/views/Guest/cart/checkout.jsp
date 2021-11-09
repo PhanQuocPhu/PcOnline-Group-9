@@ -29,7 +29,7 @@
 									<div class="col-md-12">
 										<div class="checkout-form-list">
 											<label>Họ và tên người nhận<span class="required">*</span></label>
-											<input placeholder="" type="text" name="name" required>
+											<input placeholder="Full name" type="text" name="name" required>
 										</div>
 									</div>
 									<div class="col-md-12">
@@ -41,7 +41,7 @@
 									<div class="col-md-12">
 										<div class="checkout-form-list">
 											<label> Địa chỉ Email <span class="required">*</span></label>
-											<input placeholder="" type="email" name="email" required>
+											<input placeholder="" type="email" name="email" value="${sessionScope.user.email}" disabled>
 										</div>
 									</div>
 									<div class="col-md-12">

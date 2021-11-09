@@ -56,7 +56,7 @@
 										</P>
 									</div>
 									<div class="col-md-12 text-center">
-										<a href="https://accounts.google.com/o/oauth2/auth?scope=email&
+										<a href="https://accounts.google.com/o/oauth2/auth?scope=<%--profile%20--%>email&
 												redirect_uri=http://localhost:8080/home/login/login-google&
 												response_type=code&
 												client_id=641342109621-ku4sp2tqo4cm9lad2mi5o1ehfmud3l7g.apps.googleusercontent.com&

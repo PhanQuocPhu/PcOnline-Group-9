@@ -59,7 +59,7 @@ public class TransactionController extends FrontEndController {
         Transactions transaction = (Transactions) session.getAttribute("cart");
         List<Orders> listo = transaction.getOrdersById();
         int id = getNewTransId();
-        Users user = getUserById(5);
+        Users user = (Users) session.getAttribute("user");
         String name = request.getParameter("name");
         String address = request.getParameter("address") + " TP." + request.getParameter("city");
         String email = request.getParameter("email");
@@ -89,15 +89,7 @@ public class TransactionController extends FrontEndController {
         }
     }
 
-    int getNewOrderId() {
-        int id = 0;
-        try {
-            id = OrdersModel.getNewId();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return id;
-    }
+
     private int getNewTransId(){
         int id = 0;
         try {
