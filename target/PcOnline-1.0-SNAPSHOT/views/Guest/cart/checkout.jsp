@@ -80,7 +80,7 @@
 															class="product-quantity"> × ${order.orqty}</strong></td>
 													<td class="cart-product-total">
 													<span class="amount">
-														<fmt:formatNumber value="${order.orprice}" type="currency"/>
+														<fmt:formatNumber value="${order.orprice}" /> VND
 													</span>
 													</td>
 												</tr>
@@ -91,7 +91,7 @@
 												<th>Tổng giá trị đơn hàng:</th>
 												<td>
 													<strong>
-														<span class="amount"><fmt:formatNumber value="${cart.trtotal}" type="currency"/></span>
+														<span class="amount"><fmt:formatNumber value="${cart.trtotal}"/>VND</span>
 													</strong>
 												</td>
 											</tr>
