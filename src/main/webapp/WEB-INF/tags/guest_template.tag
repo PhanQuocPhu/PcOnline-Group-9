@@ -136,7 +136,12 @@
 							<div class="header-middle-right">
 								<ul class="hm-menu">
 									<!-- Begin Header Middle Wishlist Area -->
-
+									<li class="hm-wishlist">
+										<a href="<c:url value='/home/cart/checkout'/>">
+											<span class="cart-item-count wishlist-item-count">0</span>
+											<i class="fa fa-heart-o"></i>
+										</a>
+									</li>
 									<!-- Header Middle Wishlist Area End Here -->
 
 									<!-- Begin Header Mini Cart Area -->
@@ -582,11 +587,13 @@
 
                 var $button = $(this);
                 var oldValue = $button.parent().find("input").val();
+                var newVal = 0;
                 if ($button.hasClass('inc')) {
+                    newVal = parseFloat(oldValue) + 1;
                     $.ajax({
                         type: "POST",
                         url: inputqty.attr('data-url'),
-                        data: {qty: oqty, id: oid},
+                        data: {qty: newVal, id: oid},
                         success: function (responseXml) {
                             inputqty.val($(responseXml).find(qtyid).children().val())
                             closettr.find(orpid).html($(responseXml).find(orpid).html());
@@ -597,26 +604,12 @@
                         }
                     });
                 } else {
-                    if(oqty == 0){
-                        carturl = '<c:url value='/home/cart/delete'/>';
+                    if (oldValue >> 1) {
+                        newVal = parseFloat(oldValue) - 1;
                         $.ajax({
                             type: "POST",
                             url: carturl,
-                            data: {qty: oqty, id: oid},
-                            success: function (responseXml) {
-                                closettr.html("");
-                                $(document).find(trtotalid).html($(responseXml).find(trtotalid).html());
-                            },
-                            error: function (data) {
-                                alert("Lỗi");
-                            }
-                        });
-                        //console.log(carturl);
-                    } else{
-                        $.ajax({
-                            type: "POST",
-                            url: carturl,
-                            data: {qty: oqty, id: oid},
+                            data: {qty: newVal, id: oid},
                             success: function (responseXml) {
                                 //$('#formCart').html($(responseXml).html());
                                 //$(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
@@ -628,8 +621,24 @@
                                 alert("Lỗi");
                             }
                         });
+                    } else {
+                        //newVal = 1;
+                        carturl = '<c:url value='/home/cart/delete'/>';
+                        $.ajax({
+                            type: "POST",
+                            url: carturl,
+                            data: {qty: newVal, id: oid},
+                            success: function (responseXml) {
+                                closettr.html("");
+                                $(document).find(trtotalid).html($(responseXml).find(trtotalid).html());
+                            },
+                            error: function (data) {
+                                alert("Lỗi");
+                            }
+                        });
                     }
                 }
+                $button.parent().find("input").val(newVal);
             });
 
             $(document).ready(function() {
@@ -720,6 +729,7 @@
                     }
                 });
 
+                //ajax xóa sản phẩm trong đơn hàng
                 $('.delete-cart').click(function () {
                     var closettr = $(this).closest('tr');
                     var trtotalid = 'trtotal';

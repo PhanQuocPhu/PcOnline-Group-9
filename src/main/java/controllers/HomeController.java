@@ -24,10 +24,24 @@ public class HomeController extends FrontEndController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Categories> listc = getAllCate();
+        List<Categories> listch = getCateByChome((byte) 1);
 
         request.setAttribute("categories", listc);
+        request.setAttribute("categorieshome", listch);
         ServletUtils.forward("/views/Guest/index.jsp", request, response);
     }
+
+
+    private List<Categories> getCateByChome(byte chome){
+        List<Categories> listc = null;
+        try {
+            listc = CategoriesModel.getByChome(chome);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return listc;
+    }
+
 
 
 }

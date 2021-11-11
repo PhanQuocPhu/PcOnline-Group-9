@@ -124,7 +124,10 @@
 																			   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proname}</a>
 																		</h4>
 																		<div class="price-box">
-																			<span class="new-price"><fmt:formatNumber value="${p.proprice}"/> VNĐ</span>
+																			<span class="new-price">
+																				<fmt:setLocale value = "vi_VN"/>
+																				<fmt:formatNumber value = "${p.proprice}" type = "currency"/>
+																			</span>
 																		</div>
 																	</div>
 																	<div class="add-actions">
@@ -213,15 +216,17 @@
 															<div class="col-lg-4">
 																<div class="shop-add-action mb-xs-30">
 																	<ul class="add-actions-link">
-																		<li class="add-cart"><a href="#">Add to cart</a>
+																		<li class="add-cart">
+																			<a class="addcart" data-id="${p.id}">Add to cart</a>
 																		</li>
-																		<li class="wishlist"><a href="wishlist.html"><i
-																				class="fa fa-heart-o"></i>Add to
-																			wishlist</a></li>
-																		<li><a class="quick-view" data-toggle="modal"
+																		<li class="wishlist">
+																			<a href="wishlist.html">
+																				<i class="fa fa-heart-o"></i>Add to wishlist</a>
+																		</li>
+																		<li>
+																			<a class="quick-view" data-toggle="modal"
 																			   data-target="#exampleModalCenter"
-																			   href="#"><i
-																				class="fa fa-eye"></i>Quick view</a>
+																			   href="#"><i class="fa fa-eye"></i>Quick view</a>
 																		</li>
 																	</ul>
 																</div>

@@ -1,8 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:useBean id="categories" scope="request" type="java.util.List<entity.Categories>"/>
+<jsp:useBean id="categorieshome" scope="request" type="java.util.List<entity.Categories>"/>
 <mt:guest_template tittle="Guest">
 	<jsp:body>
 		<!-- Begin Slider With Category Menu Area -->
@@ -27,7 +29,8 @@
 										<ul>
 											<c:forEach var="c" items="${categories}" varStatus="status">
 												<li class="${status.count >= 9 ? "rx-child" : ""}"><a
-														href="<c:url value = "/home/product/list?cid=${c.id}"/>">${c.cname}</a></li>
+														href="<c:url value = "/home/product/list?cid=${c.id}"/>">${c.cname}</a>
+												</li>
 											</c:forEach>
 											<li class="rx-parent">
 												<a class="rx-default">More Categories</a>
@@ -133,226 +136,102 @@
 		</div>
 		<!-- Li's Static Banner Area End Here -->
 
-		<!-- Begin Li's Special Product Area -->
-		<section class="product-area li-laptop-product Special-product pt-60 pb-45">
-			<div class="container">
-				<div class="row">
-					<!-- Begin Li's Section Area -->
-					<div class="col-lg-12">
-						<div class="li-section-title">
-							<h2>
-								<span>Hot Deals Products</span>
-							</h2>
-						</div>
-						<div class="row">
-							<div class="special-product-active owl-carousel">
+		<c:choose>
+			<c:when test="${categorieshome.size() == 0}">
+				<div class="card-body">
+					<p class="card-text">Không có dữ liệu</p>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="catehome" items="${categorieshome}" varStatus="status">
+					<!-- Begin Li's ${catehome.cname} Product Area -->
+					<section class="product-area li-laptop-product li-tv-audio-product pt-60 pb-45">
+						<div class="container">
+							<div class="row">
 								<div class="col-lg-12">
-									<!-- single-product-wrap start -->
-									<div class="single-product-wrap">
-										<div class="product-image">
-											<a href="single-product.html">
-												<img src="${pageContext.request.contextPath}/assets/guest/images/product/large-size/1.jpg"
-													 alt="Li's Product Image">
-											</a>
-											<span class="sticker">New</span>
-										</div>
-										<div class="product_desc">
-											<div class="product_desc_info">
-												<div class="product-review">
-													<h5 class="manufacturer">
-														<a href="shop-left-sidebar.html">Graphic Corner</a>
-													</h5>
-													<div class="rating-box">
-														<ul class="rating">
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-														</ul>
+									<div class="li-section-title">
+										<h2>
+											<span>${catehome.cname}</span>
+										</h2>
+										<ul class="li-sub-category-list">
+											<li class="active"><a href="shop-left-sidebar.html">Chamcham</a></li>
+											<li><a href="shop-left-sidebar.html">Sanai</a></li>
+											<li><a href="shop-left-sidebar.html">Meito</a></li>
+										</ul>
+									</div>
+									<div class="row">
+										<div class="product-active owl-carousel">
+											<c:forEach var="p" items="${catehome.productsById}" varStatus="status">
+												<div class="col-lg-12">
+													<!-- single-product-wrap start -->
+													<div class="single-product-wrap">
+														<div class="product-image" style="width: 206px; height: 206px">
+															<a href="single-product.html">
+																<img src="<c:url value='/public/images/${p.proavatar}'/>"
+																	 alt="${p.proslug}">
+															</a>
+															<span class="sticker">New</span>
+														</div>
+														<div class="product_desc">
+															<div class="product_desc_info">
+																<div class="product-review">
+																	<h5 class="manufacturer">
+																		<a href="shop-left-sidebar.html">MSI</a>
+																	</h5>
+																	<div class="rating-box">
+																		<ul class="rating">
+																			<li><i class="fa fa-star-o"></i></li>
+																			<li><i class="fa fa-star-o"></i></li>
+																			<li><i class="fa fa-star-o"></i></li>
+																			<li class="no-star"><i
+																					class="fa fa-star-o"></i></li>
+																			<li class="no-star"><i
+																					class="fa fa-star-o"></i></li>
+																		</ul>
+																	</div>
+																</div>
+																<h4><a class="product_name"
+																	   href="single-product.html">${p.proname}</a></h4>
+																<div class="price-box">
+																	<span class="new-price">
+																		<fmt:setLocale value="vi_VN"/>
+																		<fmt:formatNumber value="${p.proprice}"
+																						  type="currency"/>
+																	</span>
+																</div>
+															</div>
+															<div class="add-actions">
+																<ul class="add-actions-link">
+																	<li class="add-cart active">
+																		<a class="addcart" data-id="${p.id}">Add to cart</a>
+																	</li>
+																	<li>
+																		<a class="links-details"
+																		   href="single-product.html"><i class="fa fa-heart-o"></i></a>
+																	</li>
+																	<li>
+																		<a class="quick-view" data-toggle="modal"
+																		   data-target="#exampleModalCenter" href="#"><i
+																			class="fa fa-eye"></i></a>
+																	</li>
+																</ul>
+															</div>
+														</div>
 													</div>
+													<!-- single-product-wrap end -->
 												</div>
-												<h4><a class="product_name" href="single-product.html">Accusantium
-													dolorem1</a></h4>
-												<div class="price-box">
-													<span class="new-price">$46.80</span>
-												</div>
-												<div class="countersection">
-													<div class="li-countdown"></div>
-												</div>
-											</div>
-											<div class="add-actions">
-												<ul class="add-actions-link">
-													<li class="add-cart active"><a href="#">Add to cart</a></li>
-													<li><a class="links-details" href="wishlist.html"><i
-															class="fa fa-heart-o"></i></a></li>
-													<li><a href="#" title="quick view" class="quick-view-btn"
-														   data-toggle="modal" data-target="#exampleModalCenter"><i
-															class="fa fa-eye"></i></a></li>
-												</ul>
-											</div>
+											</c:forEach>
+
 										</div>
 									</div>
-									<!-- single-product-wrap end -->
-								</div>
-								<div class="col-lg-12">
-									<!-- single-product-wrap start -->
-									<div class="single-product-wrap">
-										<div class="product-image">
-											<a href="single-product.html">
-												<img src="${pageContext.request.contextPath}/assets/guest/images/product/large-size/2.jpg"
-													 alt="Li's Product Image">
-											</a>
-											<span class="sticker">New</span>
-										</div>
-										<div class="product_desc">
-											<div class="product_desc_info">
-												<div class="product-review">
-													<h5 class="manufacturer">
-														<a href="shop-left-sidebar.html">Studio Design</a>
-													</h5>
-													<div class="rating-box">
-														<ul class="rating">
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-														</ul>
-													</div>
-												</div>
-												<h4><a class="product_name" href="single-product.html">Mug Today is
-													a good day</a></h4>
-												<div class="price-box">
-													<span class="new-price new-price-2">$71.80</span>
-													<span class="old-price">$77.22</span>
-													<span class="discount-percentage">-7%</span>
-												</div>
-												<div class="countersection">
-													<div class="li-countdown"></div>
-												</div>
-											</div>
-											<div class="add-actions">
-												<ul class="add-actions-link">
-													<li class="add-cart active"><a href="#">Add to cart</a></li>
-													<li><a class="links-details" href="wishlist.html"><i
-															class="fa fa-heart-o"></i></a></li>
-													<li><a href="#" title="quick view" class="quick-view-btn"
-														   data-toggle="modal" data-target="#exampleModalCenter"><i
-															class="fa fa-eye"></i></a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<!-- single-product-wrap end -->
-								</div>
-								<div class="col-lg-12">
-									<!-- single-product-wrap start -->
-									<div class="single-product-wrap">
-										<div class="product-image">
-											<a href="single-product.html">
-												<img src="${pageContext.request.contextPath}/assets/guest/images/product/large-size/5.jpg"
-													 alt="Li's Product Image">
-											</a>
-											<span class="sticker">New</span>
-										</div>
-										<div class="product_desc">
-											<div class="product_desc_info">
-												<div class="product-review">
-													<h5 class="manufacturer">
-														<a href="shop-left-sidebar.html">Graphic Corner</a>
-													</h5>
-													<div class="rating-box">
-														<ul class="rating">
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-														</ul>
-													</div>
-												</div>
-												<h4><a class="product_name" href="single-product.html">Accusantium
-													dolorem1</a></h4>
-												<div class="price-box">
-													<span class="new-price">$46.80</span>
-												</div>
-												<div class="countersection">
-													<div class="li-countdown"></div>
-												</div>
-											</div>
-											<div class="add-actions">
-												<ul class="add-actions-link">
-													<li class="add-cart active"><a href="#">Add to cart</a></li>
-													<li><a class="links-details" href="wishlist.html"><i
-															class="fa fa-heart-o"></i></a></li>
-													<li><a href="#" title="quick view" class="quick-view-btn"
-														   data-toggle="modal" data-target="#exampleModalCenter"><i
-															class="fa fa-eye"></i></a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<!-- single-product-wrap end -->
-								</div>
-								<div class="col-lg-12">
-									<!-- single-product-wrap start -->
-									<div class="single-product-wrap">
-										<div class="product-image">
-											<a href="single-product.html">
-												<img src="${pageContext.request.contextPath}/assets/guest/images/product/large-size/8.jpg"
-													 alt="Li's Product Image">
-											</a>
-											<span class="sticker">New</span>
-										</div>
-										<div class="product_desc">
-											<div class="product_desc_info">
-												<div class="product-review">
-													<h5 class="manufacturer">
-														<a href="shop-left-sidebar.html">Studio Design</a>
-													</h5>
-													<div class="rating-box">
-														<ul class="rating">
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-														</ul>
-													</div>
-												</div>
-												<h4><a class="product_name" href="single-product.html">Mug Today is
-													a good day</a></h4>
-												<div class="price-box">
-													<span class="new-price new-price-2">$71.80</span>
-													<span class="old-price">$77.22</span>
-													<span class="discount-percentage">-7%</span>
-												</div>
-												<div class="countersection">
-													<div class="li-countdown"></div>
-												</div>
-											</div>
-											<div class="add-actions">
-												<ul class="add-actions-link">
-													<li class="add-cart active"><a href="#">Add to cart</a></li>
-													<li><a class="links-details" href="wishlist.html"><i
-															class="fa fa-heart-o"></i></a></li>
-													<li><a href="#" title="quick view" class="quick-view-btn"
-														   data-toggle="modal" data-target="#exampleModalCenter"><i
-															class="fa fa-eye"></i></a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<!-- single-product-wrap end -->
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- Li's Section Area End Here -->
-				</div>
-			</div>
-		</section>
-		<!-- Li's Special Product Area End Here -->
+					</section>
+					<!-- Li's ${ch.cname} Area End Here -->
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+
 	</jsp:body>
 </mt:guest_template>

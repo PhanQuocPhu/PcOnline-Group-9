@@ -63,7 +63,7 @@
 													<tr>
 														<td>${p.id}</td>
 														<td>
-															<div style="width: 250px; height: 250px">
+															<div style="width: 150px; height: 150px">
 																<img class="img img-thumbnail mx-auto d-block"
 																	 style="width: auto; height: auto; max-width: 100%; max-height: 100%"
 																	 src="<c:url value='/public/images/${p.proavatar}'/>"

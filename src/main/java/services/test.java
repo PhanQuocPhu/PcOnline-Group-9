@@ -1,8 +1,9 @@
-package models;
+package services;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.*;
+import models.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

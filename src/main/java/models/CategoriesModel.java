@@ -1,6 +1,7 @@
 package models;
 
 import entity.Categories;
+import entity.Users;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
@@ -26,6 +27,13 @@ public class CategoriesModel {
         String hql = "from Categories  order by id";
         return session.createQuery(hql, Categories.class).list();
     }
+    //Lấy hết cate theo chome
+    public static List<Categories> getByChome(byte chome) throws SQLException {
+        session.clear();
+        final String hql = "FROM Categories WHERE chome=:chome";
+        return  session.createQuery(hql, Categories.class).setParameter("chome", chome).list();
+    }
+
     //Lấy theo ID
     public static Categories getById(int id) throws SQLException {
         session.clear();
