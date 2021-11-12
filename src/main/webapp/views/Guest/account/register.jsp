@@ -52,8 +52,9 @@
 									</div>
 									<div class="col-md-12 mb-20">
 										<label>Address</label>
-										<textarea class="mb-0" name="address" rows="4" cols="50"  placeholder="Enter Address"></textarea>
+										<textarea class="mb-0" name="address" rows="3" placeholder="Enter Address"></textarea>
 									</div>
+									<p class="login-box-msg text-center" style="margin-left: 16px;color: red; ">${LoginMess}</p>
 									<div class="col-12" style="display: flex; align-items: center">
 										<button class="register-button mt-0 mr-5">Register</button>
 										<a href="<c:url value = "/home/login/"/>" class="ml-10 mt-5"> Already have account ? Login now</a>

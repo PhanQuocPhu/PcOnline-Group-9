@@ -428,15 +428,13 @@ input:focus {
 }
 textarea {
 	resize: vertical;
-	background: #eceff8;
-	border: 2px solid #eceff8;
-	padding: 10px;
+	padding: 10px 20px;
 	width: 100%;
 	font-size: 14px;
 }
 textarea:focus {
 	background: transparent;
-	border: 2px solid #4FC1F0;
+	/*border: 2px solid #4FC1F0;*/
 	outline: none;
 }
 ::-moz-placeholder {

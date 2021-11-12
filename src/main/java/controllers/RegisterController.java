@@ -3,6 +3,7 @@ package controllers;
 import entity.Users;
 import models.UsersModel;
 import services.helper;
+import utils.ServletUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,22 +26,36 @@ public class RegisterController extends HttpServlet {
             String phone=request.getParameter("phone");
             String email=request.getParameter("email");
             String address=request.getParameter("address");
-
-            if(!pass.equals(rePass)) return; //khong giong pass
-
-
+            if(!pass.equals(rePass))
+            {
+                request.setAttribute("LoginMess", "Password doesn't match");
+                ServletUtils.forward("/views/Guest/account/register.jsp", request, response);
+                return;
+            }
         try {
                 Users user = new Users();
                int id = UsersModel.getNewId();
                 System.out.println(id);
                 // check đã có user nào sử dụng email chưa
-                if(UsersModel.getByEmail(email)!=null) return;
-                //System.out.println("ko trung email");
-                // check nếu ko nhập thì đc,nếu nhập khác 10/11 số thì ko submit
+                if(UsersModel.getByEmail(email)!=null) {
+                    request.setAttribute("LoginMess", "Email already in use");
+                    ServletUtils.forward("/views/Guest/account/register.jsp", request, response);
+                    return;
+                }
+                // check phone
                 if(phone.length()!=0)
                 {
-                    if(checkPhoneNumber(phone)==false) return;
-                    user.setPhone(phone);
+                    //check kí tự ô phone number
+                    Pattern pattern = Pattern.compile(".*[^0-9].*");
+                    Matcher matcher = pattern.matcher(phone);
+                    if(!matcher.matches()){
+                        request.setAttribute("LoginMess", "Wrong Phone Number");
+                        ServletUtils.forward("/views/Guest/account/register.jsp", request, response);
+                        return;
+                    }
+                    else{
+                        user.setPhone(phone);
+                    }
                 }
                 String name = lastName+" "+fistName;
                 Timestamp timestamp = helper.getCurrentTimeStamp();
@@ -52,34 +67,16 @@ public class RegisterController extends HttpServlet {
                 user.setCreatedAt(timestamp);
                 user.setUpdatedAt(timestamp);
                 UsersModel.create(user);
+                response.sendRedirect("/home/login");
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-
-
-
-
+            throwables.printStackTrace();
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/views/Guest/account/register.jsp").forward(request, response);
     }
-    public boolean checkPhoneNumber(String phone) {
-        if(phone.length()==10) { //sdt tinh theo vung` viet nam co 10 so
-            Pattern pattern = Pattern.compile("^\\d{10}$");
-            Matcher matcher = pattern.matcher(phone);
-            return matcher.matches();
-        }
-        else if(phone.length()==11)
-        {
-            Pattern pattern = Pattern.compile("^\\d{11}$");
-            Matcher matcher = pattern.matcher(phone);
-            return matcher.matches();
-        }
-        else {
-            return  false;
-        }
-    }
+
 
 
 }
