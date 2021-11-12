@@ -27,7 +27,7 @@
 								<h3 class="login-title">Login</h3>
 								<div class="row">
 									<div class="col-md-12 col-12 mb-20">
-										<label>Email Address*</label>
+										<label>Email Address</label>
 										<input class="mb-0" type="email" placeholder="Email Address" name="email" required>
 									</div>
 									<div class="col-12 mb-20">
