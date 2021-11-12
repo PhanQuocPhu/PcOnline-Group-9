@@ -95,12 +95,12 @@ public class LoginController extends FrontEndController {
                         user.setId(getNewUserId());
                         user.setEmail(googleEn.getEmail());
                         user.setPassword(helper.randString(10));
-                        user.setName(googleEn.getName() + googleEn.getFamily_name());
+                        user.setName(googleEn.getName());
                         user.setAvatar(googleEn.getPicture());
                         UsersModel.create(user);
                     }else{
                         user.setEmail(googleEn.getEmail());
-                        user.setName(googleEn.getName() + googleEn.getFamily_name());
+                        user.setName(googleEn.getName());
                         user.setAvatar(googleEn.getPicture());
                     }
                     user.setPassword(null);

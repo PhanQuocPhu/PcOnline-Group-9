@@ -12,7 +12,11 @@
 		<title>${tittle}</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<%--Google Sign In--%>
 		<meta name="google-signin-scope" content="profile email">
+		<meta name="google-signin-client_id" content="641342109621-ku4sp2tqo4cm9lad2mi5o1ehfmud3l7g.apps.googleusercontent.com">
+
+
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/guest/images/favicon.png'/>">
 
@@ -68,7 +72,7 @@
 										<c:when test="${sessionScope.user != null}">
 											<!-- Begin Setting Area -->
 											<li>
-												<a href="#">${sessionScope.user.email}</a>
+												<a href="#">${sessionScope.user.name}</a>
 												<div class="ht-setting-trigger"><span></span></div>
 												<div class="setting ht-setting">
 													<ul class="ht-setting-list">
@@ -575,6 +579,7 @@
 
             }
 
+            //Edit Cart
             $(document).on("click", ".qtybutton", function () {
                 var inputqty = $(this).closest('.cart-plus-minus').find('input');
                 var closettr = $(this).closest('tr');
@@ -641,18 +646,18 @@
                 $button.parent().find("input").val(newVal);
             });
 
-            $(document).ready(function() {
-                $('.hm-minicart').click(function() {
+            $(document).ready(function () {
+                $('.hm-minicart').click(function () {
                     window.location.replace("<c:url value='/home/cart/'/>");
-				});
+                });
 
-                $('.addcart').click(function() {
+                $('.addcart').click(function () {
                     var href = '<c:url value='/home/cart/add?id='/>' + $(this).attr('data-id');
                     $.ajax({
                         type: "POST",
                         url: href,
                         success: function (responseXml) {
-							alert("Success");
+                            alert("Success");
                             $('.hm-minicart').html($(responseXml).html());
                         },
                         error: function (data) {
@@ -684,7 +689,7 @@
                         }
                     });
                 });
-                $('.dec.qtybuttoni').click(function (){
+                $('.dec.qtybuttoni').click(function () {
                     var inputqty = $(this).closest('.cart-plus-minus').find('input');
                     var closettr = $(this).closest('tr');
                     var button = $(this);
@@ -695,7 +700,7 @@
                     var trtotalid = 'trtotal';
                     var carturl = inputqty.attr('data-url');
 
-                    if(oqty == 0){
+                    if (oqty == 0) {
                         carturl = '<c:url value='/home/cart/delete'/>';
                         $.ajax({
                             type: "POST",
@@ -710,7 +715,7 @@
                             }
                         });
                         //console.log(carturl);
-                    } else{
+                    } else {
                         $.ajax({
                             type: "POST",
                             url: carturl,
@@ -746,6 +751,29 @@
                     });
                 });
             });
+
+            //Login Google
+            function onSignIn(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                console.log('ID: ' + profile.getId());
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail());
+                console.log('id_token: ' + googleUser.getAuthResponse().id_token);
+
+                //do not post above info to the server because that is not safe.
+                //just send the id_token
+
+                var redirectUrl = 'login';
+
+                //using jquery to post data dynamically
+                var form = $('<form action="' + redirectUrl + '" method="post">' +
+                    '<input type="text" name="id_token" value="' +
+                    googleUser.getAuthResponse().id_token + '" />' +
+                    '</form>');
+                $('body').append(form);
+                form.submit();
+            }
 		</script>
 	</footer>
 </html>

@@ -29,18 +29,18 @@
 									<div class="col-md-12">
 										<div class="checkout-form-list">
 											<label>Họ và tên người nhận<span class="required">*</span></label>
-											<input placeholder="Full name" type="text" name="name" required>
+											<input placeholder="Full name" type="text" name="name" value="${sessionScope.user.name}" required>
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="checkout-form-list">
 											<label>Địa chỉ <span class="required">*</span></label>
-											<input placeholder="Street address" type="text" name="address" required>
+											<input placeholder="Địa chỉ giao hàng" type="text" name="address" required>
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="checkout-form-list">
-											<label> Địa chỉ Email <span class="required">*</span></label>
+											<label> Email liên lạc <span class="required">*</span></label>
 											<input placeholder="" type="email" name="email" value="${sessionScope.user.email}" disabled>
 										</div>
 									</div>
