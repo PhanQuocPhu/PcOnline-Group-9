@@ -21,11 +21,12 @@ import java.util.List;
 @WebServlet(name = "LoginController", value = "/home/login/*")
 public class LoginController extends FrontEndController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String rem = request.getParameter("remember");
+        String preURI = (String) session.getAttribute("preURI");
 
-        HttpSession session = request.getSession();
 
         Users user = getUserByEmail(email);
         String path = request.getPathInfo();
@@ -53,15 +54,21 @@ public class LoginController extends FrontEndController {
                     response.addCookie(aemail);
                     response.addCookie(apassword);
                     System.out.println("Login Successfully");
-
                     session.setAttribute("user", user);
-                    ServletUtils.redirect("/home", request, response);
+
+                    if(preURI != null) {
+                        session.setAttribute("preURI", null);
+                        ServletUtils.redirect(preURI, request, response);
+                    } else ServletUtils.redirect("/home", request, response);
                 }
                 break;
             case "/signout":
                 session.setAttribute("user", null);
                 System.out.println("Log out Successfully");
-                ServletUtils.redirect("/home", request, response);
+                if(preURI != null) {
+                    session.setAttribute("preURI", null);
+                    ServletUtils.redirect(preURI, request, response);
+                } else ServletUtils.redirect("/home", request, response);
                 break;
         }
     }
@@ -72,6 +79,7 @@ public class LoginController extends FrontEndController {
         request.setAttribute("categories", listc);
         request.setAttribute("cart", session.getAttribute("cart"));
         request.setAttribute("LoginMess", "Welcome back!!");
+        String preURI = (String) session.getAttribute("preURI");
         String path = request.getPathInfo();
         if (path == null || path.equals("/")) {
             path = "/normal";
@@ -105,13 +113,20 @@ public class LoginController extends FrontEndController {
                     }
                     user.setPassword(null);
                     session.setAttribute("user", user);
-                    ServletUtils.redirect("/home", request, response);
+
+                    if(preURI != null) {
+                        session.setAttribute("preURI", null);
+                        ServletUtils.redirect(preURI, request, response);
+                    } else ServletUtils.redirect("/home", request, response);
                 }
                 break;
             case "/signout":
                 session.setAttribute("user", null);
                 System.out.println("Log out Successfully");
-                ServletUtils.redirect("/home", request, response);
+                if(preURI != null) {
+                    session.setAttribute("preURI", null);
+                    ServletUtils.redirect(preURI, request, response);
+                } else ServletUtils.redirect("/home", request, response);
                 break;
         }
 
