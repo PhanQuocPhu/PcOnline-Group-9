@@ -19,7 +19,7 @@
 					<label for="trUserAddress">Địa chỉ</label>
 					<input type="text" class="form-control form-control-border modal-cName"
 						   id="trUserAddress"
-						   name="trUserAddress" placeholder="Địa chỉ" required value="${transaction.usersByTruserid.address}">
+						   name="trUserAddress" placeholder="Địa chỉ" required value="${transaction.traddress}">
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -33,7 +33,7 @@
 					<label for="trUserPhone">Số điện thoại</label>
 					<input type="text" class="form-control form-control-border modal-cName"
 						   id="trUserPhone"
-						   name="trUserPhone" placeholder="Tên khách hàng" required value="${transaction.usersByTruserid.phone}">
+						   name="trUserPhone" placeholder="Tên khách hàng" required value="${transaction.trphone}">
 				</div>
 			</div>
 		</div>
@@ -54,7 +54,7 @@
 					<tr>
 						<td>${order.id}</td>
 						<td>
-							<div style="width: 150px; height: 150px">
+							<div style="width: 100px; height: 100px">
 								<img class="img img-thumbnail mx-auto d-block"
 									 style="width: auto; height: auto; max-width: 100%; max-height: 100%"
 									 src="<c:url value='/public/images/${order.productsByOrproductid.proavatar}'/>"
