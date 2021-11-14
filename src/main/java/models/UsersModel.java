@@ -41,6 +41,8 @@ public class UsersModel {
         final String hql = "FROM Users WHERE email=:email";
         return  session.createQuery(hql, Users.class).setParameter("email", email).uniqueResult();
     }
+
+
     //Thêm
     public static void create(Users entity) {
         session.clear();
@@ -80,6 +82,7 @@ public class UsersModel {
             t.rollback();
         }
     }
+
     //Mã hóa mật khẩu
     public static String encryptPass(String pass) {
         return BCrypt.hashpw(pass, BCrypt.gensalt());
