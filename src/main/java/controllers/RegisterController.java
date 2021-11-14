@@ -44,7 +44,7 @@ public class RegisterController extends HttpServlet {
             // check phone
             if (phone.length() != 0) {
                 //check kí tự ô phone number
-                Pattern pattern = Pattern.compile(".*[^0-9].*");
+                Pattern pattern = Pattern.compile("^\\d{10}$");
                 Matcher matcher = pattern.matcher(phone);
                 if (!matcher.matches()) {
                     request.setAttribute("LoginMess", "Wrong Phone Number");
