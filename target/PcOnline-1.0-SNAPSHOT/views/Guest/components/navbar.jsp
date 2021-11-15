@@ -27,7 +27,7 @@
 
 
 							<li><a href="https://hcmute-group-9-assignment-link.herokuapp.com/">About Us</a></li>
-
+							<li><a href="<c:url value='/contact'/>">Contact</a></li>
 							<!-- Begin Header Bottom Menu Information Area -->
 
 							<!-- Header Bottom Menu Information Area End Here -->
