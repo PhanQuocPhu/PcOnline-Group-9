@@ -13,29 +13,54 @@
 					<label for="trUserName">Tên Khách Hàng</label>
 					<input type="text" class="form-control form-control-border modal-cName"
 						   id="trUserName"
-						   name="trUserName" placeholder="Tên khách hàng" required value="${transaction.usersByTruserid.name}">
+						   name="trUserName" placeholder="Tên khách hàng" required
+						   value="${transaction.usersByTruserid.name}" readonly>
 				</div>
 				<div class="form-group">
-					<label for="trUserAddress">Địa chỉ</label>
+					<label for="trAddress">Địa chỉ</label>
 					<input type="text" class="form-control form-control-border modal-cName"
-						   id="trUserAddress"
-						   name="trUserAddress" placeholder="Địa chỉ" required value="${transaction.traddress}">
+						   id="trAddress"
+						   name="trAddress" placeholder="Địa chỉ" required value="${transaction.traddress}">
 				</div>
+				<div class="form-group">
+					<label>Trạng thái đơn</label>
+					<div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="trStatus" id="inlineRadio1"
+								   value="0" ${transaction.trstatus==0?"checked":""}>
+							<label class="form-check-label" for="inlineRadio1">Đang chờ</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="trStatus" id="inlineRadio2"
+								   value="1" ${transaction.trstatus==1?"checked":""}>
+							<label class="form-check-label" for="inlineRadio2">Đang giao hàng</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="trStatus" id="inlineRadio3"
+								   value="2" ${transaction.trstatus==2?"checked":""}>
+							<label class="form-check-label" for="inlineRadio3">Đã hoàn thành</label>
+						</div>
+					</div>
+
+				</div>
+
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="trUserMail">Email</label>
 					<input type="text" class="form-control form-control-border modal-cName"
 						   id="trUserMail"
-						   name="trUserMail" placeholder="Tên khách hàng" required value="${transaction.usersByTruserid.email}">
+						   name="trUserMail" placeholder="Tên khách hàng" required
+						   value="${transaction.usersByTruserid.email}" readonly>
 				</div>
 				<div class="form-group">
-					<label for="trUserPhone">Số điện thoại</label>
+					<label for="trPhone">Số điện thoại</label>
 					<input type="text" class="form-control form-control-border modal-cName"
-						   id="trUserPhone"
-						   name="trUserPhone" placeholder="Tên khách hàng" required value="${transaction.trphone}">
+						   id="trPhone"
+						   name="trPhone" placeholder="Số điện thoại liên lạc" required value="${transaction.trphone}">
 				</div>
 			</div>
+
 		</div>
 		<!-- /.row -->
 		<table id="dataTable" class="table table-striped projects">
@@ -62,13 +87,13 @@
 							</div>
 						</td>
 						<td class="">
-							<c:out value = "${order.productsByOrproductid.proname}"/>
+							<c:out value="${order.productsByOrproductid.proname}"/>
 						</td>
 						<td class="text-center">
 							<fmt:formatNumber value="${order.productsByOrproductid.proprice}" type="currency"/>
 						</td>
 						<td class="text-center">
-							<c:out value = "${order.orqty}"/>
+							<c:out value="${order.orqty}"/>
 						</td>
 						<td class="text-center">
 							<form action="<c:url value = "/admin/order/delete?id=${order.id}"/>"
@@ -85,12 +110,8 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th style="width: 5%">ID</th>
-					<th style="width: 20%">Ảnh sản phẩm</th>
-					<th class="text-center" style="width: 10%">Tên sản phẩm</th>
-					<th class="text-center" style="width: 10%">Đơn giá</th>
-					<th class="text-center" style="width: 10%">Số lượng</th>
-					<th class="text-center" style="width: 10%">Thao Tác</th>
+					<th colspan="3" class="text-center">Tổng giá trị đơn hàng:</th>
+					<th colspan="3" class="text-center"><fmt:formatNumber value="${transaction.trtotal}" type="currency"/></th>
 				</tr>
 			</tfoot>
 		</table>

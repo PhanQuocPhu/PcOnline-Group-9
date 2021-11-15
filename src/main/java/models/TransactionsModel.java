@@ -52,8 +52,10 @@ public class TransactionsModel {
         try {
             session.update(entity);
             t.commit();
+            System.out.println("commit trans");
         }catch(Exception e) {
             t.rollback();
+            System.out.println("rollback trans");
         }
     }
     //Xóa
@@ -63,8 +65,10 @@ public class TransactionsModel {
         try {
             session.delete(entity);
             t.commit();
+            System.out.println("commit trans");
         }catch(Exception e) {
             t.rollback();
+            System.out.println("rollback trans");
         }
     }
 

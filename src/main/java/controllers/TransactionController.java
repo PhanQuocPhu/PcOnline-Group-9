@@ -61,7 +61,7 @@ public class TransactionController extends FrontEndController {
         int id = getNewTransId();
         Users user = (Users) session.getAttribute("user");
         String name = request.getParameter("name");
-        String address = request.getParameter("address") + " TP." + request.getParameter("city");
+        String address = request.getParameter("address");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String note =request.getParameter("note");

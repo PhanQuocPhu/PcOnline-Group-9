@@ -101,17 +101,17 @@
 														</td>
 														<td class="text-center">
 															<c:choose>
-																<c:when test="${tr.trstatus == 0}">
+																<c:when test="${tr.trpayment == 0}">
 																	<a style="font-size: 14px"
 																	   class="badge badge-secondary" data-value="0">
 																		COD </a>
 																</c:when>
-																<c:when test="${tr.trstatus == 1}">
+																<c:when test="${tr.trpayment == 1}">
 																	<a style="font-size: 14px"
 																	   class="badge badge-success" data-value="1">
 																		COD </a>
 																</c:when>
-																<c:when test="${tr.trstatus == 2}">
+																<c:when test="${tr.trpayment == 2}">
 																	<a style="font-size: 14px"
 																	   class="badge badge-success" data-value="2">
 																		VNPAY </a>
@@ -119,13 +119,13 @@
 															</c:choose>
 														</td>
 														<td class="text-center">
-															<form action="${pageContext.request.contextPath}/admin/transaction/delete?id=${tr.id}"
+															<form action="${pageContext.request.contextPath}/admin/transaction/delete?trid=${tr.id}"
 																  method="post" id="${tr.id}-del" hidden>
 															</form>
 															<button class="btn btn-outline-success btnSelect"
 																	data-toggle="modal"
 																	data-target="#formModal"
-																	data-id="${tr.id}">
+																	data-trid="${tr.id}">
 																<i class="fa fa-pen" aria-hidden="true"></i>
 															</button>
 															<button class="btn btn-outline-danger"
@@ -183,13 +183,13 @@
 		<script>
             $('#formModal').on('show.bs.modal', function (event) {        // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
                 var button = $(event.relatedTarget)
-                var id = button.data('id');
+                var id = button.data('trid');
                 var url = "";
                 var modal = $(this);
                 var modalTittle = modal.find('.modal-title');
                 var modalForm = modal.find('.modal-content form');
                 if (id !== "") {
-                    url = "${pageContext.request.contextPath}/admin/transaction/update?id=" + id;
+                    url = "${pageContext.request.contextPath}/admin/transaction/update?trid=" + id;
                     $.get(url, function (responseXml) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
                         $('#formData').html(responseXml);
                         modalTittle.text('Edit Đơn Hàng ID: ' + id);
