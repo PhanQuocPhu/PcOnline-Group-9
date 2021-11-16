@@ -26,16 +26,31 @@
 					<div class="col-12">
 						<!-- /.card -->
 						<div class="card">
-							<div class="card-header">
-								<h2 class="card-title" style="font-size: 2.0rem"></h2>
-								<button type="button" class="btn btn-outline-success float-right"
-										data-toggle="modal"
-										data-target="#formModal"
-										data-id=""
-										data-cname=""
-										data-chome="0"
-										data-cactive="0">Thêm mới
-								</button>
+							<div class="card-header row">
+								<div class="col-sm-4">
+									<div class="input-group">
+										<select class="custom-select" onchange="location = this.value;">
+											<option value="<c:url value='/admin/transaction/'/>">Tất cả đơn</option>
+											<option value="<c:url value='/admin/transaction/filter?trstatus=0'/>" ${select0}>Đơn hàng đang chờ</option>
+											<option value="<c:url value='/admin/transaction/filter?trstatus=1'/>" ${select1}>Đơn hàng đang giao</option>
+											<option value="<c:url value='/admin/transaction/filter?trstatus=2'/>" ${select2}>Đơn hàng đã hoàn thành</option>
+										</select>
+										<div class="input-group-append">
+											<button class="btn btn-outline-secondary" type="submit">Filter</button>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-8">
+									<button type="button" class="btn btn-outline-success float-right"
+											data-toggle="modal"
+											data-target="#formModal"
+											data-id=""
+											data-cname=""
+											data-chome="0"
+											data-cactive="0">Thêm mới
+									</button>
+								</div>
+
 							</div>
 							<!-- /.card-header -->
 							<c:choose>
@@ -125,7 +140,8 @@
 															<button class="btn btn-outline-success btnSelect"
 																	data-toggle="modal"
 																	data-target="#formModal"
-																	data-trid="${tr.id}">
+																	data-trid="${tr.id}"
+																	data-uri="${currentURI}">
 																<i class="fa fa-pen" aria-hidden="true"></i>
 															</button>
 															<button class="btn btn-outline-danger"
@@ -187,7 +203,6 @@
                 var url = "";
                 var modal = $(this);
                 var modalTittle = modal.find('.modal-title');
-                var modalForm = modal.find('.modal-content form');
                 if (id !== "") {
                     url = "${pageContext.request.contextPath}/admin/transaction/update?trid=" + id;
                     $.get(url, function (responseXml) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
@@ -201,7 +216,6 @@
                         modalTittle.text('Đơn Hàng Mới');
                     });
                 }
-
             });
 		</script>
 	</jsp:body>

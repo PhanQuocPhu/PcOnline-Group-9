@@ -30,6 +30,7 @@
 						<!-- /.card -->
 						<div class="card">
 							<div class="card-header">
+								<input type="file" accept="image/*">
 								<h2 class="card-title" style="font-size: 2.0rem"></h2>
 								<button type="button" class="btn btn-outline-success float-right"
 										data-toggle="modal"
@@ -156,7 +157,43 @@
                 alert(data);
 
             });*/
+            $("input[type=file]").on("change", function () {
+                var $files = $(this).get(0).files
 
+                if ($files.length) {
+                    if ($files[0].size > $(this).data("max-size") * 1024) {
+                        console.log("Vui lòng chọn file có dung lượng nhỏ hơn!")
+                        return false
+                    }
+
+                    console.log("Đang upload hình ảnh lên imgur...")
+
+                    var apiUrl = "https://api.imgur.com/3/image"
+                    var apiKey = "8f2645e187b4235"
+
+                    var settings = {
+                        async: false,
+                        crossDomain: true,
+                        processData: false,
+                        contentType: false,
+                        type: "POST",
+                        url: apiUrl,
+                        headers: {
+                            Authorization: "Client-ID " + apiKey,
+                            Accept: "application/json",
+                        },
+                        mimeType: "multipart/form-data",
+                    }
+
+                    var formData = new FormData()
+                    formData.append("image", $files[0])
+                    settings.data = formData
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                    })
+                }
+            });
 
             $('#formModal').on('show.bs.modal', function (event) {        // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
                 var button = $(event.relatedTarget)

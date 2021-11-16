@@ -2,6 +2,7 @@ package models;
 
 import entity.Products;
 import entity.Transactions;
+import entity.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
@@ -31,6 +32,14 @@ public class TransactionsModel {
         session.clear();
         return (Transactions) session.get(Transactions.class, id);
     }
+    //Lấy theo trạng thái đơn hàng
+    public static List<Transactions> getByStatus(byte trstatus) throws SQLException {
+        session.clear();
+        final String hql = "FROM Transactions WHERE trstatus=:trstatus";
+        return  session.createQuery(hql, Transactions.class).setParameter("trstatus", trstatus).list();
+    }
+
+
     //Thêm
     public static void create(Transactions entity){
         session.clear();

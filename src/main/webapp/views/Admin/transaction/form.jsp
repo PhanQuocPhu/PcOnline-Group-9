@@ -117,6 +117,7 @@
 		</table>
 	</div>
 	<div class="modal-footer">
+		<input type="text" class="currentURI" name="currentURI" id="currentURI" value="${currentURI}" hidden>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</div>

@@ -18,7 +18,8 @@
 					<textarea class="form-control form-control-border modal-proDescription"
 							  id="proDescription"
 							  name="proDescription" rows="2" placeholder="Enter ..."
-							  style="margin-top: 0; margin-bottom: 0; height: 40px;" required>${product.prodescription}</textarea>
+							  style="margin-top: 0; margin-bottom: 0; height: 40px;"
+							  required>${product.prodescription}</textarea>
 				</div>
 				<div class="form-group">
 					<label for="proCategoryId" class="form-label">Danh mục:</label>
@@ -78,7 +79,7 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="proNumber" class="form-label">Số lượng sản phẩm:</label>
-					<input type="number"  name="proNumber"
+					<input type="number" name="proNumber"
 						   class="form-control form-control-border modal-proNumber"
 						   placeholder="Số lượng" id="proNumber" min="0"
 						   value="${product.pronumber}" required>
@@ -134,8 +135,8 @@
         msgErrorClass: 'alert alert-block alert-danger',
         defaultPreviewContent:
             '<div class="kv-file-content">' +
-			'<img id="imgPreview" style="width:100%; heigh:100%" src="<c:url value='/public/images/${product.proavatar}'/>" alt="Ảnh sản phẩm">' +
-			'</div>',
+            '<img id="imgPreview" style="width:100%; heigh:100%" src="<c:url value='/public/images/${product.proavatar}'/>" alt="Ảnh sản phẩm">' +
+            '</div>',
         layoutTemplates: {main2: '{preview} ' + btnCust + ' {remove} {browse}'},
         allowedFileExtensions: ["jpg", "png", "gif"]
     });

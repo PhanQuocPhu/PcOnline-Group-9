@@ -4,7 +4,6 @@ import entity.Orders;
 import entity.Products;
 import entity.Transactions;
 import entity.Users;
-import models.OrdersModel;
 import models.ProductsModel;
 import models.TransactionsModel;
 import utils.ServletUtils;
@@ -41,6 +40,7 @@ public class AdminTransactionsController extends FrontEndController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        String currentURI = request.getRequestURI();
         String path = request.getPathInfo();
         if (path == null || path.equals("/")) {
             path = "/index";
@@ -51,6 +51,16 @@ public class AdminTransactionsController extends FrontEndController {
             case "/index":
                 request.setAttribute("transactions", list);
                 request.setAttribute("tranActive", "active");
+                ServletUtils.forward("/views/Admin/transaction/index.jsp", request, response);
+                break;
+            case "/filter":
+                byte trstatus = Byte.parseByte(request.getParameter("trstatus"));
+                currentURI = currentURI + "?trstatus=" + trstatus;
+                list = getTransByStatus(trstatus);
+                request.setAttribute("transactions", list);
+                request.setAttribute("tranActive", "active");
+                request.setAttribute("select" + trstatus, "selected");
+                request.setAttribute("currentURI", currentURI);
                 ServletUtils.forward("/views/Admin/transaction/index.jsp", request, response);
                 break;
             case "/update":
@@ -80,6 +90,7 @@ public class AdminTransactionsController extends FrontEndController {
                 break;
         }
     }
+
     private void manageTransaction(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
         int trid = 0;
         if (request.getParameter("trid") != null)
@@ -88,7 +99,7 @@ public class AdminTransactionsController extends FrontEndController {
         if (request.getParameter("trStatus") != null)
             trStatus = Byte.parseByte(request.getParameter("trStatus"));
         byte trPayment = 0;
-        if(trStatus == 2)
+        if (trStatus == 2)
             trPayment = 1;
         String trAddress = request.getParameter("trAddress");
         String trUserMail = request.getParameter("trUserMail");
@@ -120,7 +131,7 @@ public class AdminTransactionsController extends FrontEndController {
         }
     }
 
-    private List<Transactions> getAllTran(){
+    private List<Transactions> getAllTran() {
         List<Transactions> list = null;
         try {
             list = TransactionsModel.getAll();
@@ -130,7 +141,8 @@ public class AdminTransactionsController extends FrontEndController {
         }
         return list;
     }
-    private Transactions getTransById(int id){
+
+    private Transactions getTransById(int id) {
         Transactions trans = new Transactions();
         try {
             trans = TransactionsModel.getById(id);
@@ -139,6 +151,17 @@ public class AdminTransactionsController extends FrontEndController {
         }
         return trans;
     }
+
+    private List<Transactions> getTransByStatus(byte trstatus) {
+        List<Transactions> trans = null;
+        try {
+            trans = TransactionsModel.getByStatus(trstatus);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return trans;
+    }
+
     private List<Products> getAllPro() throws SQLException {
         return ProductsModel.getAll();
     }
