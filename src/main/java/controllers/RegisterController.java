@@ -45,10 +45,6 @@ public class RegisterController extends HttpServlet {
                 // check phone
                 if(phone.length()!=0)
                 {
-                    //check kí tự ô phone number
-//                    Pattern pattern = Pattern.compile("^\\d{10}$");
-//                    Matcher matcher = pattern.matcher(phone);
-//                    if(!matcher.matches()){
                     if(!validatePhoneNumber(phone)){
                         request.setAttribute("LoginMess", "Wrong Phone Number");
                         ServletUtils.forward("/views/Guest/account/register.jsp", request, response);

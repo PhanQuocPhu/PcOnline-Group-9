@@ -42,6 +42,9 @@
         .bg-6 {
             background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/6.jpg);
         }
+		.show{
+			display: flex !important;
+		}
 	</style>
 
 	<body>
@@ -72,7 +75,8 @@
 												<div class="ht-setting-trigger"><span></span></div>
 												<div class="setting ht-setting">
 													<ul class="ht-setting-list">
-														<li><a href="#">My Account</a></li>
+														<li><a href="<c:url value='/home/account'/>">My Account</a></li>
+														<li><a href="#">My Bill</a></li>
 													</ul>
 												</div>
 											</li>

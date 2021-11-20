@@ -43,6 +43,7 @@
 									<div class="col-md-4 mt-10 mb-20 text-left text-md-right">
 										<a href="#"> Forgotten pasword?</a>
 									</div>
+									<p class="login-box-msg text-center" style="margin-left: 16px;color: red; ">${loginMes}</p>
 									<div class="col-md-12" id="flex-login">
 										<button type="submit" class="register-button ml-0 mt-0" style="width: 100%">Login</button>
 									</div>
