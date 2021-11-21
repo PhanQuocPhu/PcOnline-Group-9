@@ -47,6 +47,7 @@ public class TransactionController extends FrontEndController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
         String path = request.getPathInfo();
         if (path == null || path.equals("/")) {
             path = "/index";
@@ -58,6 +59,19 @@ public class TransactionController extends FrontEndController {
                 ServletUtils.forward("/views/Guest/cart/checkout.jsp", request, response);
                 break;
             case "/vnpay_return":
+                Transactions transaction = (Transactions) session.getAttribute("transaction");
+                List<Orders> listo = transaction.getOrdersById();
+                if(request.getParameter("vnp_ResponseCode").equals("00")){
+                    transaction.setTrstatus((byte) 1);
+                    transaction.setTrpayment((byte) 2);
+                    TransactionsModel.create(transaction);
+                    for (Orders order : listo) {
+                        System.out.println(order.getProductsByOrproductid().getProname());
+                        order.setTransactionsByOrtransactionid(transaction);
+                        OrdersModel.create(order);
+                    }
+                }
+                request.setAttribute("transaction", transaction);
                 ServletUtils.forward("/views/Guest/vnpay/vnpay_return.jsp", request, response);
                 break;
         }
@@ -91,16 +105,31 @@ public class TransactionController extends FrontEndController {
                     order.setTransactionsByOrtransactionid(transaction);
                     OrdersModel.create(order);
                 }
+                session.setAttribute("transaction", transaction);
                 session.removeAttribute("cart");
                 ServletUtils.redirect("/home", request, response);
                 break;
             case "/vnpay":
+                transaction.setId(id);
+                transaction.setUsersByTruserid(user);
+                transaction.setTraddress(address);
+                System.out.println(address);
+                transaction.setTrphone(phone);
+                System.out.println(phone);
+                transaction.setTrnote(note);
+                transaction.setCreatedat(timestamp);
+                transaction.setUpdatedat(timestamp);
+                for (Orders order : listo) {
+                    System.out.println(order.getProductsByOrproductid().getProname());
+                    order.setTransactionsByOrtransactionid(transaction);
+                }
+                session.setAttribute("transaction", transaction);
                 vnpay(request, response);
                 break;
         }
     }
 
-    private void vnpay(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void vnpay(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         //Khai báo const
@@ -154,7 +183,7 @@ public class TransactionController extends FrontEndController {
         Iterator itr = fieldNames.iterator();
         while (itr.hasNext()) {
             String fieldName = (String) itr.next();
-            String fieldValue = (String) vnp_Params.get(fieldName);
+            String fieldValue = vnp_Params.get(fieldName);
             if ((fieldValue != null) && (fieldValue.length() > 0)) {
                 //Build hash data
                 hashData.append(fieldName);
@@ -178,8 +207,9 @@ public class TransactionController extends FrontEndController {
         job.addProperty("code", "00");
         job.addProperty("message", "success");
         job.addProperty("data", paymentUrl);
-        Gson gson = new Gson();
-        response.getWriter().write(gson.toJson(job));
+        ServletUtils.redirect(paymentUrl, request, response);
+        //Gson gson = new Gson();
+        //response.getWriter().write(gson.toJson(job));
 
     }
 

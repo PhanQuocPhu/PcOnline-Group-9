@@ -9,6 +9,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Admin/category/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/Admin/category" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Admin/product/form.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/Admin/product" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Admin/product/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/Admin/product" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Guest/Mail/Bill.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/Guest/Mail" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/Guest/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/Guest" />
       </map>
     </option>

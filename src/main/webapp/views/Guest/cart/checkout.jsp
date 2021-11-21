@@ -82,7 +82,7 @@
 															class="product-quantity"> × ${order.orqty}</strong></td>
 													<td class="cart-product-total">
 													<span class="amount">
-														<fmt:formatNumber value="${order.orprice}"/> VND
+														<fmt:formatNumber value="${order.orprice}" type="currency"/>
 													</span>
 													</td>
 												</tr>
@@ -94,7 +94,9 @@
 												<td>
 													<strong>
 														<input name="amount" value="${sessionScope.cart.trtotal}" hidden>
-														<span class="amount"><fmt:formatNumber value="${sessionScope.cart.trtotal}"/>VND</span>
+														<span class="amount">
+															<fmt:formatNumber value="${sessionScope.cart.trtotal}" type="currency"/>
+														</span>
 													</strong>
 												</td>
 											</tr>
@@ -108,13 +110,14 @@
 												<div class="card-header" id="#payment-1">
 													<h5 class="panel-title">
 														<a class="" data-toggle="collapse" data-target="#collapseOne"
-														   aria-expanded="true" aria-controls="collapseOne">
+														   aria-expanded="true" aria-controls="collapseOne" id="placeorder">
 															Đặt hàng
 														</a>
 													</h5>
 												</div>
 												<div id="collapseOne" class="collapse show" data-parent="#accordion">
 													<div class="card-body">
+														<br>
 														<div class="order-button-payment">
 															<input style="margin: 0" value="Place order" type="submit">
 														</div>
@@ -131,7 +134,7 @@
 													<h5 class="panel-title">
 														<a class="collapsed" data-toggle="collapse"
 														   data-target="#collapseTwo" aria-expanded="false"
-														   aria-controls="collapseTwo">
+														   aria-controls="collapseTwo" id="banktranfer">
 															Thanh toán thông qua chuyển khoản.
 														</a>
 													</h5>
@@ -197,8 +200,9 @@
 															</div>
 
 														</ul>
+														<br>
 														<div class="order-button-payment">
-															<input style="margin: 0" value="Place order" type="button" id="vnpay">
+															<input style="margin: 0" value="Thanh toán" type="submit" id="vnpay">
 														</div>
 													</div>
 												</div>
@@ -215,7 +219,13 @@
 		</div>
 		<!--Checkout Area End-->
 		<script type="text/javascript">
-            $("#vnpay").click(function () {
+            $("#banktranfer").click(function () {
+                $("#trform").attr("action", "/home/cart/checkout/vnpay");
+            });
+            $("#placeorder").click(function () {
+                $("#trform").attr("action", "/home/cart/checkout/placeorder");
+            });
+            /*$("#vnpay").click(function () {
                 var postData = $("#trform").serialize();
                 var submitUrl = "/home/cart/checkout/vnpay";
                 $.ajax({
@@ -232,7 +242,7 @@
                     }
                 });
                 return false;
-            });
+            });*/
 		</script>
 	</jsp:body>
 </mt:guest_template>
