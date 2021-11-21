@@ -93,7 +93,8 @@
 												<th>Tổng giá trị đơn hàng:</th>
 												<td>
 													<strong>
-														<span class="amount"><fmt:formatNumber value="${cart.trtotal}"/>VND</span>
+														<input name="amount" value="${sessionScope.cart.trtotal}" hidden>
+														<span class="amount"><fmt:formatNumber value="${sessionScope.cart.trtotal}"/>VND</span>
 													</strong>
 												</td>
 											</tr>
@@ -196,6 +197,9 @@
 															</div>
 
 														</ul>
+														<div class="order-button-payment">
+															<input style="margin: 0" value="Place order" type="button" id="vnpay">
+														</div>
 													</div>
 												</div>
 											</div>
@@ -210,5 +214,25 @@
 			</div>
 		</div>
 		<!--Checkout Area End-->
+		<script type="text/javascript">
+            $("#vnpay").click(function () {
+                var postData = $("#trform").serialize();
+                var submitUrl = "/home/cart/checkout/vnpay";
+                $.ajax({
+                    type: "POST",
+                    url: submitUrl,
+                    data: postData,
+                    dataType: 'JSON',
+                    success: function (x) {
+                        if (x.code === '00') {
+                            location.href = x.data;
+                        } else {
+                            alert(x.Message);
+                        }
+                    }
+                });
+                return false;
+            });
+		</script>
 	</jsp:body>
 </mt:guest_template>

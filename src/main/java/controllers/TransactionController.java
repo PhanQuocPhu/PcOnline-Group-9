@@ -41,7 +41,6 @@ public class TransactionController extends FrontEndController {
                 manageTransaction(request, response, path);
                 break;
         }
-        ServletUtils.redirect("/home", request, response);
 
     }
 
@@ -93,6 +92,7 @@ public class TransactionController extends FrontEndController {
                     OrdersModel.create(order);
                 }
                 session.removeAttribute("cart");
+                ServletUtils.redirect("/home", request, response);
                 break;
             case "/vnpay":
                 vnpay(request, response);
@@ -182,6 +182,7 @@ public class TransactionController extends FrontEndController {
         response.getWriter().write(gson.toJson(job));
 
     }
+
 
     private int getNewTransId() {
         int id = 0;
