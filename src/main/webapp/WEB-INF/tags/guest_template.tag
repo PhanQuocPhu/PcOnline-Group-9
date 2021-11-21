@@ -46,6 +46,93 @@
         .bg-6 {
             background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/6.jpg);
         }
+        /*----------------------------------------VN_pay Bank-------------------------------------------------*/
+        .banking-methods {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banking-methods:after {
+            content: "";
+            clear: both;
+        }
+
+        .banking-method {
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            position: relative;
+            float: left;
+            height: 52px;
+            width: 200px;
+            margin-top: 5px;
+        }
+
+        .banking-method label {
+            background: #fff no-repeat center center;
+            bottom: 1px;
+            left: 1px;
+            right: 1px;
+            top: 1px;
+            cursor: pointer;
+            display: block;
+            font-size: 0;
+            position: absolute;
+            text-indent: 100%;
+            white-space: nowrap;
+            margin-bottom: 0;
+        }
+        .banking-method input {
+            margin: 4px 1px 0;
+        }
+
+        .banking-method + .payment-method {
+            margin: 0px;
+            padding: 0px;
+        }
+        .banking-methods input:focus + label {
+            outline: 2px dotted #21b4d0;
+        }
+
+        .banking-methods input:checked + label {
+            outline: 4px solid #21b4d0;
+        }
+
+        @-moz-document url-prefix() {
+            .banking-methods input:checked + label:after {
+                bottom: 0;
+                right: 0;
+                background-color: #21b4d0;
+            }
+        }
+        .SACOMBANK label {
+            background-image: url(	https://sandbox.vnpayment.vn/paymentv2/images/bank/sacombank_logo.png);
+        }
+
+        .NCB label {
+            background-image: url(https://sandbox.vnpayment.vn/paymentv2/images/bank/ncb_logo.png);
+        }
+        .BIDV label {
+            background-image: url(	https://sandbox.vnpayment.vn/paymentv2/images/bank/bidv_logo.png);
+        }
+
+        .AGRIBANK label {
+            background-image: url(https://sandbox.vnpayment.vn/paymentv2/images/bank/agribank_logo.png);
+        }
+        .ACB label {
+            background-image: url(	https://sandbox.vnpayment.vn/paymentv2/images/bank/acb_logo.png);
+        }
+
+        .SCB label {
+            background-image: url(https://sandbox.vnpayment.vn/paymentv2/images/bank/scb_logo.png);
+        }
+        .EXIMBANK label {
+            background-image: url(	https://sandbox.vnpayment.vn/paymentv2/images/bank/eximbank_logo.png);
+        }
+
+        .NAMABANK label {
+            background-image: url(https://sandbox.vnpayment.vn/paymentv2/images/bank/namabank_logo.png);
+        }
 	</style>
 
 	<body>

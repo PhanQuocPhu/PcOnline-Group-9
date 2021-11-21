@@ -51,9 +51,9 @@
 									</div>
 
 									<div class="col-md-12">
-										<P style="text-align: center; border-bottom: 1px solid #898989; line-height: 0.1em; margin: 10px 0 20px;">
+										<p style="text-align: center; border-bottom: 1px solid #898989; line-height: 0.1em; margin: 10px 0 20px;">
 											<span style=" background:#fff; padding:0 10px; ">Or</span>
-										</P>
+										</p>
 									</div>
 									<div class="col-md-12 text-center">
 										<a href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&

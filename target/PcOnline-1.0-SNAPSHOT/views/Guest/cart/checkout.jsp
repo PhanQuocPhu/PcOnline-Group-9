@@ -29,7 +29,8 @@
 									<div class="col-md-12">
 										<div class="checkout-form-list">
 											<label>Họ và tên người nhận<span class="required">*</span></label>
-											<input placeholder="Full name" type="text" name="name" value="${sessionScope.user.name}" required>
+											<input placeholder="Full name" type="text" name="name"
+												   value="${sessionScope.user.name}" required>
 										</div>
 									</div>
 									<div class="col-md-12">
@@ -41,7 +42,8 @@
 									<div class="col-md-12">
 										<div class="checkout-form-list">
 											<label> Email liên lạc <span class="required">*</span></label>
-											<input placeholder="" type="email" name="email" value="${sessionScope.user.email}" disabled>
+											<input placeholder="" type="email" name="email"
+												   value="${sessionScope.user.email}" disabled>
 										</div>
 									</div>
 									<div class="col-md-12">
@@ -80,7 +82,7 @@
 															class="product-quantity"> × ${order.orqty}</strong></td>
 													<td class="cart-product-total">
 													<span class="amount">
-														<fmt:formatNumber value="${order.orprice}" /> VND
+														<fmt:formatNumber value="${order.orprice}"/> VND
 													</span>
 													</td>
 												</tr>
@@ -106,20 +108,99 @@
 													<h5 class="panel-title">
 														<a class="" data-toggle="collapse" data-target="#collapseOne"
 														   aria-expanded="true" aria-controls="collapseOne">
-															Thanh toán qua VNPay
+															Đặt hàng
 														</a>
 													</h5>
 												</div>
 												<div id="collapseOne" class="collapse show" data-parent="#accordion">
 													<div class="card-body">
-														<p>Thanh toán qua VNPay đi, xịn lắm</p>
+														<div class="order-button-payment">
+															<input style="margin: 0" value="Place order" type="submit">
+														</div>
+													</div>
+												</div>
+											</div>
+											<br>
+											<p style="text-align: center; border-bottom: 1px solid #898989; line-height: 0.1em; margin: 10px 0 20px;">
+												<span style=" background:#f2f2f2; padding:0 10px;">Or</span>
+											</p>
+
+											<div class="card">
+												<div class="card-header" id="#payment-2">
+													<h5 class="panel-title">
+														<a class="collapsed" data-toggle="collapse"
+														   data-target="#collapseTwo" aria-expanded="false"
+														   aria-controls="collapseTwo">
+															Thanh toán thông qua chuyển khoản.
+														</a>
+													</h5>
+												</div>
+												<div id="collapseTwo" class="collapse" data-parent="#accordion">
+													<div class="card-body">
+														<ul class="banking-methods row">
+															<div class="col-sm-6">
+																<li class="banking-method NCB ">
+																	<input name="bankcode" type="radio" id="NCB"
+																		   value="NCB">
+																	<label for="NCB">NCB</label>
+																</li>
+															</div>
+															<div class="col-sm-6">
+																<li class="banking-method SACOMBANK ">
+																	<input name="bankcode" type="radio" id="SACOMBANK"
+																		   value="SACOMBANK">
+																	<label for="SACOMBANK">SACOMBANK</label>
+																</li>
+															</div>
+															<div class="col-md-6">
+																<li class="banking-method BIDV ">
+																	<input name="bankcode" type="radio" id="BIDV"
+																		   value="BIDV">
+																	<label for="BIDV">BIDV</label>
+																</li>
+															</div>
+															<div class="col-md-6">
+																<li class="banking-method AGRIBANK ">
+																	<input name="bankcode" type="radio" id="AGRIBANK"
+																		   value="AGRIBANK">
+																	<label for="AGRIBANK">AGRIBANK</label>
+																</li>
+															</div>
+															<div class="col-md-6">
+																<li class="banking-method ACB ">
+																	<input name="bankcode" type="radio" id="ACB"
+																		   value="ACB">
+																	<label for="ACB">ACB</label>
+																</li>
+															</div>
+															<div class="col-md-6">
+																<li class="banking-method SCB ">
+																	<input name="bankcode" type="radio" id="SCB"
+																		   value="SCB">
+																	<label for="SCB">SCB</label>
+																</li>
+															</div>
+															<div class="col-md-6">
+																<li class="banking-method EXIMBANK ">
+																	<input name="bankcode" type="radio" id="EXIMBANK"
+																		   value="EXIMBANK">
+																	<label for="EXIMBANK">EXIMBANK</label>
+																</li>
+															</div>
+															<div class="col-md-6">
+																<li class="banking-method NAMABANK ">
+																	<input name="bankcode" type="radio" id="NAMABANK"
+																		   value="NAMABANK">
+																	<label for="NAMABANK">NAMABANK</label>
+																</li>
+															</div>
+
+														</ul>
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="order-button-payment">
-											<input value="Place order" type="submit">
-										</div>
+
 									</div>
 								</div>
 							</div>

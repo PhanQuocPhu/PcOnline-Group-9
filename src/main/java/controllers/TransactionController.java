@@ -54,8 +54,13 @@ public class TransactionController extends FrontEndController {
         }
         List<Categories> listc = getAllCate();
         request.setAttribute("categories", listc);
-        if ("/index".equals(path)) {
-            ServletUtils.forward("/views/Guest/cart/checkout.jsp", request, response);
+        switch (path){
+            case "/index":
+                ServletUtils.forward("/views/Guest/cart/checkout.jsp", request, response);
+                break;
+            case "/vnpay_return":
+                ServletUtils.forward("/views/Guest/vnpay/vnpay_return.jsp", request, response);
+                break;
         }
     }
 
@@ -113,7 +118,6 @@ public class TransactionController extends FrontEndController {
         String vnp_TxnRef = helper.randString(8);
 
         //Tạo json param
-
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
@@ -131,6 +135,7 @@ public class TransactionController extends FrontEndController {
         } else {
             vnp_Params.put("vnp_Locale", "vn");
         }
+        //URl trả về sau khi thanh toán
         vnp_Params.put("vnp_ReturnUrl", VnpayConst.vnp_Returnurl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
         vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
@@ -138,6 +143,8 @@ public class TransactionController extends FrontEndController {
         String vnp_ExpireDate = formatter.format(cld.getTime());
         //Add Params of 2.0.1 Version
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
+
+
 
         //Build data to hash and querystring
         List fieldNames = new ArrayList(vnp_Params.keySet());
