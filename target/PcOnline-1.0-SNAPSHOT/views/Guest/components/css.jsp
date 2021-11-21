@@ -24,7 +24,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/bootstrap.min.css">
 <!-- Helper CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/helper.css">
+
 <!-- Main Style CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/style.css">
 <!-- Responsive CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/guest/css/responsive.css">
+<!-- Theme style -->
+<link
+        rel="stylesheet"
+        href="${pageContext.request.contextPath}/assets/guest/css/fixSizeModal.css"
+/>

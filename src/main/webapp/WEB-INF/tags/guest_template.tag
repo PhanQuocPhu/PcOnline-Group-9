@@ -15,8 +15,8 @@
 		<meta name="google-signin-scope" content="profile email">
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/guest/images/favicon.png'/>">
-
 		<%@include file="/views/Guest/components/css.jsp" %>
+
 
 		<!-- Modernizr js -->
 		<script src="${pageContext.request.contextPath}/assets/guest/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -45,6 +45,7 @@
 		.show{
 			display: flex !important;
 		}
+
 	</style>
 
 	<body>
@@ -76,7 +77,7 @@
 												<div class="setting ht-setting">
 													<ul class="ht-setting-list">
 														<li><a href="<c:url value='/home/account'/>">My Account</a></li>
-														<li><a href="#">My Bill</a></li>
+														<li><a href="${pageContext.request.contextPath}/guest/bill/">My Bill</a></li>
 													</ul>
 												</div>
 											</li>

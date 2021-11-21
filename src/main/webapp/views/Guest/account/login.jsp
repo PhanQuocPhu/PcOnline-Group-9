@@ -30,19 +30,23 @@
 										<label>Email Address</label>
 										<input class="mb-0" type="email" placeholder="Email Address" name="email" required>
 									</div>
-									<div class="col-12 mb-20">
+									<div class="col-12">
 										<label>Password</label>
 										<input class="mb-0" type="password" placeholder="Password" name="password" required>
 									</div>
-									<div class="col-md-8">
-										<div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
-											<input type="checkbox" id="remember_me" name="rem">
-											<label for="remember_me">Remember me</label>
+
+
+										<div class="col-md-8">
+											<div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
+												<input type="checkbox" id="remember_me" name="rem">
+												<label for="remember_me">Remember me</label>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-4 mt-10 mb-20 text-left text-md-right">
-										<a href="#"> Forgotten pasword?</a>
-									</div>
+										<div class="col-md-4 text-left text-md-right">
+											<a href="#"> Forgotten pasword?</a>
+										</div>
+
+
 									<p class="login-box-msg text-center" style="margin-left: 16px;color: red; ">${loginMes}</p>
 									<div class="col-md-12" id="flex-login">
 										<button type="submit" class="register-button ml-0 mt-0" style="width: 100%">Login</button>
