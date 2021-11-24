@@ -62,7 +62,7 @@ public class TransactionController extends FrontEndController {
         request.setAttribute("categories", listc);
         switch (path){
             case "/index":
-                response.setContentType("text/html");
+                response.setContentType("text/html;charset=UTF-8");
                 Transactions trans = getTransById(2);
 
                 String message = convertJspToString("/views/Guest/mail/Bill.jsp",request, response); /*buffer.toString();*/
