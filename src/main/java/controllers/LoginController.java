@@ -33,11 +33,11 @@ public class LoginController extends FrontEndController {
         switch (path) {
             case "/signin":
                 if (user == null) {
-                    request.setAttribute("LoginMess", "Email doesn't exist");
+                    request.setAttribute("loginMes", "Email doesn't exist");
                     ServletUtils.forward("/views/Guest/account/login.jsp", request, response);
                 } else if (!UsersModel.checkPass(password, user.getPassword())) {
                     System.out.println(password);
-                    request.setAttribute("LoginMess", "Wrong password");
+                    request.setAttribute("loginMes", "Wrong password");
                     request.setAttribute("email", email);
                     ServletUtils.forward("/views/Guest/account/login.jsp", request, response);
                 } else {

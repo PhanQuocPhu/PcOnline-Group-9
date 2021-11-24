@@ -38,3 +38,5 @@
 <script src="${pageContext.request.contextPath}/assets/guest/js/scrollUp.min.js"></script>
 <!-- Main/Activator js -->
 <script src="${pageContext.request.contextPath}/assets/guest/js/main.js"></script>
+<!-- Main/Activator js -->
+<script src="${pageContext.request.contextPath}/assets/guest/js/changePass.js"></script>

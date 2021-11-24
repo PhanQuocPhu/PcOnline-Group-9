@@ -45,10 +45,7 @@ public class RegisterController extends HttpServlet {
                 // check phone
                 if(phone.length()!=0)
                 {
-                    //check kí tự ô phone number
-                    Pattern pattern = Pattern.compile(".*[^0-9].*");
-                    Matcher matcher = pattern.matcher(phone);
-                    if(!matcher.matches()){
+                    if(!validatePhoneNumber(phone)){
                         request.setAttribute("LoginMess", "Wrong Phone Number");
                         ServletUtils.forward("/views/Guest/account/register.jsp", request, response);
                         return;
@@ -77,6 +74,19 @@ public class RegisterController extends HttpServlet {
         request.getRequestDispatcher("/views/Guest/account/register.jsp").forward(request, response);
     }
 
+    private static boolean validatePhoneNumber(String phoneNo) {
+        //validate phone numbers of format "1234567890"
+        if (phoneNo.matches("\\d{10}")) return true;
+            //validating phone number with -, . or spaces
+        else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
+            //validating phone number with extension length from 3 to 5
+        else if(phoneNo.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) return true;
+            //validating phone number where area code is in braces ()
+        else if(phoneNo.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
+            //return false if nothing matches the input
+        else return false;
+
+    }
 
 
 }
