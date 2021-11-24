@@ -8,8 +8,11 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import services.helper;
+import utils.EmailUtil;
 import utils.HibernateUtil;
 import org.hibernate.query.Query;
+
+import javax.mail.MessagingException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -39,7 +42,11 @@ public class test {
         //testGetJson(10);
         //testCreateTrans();
 
-        CreateUser();
+        try {
+            EmailUtil.sendHTMLMail("test", "phanquocphu1998@gmail.com");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
     public static void testCreateTrans() throws SQLException {
         Transactions transaction = new Transactions();

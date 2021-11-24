@@ -8,16 +8,22 @@ import entity.Transactions;
 import entity.Users;
 import models.OrdersModel;
 import models.TransactionsModel;
+import org.hibernate.Transaction;
 import services.VnpayConst;
 import services.helper;
+import utils.EmailUtil;
 import utils.ServletUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -56,6 +62,18 @@ public class TransactionController extends FrontEndController {
         request.setAttribute("categories", listc);
         switch (path){
             case "/index":
+                response.setContentType("text/html");
+                Transactions trans = getTransById(2);
+
+                String message = convertJspToString("/views/Guest/mail/Bill.jsp",request, response); /*buffer.toString();*/
+                System.out.println(message);
+                try {
+                    EmailUtil.sendHTMLMail(message, "phanquocphu1998@gmail.com");
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+
+
                 ServletUtils.forward("/views/Guest/cart/checkout.jsp", request, response);
                 break;
             case "/vnpay_return":
@@ -213,6 +231,17 @@ public class TransactionController extends FrontEndController {
 
     }
 
+    private String convertJspToString(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final StringWriter buffer = new StringWriter();
+        request.getRequestDispatcher("/views/Guest/mail/Bill.jsp").include(request, new HttpServletResponseWrapper(response) {
+            private PrintWriter writer = new PrintWriter(buffer);
+            @Override
+            public PrintWriter getWriter() throws IOException {
+                return writer;
+            }
+        });
+        return buffer.toString();
+    }
 
     private int getNewTransId() {
         int id = 0;
@@ -222,5 +251,15 @@ public class TransactionController extends FrontEndController {
             throwables.printStackTrace();
         }
         return id;
+    }
+
+    private Transactions getTransById(int id) {
+        Transactions trans = new Transactions();
+        try {
+            trans = TransactionsModel.getById(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return trans;
     }
 }

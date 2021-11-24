@@ -11,11 +11,10 @@ import models.UsersModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -101,5 +100,17 @@ public class FrontEndController extends HttpServlet {
             throwables.printStackTrace();
         }
         return user;
+    }
+
+    String convertJSP(String path, HttpServletRequest request, HttpServletResponseWrapper response) throws ServletException, IOException {
+        final StringWriter buffer = new StringWriter();
+        request.getRequestDispatcher(path).include(request, new HttpServletResponseWrapper(response) {
+            private PrintWriter writer = new PrintWriter(buffer);
+            @Override
+            public PrintWriter getWriter() throws IOException {
+                return writer;
+            }
+        });
+        return buffer.toString();
     }
 }
