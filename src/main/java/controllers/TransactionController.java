@@ -231,17 +231,7 @@ public class TransactionController extends FrontEndController {
 
     }
 
-    private String convertJspToString(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final StringWriter buffer = new StringWriter();
-        request.getRequestDispatcher("/views/Guest/mail/Bill.jsp").include(request, new HttpServletResponseWrapper(response) {
-            private PrintWriter writer = new PrintWriter(buffer);
-            @Override
-            public PrintWriter getWriter() throws IOException {
-                return writer;
-            }
-        });
-        return buffer.toString();
-    }
+
 
     private int getNewTransId() {
         int id = 0;

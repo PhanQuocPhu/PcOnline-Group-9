@@ -2,6 +2,7 @@ package services;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controllers.FrontEndController;
 import entity.*;
 import models.*;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -13,6 +14,13 @@ import utils.HibernateUtil;
 import org.hibernate.query.Query;
 
 import javax.mail.MessagingException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -41,12 +49,24 @@ public class test {
 
         //testGetJson(10);
         //testCreateTrans();
-
+        String message = "Test gửi tiếng việt";
         try {
-            EmailUtil.sendHTMLMail("test", "phanquocphu1998@gmail.com");
+            EmailUtil.sendHTMLMail(message, "phanquocphu1998@gmail.com");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+    public static String convertJspToString(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
+        final StringWriter buffer = new StringWriter();
+        request.getRequestDispatcher(path).include(request, new HttpServletResponseWrapper(response) {
+            private PrintWriter writer = new PrintWriter(buffer);
+            @Override
+            public PrintWriter getWriter() throws IOException {
+                return writer;
+            }
+        });
+        return buffer.toString();
     }
     public static void testCreateTrans() throws SQLException {
         Transactions transaction = new Transactions();

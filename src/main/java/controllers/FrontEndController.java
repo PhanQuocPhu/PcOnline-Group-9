@@ -28,6 +28,19 @@ public class FrontEndController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    String convertJspToString(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
+        final StringWriter buffer = new StringWriter();
+        request.getRequestDispatcher(path).include(request, new HttpServletResponseWrapper(response) {
+            private PrintWriter writer = new PrintWriter(buffer);
+            @Override
+            public PrintWriter getWriter() throws IOException {
+                return writer;
+            }
+        });
+        return buffer.toString();
+    }
      List<Categories> getAllCate() {
         List<Categories> list = null;
         try {

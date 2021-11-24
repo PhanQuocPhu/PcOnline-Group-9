@@ -2,10 +2,14 @@ package controllers;
 
 import entity.Categories;
 import entity.Products;
+import entity.Transactions;
 import models.CategoriesModel;
 import models.ProductsModel;
+import models.TransactionsModel;
+import utils.EmailUtil;
 import utils.ServletUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +29,15 @@ public class HomeController extends FrontEndController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Categories> listc = getAllCate();
         List<Categories> listch = getCateByChome((byte) 1);
-
+        
+        Transactions trans = getTransById(2);
+        String message = convertJspToString("/views/Guest/mail/Bill.jsp",request, response); /*buffer.toString();*/
+        System.out.println(message);
+        try {
+            EmailUtil.sendHTMLMail(message, "phanquocphu1998@gmail.com");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
         request.setAttribute("categories", listc);
         request.setAttribute("categorieshome", listch);
         ServletUtils.forward("/views/Guest/index.jsp", request, response);
@@ -42,6 +54,14 @@ public class HomeController extends FrontEndController {
         return listc;
     }
 
-
+    private Transactions getTransById(int id) {
+        Transactions trans = new Transactions();
+        try {
+            trans = TransactionsModel.getById(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return trans;
+    }
 
 }
