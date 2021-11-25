@@ -12,9 +12,7 @@ import models.UsersModel;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -32,13 +30,14 @@ public class FrontEndController extends HttpServlet {
     String convertJspToString(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         final StringWriter buffer = new StringWriter();
-        request.getRequestDispatcher(path).include(request, new HttpServletResponseWrapper(response) {
-            private PrintWriter writer = new PrintWriter(buffer);
-            @Override
-            public PrintWriter getWriter() throws IOException {
-                return writer;
-            }
-        });
+        request.getRequestDispatcher(path)
+                .include(request, new HttpServletResponseWrapper(response) {
+                    private PrintWriter writer = new PrintWriter(buffer);
+                    @Override
+                    public PrintWriter getWriter() throws IOException {
+                        return writer;
+                    }
+                });
         return buffer.toString();
     }
      List<Categories> getAllCate() {
