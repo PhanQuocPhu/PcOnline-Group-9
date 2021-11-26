@@ -245,7 +245,7 @@ public class TransactionController extends FrontEndController {
     private void sendMail(HttpServletRequest request, HttpServletResponse response, String email) throws ServletException, IOException {
         String message = convertJspToString("/views/Guest/mail/Bill.jsp",request, response); /*buffer.toString();*/
         try {
-            EmailUtil.sendHTMLMail(message, email);
+            EmailUtil.sendHTMLMail(message, "Pconline - Group 9 - Order Information", email);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
