@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="ISO-8859-1" isELIgnored="false" %>
+<%@ page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%--<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -19,8 +19,8 @@
 				<div class="adM">
 				</div>
 				<p>Hello ${transaction.usersByTruserid.name}</p>
-				<p>Thank you for shopping at <strong>PConline - Group 9</strong>!</p>
-				<p>Your order has been recieved, we will contact you shortly</p>
+				<p>Cảm ơn Anh/chị đã đặt hàng tại <strong>PConline - Group 9</strong>!</p>
+				<p>Đơn hàng của Anh/chị đã được tiếp nhận, chúng tôi sẽ nhanh chóng liên hệ với Anh/chị.</p>
 			</div>
 			<hr>
 			<div style="padding:0 10px">
@@ -28,8 +28,8 @@
 				<table style="width:100%;border-collapse:collapse;margin-top:20px">
 					<thead>
 						<tr>
-							<th style="text-align:left;width:50%;font-size:medium;padding:5px 0">Billing Information</th>
-							<th style="text-align:left;width:50%;font-size:medium;padding:5px 0">Delivery Address</th>
+							<th style="text-align:left;width:50%;font-size:medium;padding:5px 0">Thông tin mua hàng</th>
+							<th style="text-align:left;width:50%;font-size:medium;padding:5px 0">Địa chỉ nhận hàng</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -160,19 +160,19 @@
 			<div style="padding:0 10px">
 
 				<p style="height:50px">
-					<span style="float:left;margin-top:14px;margin-right:10px">To check your order status, please:</span>
+					<span style="float:left;margin-top:14px;margin-right:10px">Để kiểm tra trạng thái đơn hàng, Anh/chị vuilòng:</span>
 					<span style="margin-top:25px;float:left"><span style="padding:14px 35px;background:#357ebd">
-			<a href="" style="font-size:16px;text-decoration:none;color:#fff" target="_blank" data-saferedirecturl="">Login to your account</a>
+			<a href="" style="font-size:16px;text-decoration:none;color:#fff" target="_blank" data-saferedirecturl="">Đăng nhập vào tài khoản</a>
 			</span></span>
 				</p>
 
 				<div style="clear:both"></div>
 				<p style="margin:30px 0">
-					If you have any question, please contact us at
+					Nếu Anh/chị có bất kỳ câu hỏi nào, xin liên hệ với chúng tôi tại:
 					<a href="mailto:16110180@student.hcmute.edu.vn" style="color:#357ebd" target="_blank">16110180@student.hcmute.edu.vn</a>
 				</p>
 				<p style="text-align:right"><i>Best regard,</i></p>
-				<p style="text-align:right"><strong>PConline - Group 9 admin board</strong></p>
+				<p style="text-align:right"><strong>Ban quản trị cửa hàng PConline - Group 9</strong></p>
 			</div>
 		</div>
 	</body>

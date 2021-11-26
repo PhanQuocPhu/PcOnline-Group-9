@@ -122,6 +122,7 @@ public class TransactionController extends FrontEndController {
                 }
                 session.setAttribute("transaction", transaction);
                 session.removeAttribute("cart");
+                request.setAttribute("transaction", transaction);
                 sendMail(request, response, transaction.getUsersByTruserid().getEmail());
                 ServletUtils.redirect("/home/cart/checkout/checkout_return", request, response);
                 break;

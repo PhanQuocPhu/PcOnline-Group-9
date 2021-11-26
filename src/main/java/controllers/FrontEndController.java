@@ -30,7 +30,7 @@ public class FrontEndController extends HttpServlet {
 
     String convertJspToString(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+        response.setContentType("text/html; charset=UTF-8");
         final StringWriter buffer = new StringWriter();
         RequestDispatcher rd = request.getRequestDispatcher(path);
         rd.include(request, new HttpServletResponseWrapper(response) {
