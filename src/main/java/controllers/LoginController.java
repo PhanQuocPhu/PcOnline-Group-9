@@ -8,9 +8,12 @@ import models.AdminsModel;
 import models.TransactionsModel;
 import models.UsersModel;
 import org.mindrot.jbcrypt.BCrypt;
+import utils.EmailUtil;
 import utils.GoogleUtil;
 import utils.ServletUtils;
 import services.helper;
+
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -55,6 +58,7 @@ public class LoginController extends FrontEndController {
                     response.addCookie(apassword);
                     System.out.println("Login Successfully");
                     session.setAttribute("user", user);
+
 
                     if(preURI != null) {
                         session.setAttribute("preURI", null);

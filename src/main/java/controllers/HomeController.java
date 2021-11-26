@@ -29,12 +29,12 @@ public class HomeController extends FrontEndController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Categories> listc = getAllCate();
         List<Categories> listch = getCateByChome((byte) 1);
-        
+
         Transactions trans = getTransById(2);
-        String message = convertJspToString("/views/Guest/mail/Bill.jsp",request, response); /*buffer.toString();*/
+        String message = convertJspToString("/views/Guest/Mail/Bill.jsp",request, response); /*buffer.toString();*/
         System.out.println(message);
         try {
-            EmailUtil.sendHTMLMail(message, "phanquocphu1998@gmail.com");
+            EmailUtil.sendHTMLMail(message,"Xác nhận đơn hàng","phanquocphu1998@gmail.com");
         } catch (MessagingException e) {
             e.printStackTrace();
         }

@@ -49,9 +49,24 @@ public class test {
 
         //testGetJson(10);
         //testCreateTrans();
-        String message = "Test gửi tiếng việt";
+        String message="<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "  <head>\n" +
+                "    <meta charset=\"UTF-8\" />\n" +
+                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n" +
+                "    <title>Document</title>\n" +
+                "  </head>\n" +
+                "\n" +
+                "  <body style=\"text-align: center; background-color: #c2fff9\">\n" +
+                "    <h1 style=\"color: #34BE82\">Đăng ký thành công</h1>\n" +
+                "    <h2 style=\"padding: 20px 0\">Chào mừng "+"nhật tín"+" đến với PC-Group-9 shop</h2>\n" +
+                "    <p>Hãy mua sắm ngay nào!</p>\n" +
+                "  </body>\n" +
+                "</html>\n" ;
         try {
-            EmailUtil.sendHTMLMail(message, "phanquocphu1998@gmail.com");
+//            EmailUtil.sendHTMLMail(message, "nhattinnguyen99@gmail.com");
+            EmailUtil.sendHTMLMail(message,"Xác nhận đăng ký","nhattinnguyen99@gmail.com");
         } catch (MessagingException e) {
             e.printStackTrace();
         }

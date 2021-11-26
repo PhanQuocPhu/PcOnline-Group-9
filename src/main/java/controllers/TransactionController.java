@@ -68,7 +68,7 @@ public class TransactionController extends FrontEndController {
                 String message = convertJspToString("/views/Guest/mail/Bill.jsp",request, response); /*buffer.toString();*/
                 System.out.println(message);
                 try {
-                    EmailUtil.sendHTMLMail(message, "phanquocphu1998@gmail.com");
+                    EmailUtil.sendHTMLMail(message,"Xác nhận đơn hàng","phanquocphu1998@gmail.com");
                 } catch (MessagingException e) {
                     e.printStackTrace();
                 }

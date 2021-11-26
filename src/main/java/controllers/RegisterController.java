@@ -3,22 +3,30 @@ package controllers;
 import entity.Users;
 import models.UsersModel;
 import services.helper;
+import utils.EmailUtil;
 import utils.ServletUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static services.test.convertJspToString;
+import static utils.EmailUtil.*;
+
 @WebServlet(name = "RegisterController",urlPatterns = "/home/register")
 public class RegisterController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
             String fistName=request.getParameter("firstName");
             String lastName=request.getParameter("lastName");
             String pass=request.getParameter("pass");
@@ -64,7 +72,14 @@ public class RegisterController extends HttpServlet {
                 user.setCreatedAt(timestamp);
                 user.setUpdatedAt(timestamp);
                 UsersModel.create(user);
-                response.sendRedirect("/home/login");
+                String message = convertJspToString("/views/Guest/Mail/ConfirmRegister.jsp",request, response); /*buffer.toString();*/
+                System.out.println(message);
+                try {
+                     EmailUtil.sendHTMLMail(message,"Xác nhận đăng ký","nhattinnguyen99@gmail.com");
+                } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+            response.sendRedirect("/home/login");
             } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

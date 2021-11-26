@@ -2,6 +2,9 @@ package utils;
 
 import services.EmailConst;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Properties;
 
@@ -16,7 +19,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailUtil {
-    public static void sendHTMLMail(String message, String toAddress) throws MessagingException {
+    public static void sendHTMLMail(String message,String title,String toAddress) throws MessagingException {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", EmailConst.mailhost);
         prop.put("mail.smtp.port", EmailConst.mailport);
@@ -38,7 +41,8 @@ public class EmailUtil {
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);
         msg.setHeader("Content-Type","text/plain; charset=\"utf-8\"");
-        msg.setSubject("Xác nhận đơn hàng");
+
+        msg.setSubject(title);
         msg.setSentDate(new Date());
         msg.setContent(message, "text/html; charset=UTF-8");
 
@@ -47,7 +51,7 @@ public class EmailUtil {
         System.out.println("Mail Send");
     }
 
-    public static void sendTextMail(String message, String toAddress) throws MessagingException {
+    public static void sendTextMail(String message,String title, String toAddress) throws MessagingException {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", EmailConst.mailhost);
         prop.put("mail.smtp.port", EmailConst.mailport);
@@ -69,7 +73,7 @@ public class EmailUtil {
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);
         msg.setHeader("Content-Type","text/plain; charset=\"utf-8\"");
-        msg.setSubject("Xác nhận đơn hàng");
+        msg.setSubject(title);
         msg.setSentDate(new Date());
         msg.setText(message);
 
