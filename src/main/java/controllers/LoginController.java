@@ -8,9 +8,12 @@ import models.AdminsModel;
 import models.TransactionsModel;
 import models.UsersModel;
 import org.mindrot.jbcrypt.BCrypt;
+import utils.EmailUtil;
 import utils.GoogleUtil;
 import utils.ServletUtils;
 import services.helper;
+
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -33,11 +36,11 @@ public class LoginController extends FrontEndController {
         switch (path) {
             case "/signin":
                 if (user == null) {
-                    request.setAttribute("LoginMess", "Email doesn't exist");
+                    request.setAttribute("loginMes", "Email doesn't exist");
                     ServletUtils.forward("/views/Guest/account/login.jsp", request, response);
                 } else if (!UsersModel.checkPass(password, user.getPassword())) {
                     System.out.println(password);
-                    request.setAttribute("LoginMess", "Wrong password");
+                    request.setAttribute("loginMes", "Wrong password");
                     request.setAttribute("email", email);
                     ServletUtils.forward("/views/Guest/account/login.jsp", request, response);
                 } else {
@@ -55,6 +58,7 @@ public class LoginController extends FrontEndController {
                     response.addCookie(apassword);
                     System.out.println("Login Successfully");
                     session.setAttribute("user", user);
+
 
                     if(preURI != null) {
                         session.setAttribute("preURI", null);
