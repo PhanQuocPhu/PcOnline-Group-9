@@ -31,7 +31,7 @@
 	<style>
         /*Home Two | Slider Background Image*/
         .bg-4, .bg-5, .bg-6 {
-            background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/4.jpg);
+            background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/bg_1.jpg);
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -40,11 +40,11 @@
         }
 
         .bg-5 {
-            background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/5.jpg);
+            background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/bg_2.jpg);
         }
 
         .bg-6 {
-            background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/6.jpg);
+            background-image: url(${pageContext.request.contextPath}/assets/guest/images/slider/bg_3.jpg);
         }
         /*----------------------------------------VN_pay Bank-------------------------------------------------*/
         .banking-methods {
@@ -133,6 +133,10 @@
         .NAMABANK label {
             background-image: url(https://sandbox.vnpayment.vn/paymentv2/images/bank/namabank_logo.png);
         }
+		.single-banner{
+			width: 370px;
+			height: 226px;
+		}
 	</style>
 
 	<body>

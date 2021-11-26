@@ -1,15 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
-<%@ page import="services.VnpayConst" %>
-<%@ page import="java.util.Enumeration" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="transaction" scope="request" type="entity.Transactions"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Thông tin thanh toán</title>
+		<title>Thông tin đơn hàng</title>
 		<!-- Required meta tags -->
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -114,7 +110,7 @@
 		<div class="container mt-4">
 			<div class="header">
 				<a href="/" class="hidden-xsx logo-big">
-					<img src="http://127.0.0.1:8000/img/logo.gif" alt="">
+					<img src="<c:url value='/assets/guest/images/menu/logo/1.jpg'/>" alt="">
 				</a>
 			</div>
 			<br>
@@ -123,7 +119,7 @@
 					<div class="col-md-7">
 						<div class="row">
 							<div class="col-md-2 text-center">
-								<img src="http://127.0.0.1:8000/img/Green-Check-Mark-PNG-Image.png" class="img-fluid"
+								<img src="<c:url value='/assets/guest/images/Green-Check-Mark-PNG-Image.png'/>" class="img-fluid"
 									 alt=""
 									 style="width: 72px; height: 72px;">
 							</div>
@@ -153,25 +149,12 @@
 									Mã đơn hàng: ${transaction.id}
 								</p>
 								<p>
-									Mã Ngân hàng: <%=request.getParameter("vnp_BankCode")%>
-								</p>
-								<p>
-									Thời gian thanh toán: ${transaction.createdat}
+									Thời gian đặt hàng: ${transaction.createdat}
 								</p>
 							</div>
 							<div class="col-sm-6">
 								<h5>Phương thức thanh toán</h5>
-								<p>Thanh toán Online qua Vnpay</p>
-								<p>
-									Kết quả giao dịch:
-									<%
-										if ("00".equals(request.getParameter("vnp_ResponseCode"))) {
-											out.print("Success");
-										} else {
-											out.print("Fail");
-										}
-									%>
-								</p>
+								<p>Thanh toán khi nhận hàng</p>
 							</div>
 						</div>
 

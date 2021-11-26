@@ -38,7 +38,7 @@ public class EmailUtil {
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);
         msg.setHeader("Content-Type","text/plain; charset=\"utf-8\"");
-        msg.setSubject("Xác nhận đơn hàng");
+        msg.setSubject("Pconline - Group 9 - Order information");
         msg.setSentDate(new Date());
         msg.setContent(message, "text/html; charset=UTF-8");
 
@@ -68,8 +68,7 @@ public class EmailUtil {
         msg.setFrom(new InternetAddress(EmailConst.mailFrom));
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);
-        msg.setHeader("Content-Type","text/plain; charset=\"utf-8\"");
-        msg.setSubject("Xác nhận đơn hàng");
+        msg.setSubject("Pconline - Group 9 - Order information");
         msg.setSentDate(new Date());
         msg.setText(message);
 

@@ -54,6 +54,8 @@ public class TransactionController extends FrontEndController {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        Transactions transaction = (Transactions) session.getAttribute("transaction");
+        Timestamp timestamp = helper.getCurrentTimeStamp();
         String path = request.getPathInfo();
         if (path == null || path.equals("/")) {
             path = "/index";
@@ -62,26 +64,16 @@ public class TransactionController extends FrontEndController {
         request.setAttribute("categories", listc);
         switch (path){
             case "/index":
-                response.setContentType("text/html;charset=UTF-8");
-                Transactions trans = getTransById(2);
-
-                String message = convertJspToString("/views/Guest/mail/Bill.jsp",request, response); /*buffer.toString();*/
-                System.out.println(message);
-                try {
-                    EmailUtil.sendHTMLMail(message, "phanquocphu1998@gmail.com");
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
-
-
                 ServletUtils.forward("/views/Guest/cart/checkout.jsp", request, response);
                 break;
             case "/vnpay_return":
-                Transactions transaction = (Transactions) session.getAttribute("transaction");
+                int id = getNewTransId();
                 List<Orders> listo = transaction.getOrdersById();
                 if(request.getParameter("vnp_ResponseCode").equals("00")){
                     transaction.setTrstatus((byte) 1);
                     transaction.setTrpayment((byte) 2);
+                    transaction.setCreatedat(timestamp);
+                    transaction.setUpdatedat(timestamp);
                     TransactionsModel.create(transaction);
                     for (Orders order : listo) {
                         System.out.println(order.getProductsByOrproductid().getProname());
@@ -90,11 +82,16 @@ public class TransactionController extends FrontEndController {
                     }
                 }
                 request.setAttribute("transaction", transaction);
+                sendMail(request, response, transaction.getUsersByTruserid().getEmail());
+                session.removeAttribute("cart");
                 ServletUtils.forward("/views/Guest/vnpay/vnpay_return.jsp", request, response);
+                break;
+            case "/checkout_return":
+                request.setAttribute("transaction", transaction);
+                ServletUtils.forward("/views/Guest/cart/checkout_return.jsp", request, response);
                 break;
         }
     }
-
     private void manageTransaction(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Transactions transaction = (Transactions) session.getAttribute("cart");
@@ -125,15 +122,14 @@ public class TransactionController extends FrontEndController {
                 }
                 session.setAttribute("transaction", transaction);
                 session.removeAttribute("cart");
-                ServletUtils.redirect("/home", request, response);
+                sendMail(request, response, transaction.getUsersByTruserid().getEmail());
+                ServletUtils.redirect("/home/cart/checkout/checkout_return", request, response);
                 break;
             case "/vnpay":
                 transaction.setId(id);
                 transaction.setUsersByTruserid(user);
                 transaction.setTraddress(address);
-                System.out.println(address);
                 transaction.setTrphone(phone);
-                System.out.println(phone);
                 transaction.setTrnote(note);
                 transaction.setCreatedat(timestamp);
                 transaction.setUpdatedat(timestamp);
@@ -142,12 +138,12 @@ public class TransactionController extends FrontEndController {
                     order.setTransactionsByOrtransactionid(transaction);
                 }
                 session.setAttribute("transaction", transaction);
-                vnpay(request, response);
+                vnpay(request, response, transaction);
                 break;
         }
     }
 
-    private void vnpay(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void vnpay(HttpServletRequest request, HttpServletResponse response, Transactions transaction) throws IOException, ServletException {
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         //Khai báo const
@@ -225,6 +221,9 @@ public class TransactionController extends FrontEndController {
         job.addProperty("code", "00");
         job.addProperty("message", "success");
         job.addProperty("data", paymentUrl);
+
+
+        //Chuyển đến trang thanh toán
         ServletUtils.redirect(paymentUrl, request, response);
         //Gson gson = new Gson();
         //response.getWriter().write(gson.toJson(job));
@@ -242,7 +241,14 @@ public class TransactionController extends FrontEndController {
         }
         return id;
     }
-
+    private void sendMail(HttpServletRequest request, HttpServletResponse response, String email) throws ServletException, IOException {
+        String message = convertJspToString("/views/Guest/mail/Bill.jsp",request, response); /*buffer.toString();*/
+        try {
+            EmailUtil.sendHTMLMail(message, email);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
     private Transactions getTransById(int id) {
         Transactions trans = new Transactions();
         try {

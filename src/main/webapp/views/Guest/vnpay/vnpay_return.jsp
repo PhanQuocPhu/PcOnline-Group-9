@@ -5,6 +5,7 @@
 <%@ page import="java.util.HashMap" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="transaction" scope="request" type="entity.Transactions"/>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -88,7 +89,7 @@
 
 	</style>
 
-	<%
+	<%--<%
 		//Begin process return from VNPAY
 		Map fields = new HashMap();
 		for (Enumeration params = request.getParameterNames(); params.hasMoreElements(); ) {
@@ -108,7 +109,7 @@
 		}
 		String signValue = VnpayConst.hashAllFields(fields);
 
-	%>
+	%>--%>
 	<body>
 		<div class="container mt-4">
 			<div class="header">
@@ -128,13 +129,12 @@
 							</div>
 							<div class="col-md-10" style="font-size: 14px;">
 								<h5 class="thanks">Cảm ơn bạn đã mua hàng</h5>
-								<p>Một email xác nhận đã được gửi tới phanquocphu1998@gmail.com. <br> Xin vui lòng kiểm
+								<p>Một email xác nhận đã được gửi tới ${transaction.usersByTruserid.email}. <br> Xin vui lòng kiểm
 									tra email của bạn</p>
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<jsp:useBean id="transaction" scope="request" type="entity.Transactions"/>
 							<div class="col-sm-6">
 								<h5>Thông tin người nhận</h5>
 								<p>${transaction.usersByTruserid.name}</p>
@@ -142,7 +142,7 @@
 								<p>${transaction.usersByTruserid.phone}</p>
 							</div>
 							<div class="col-sm-6">
-								<h5>Địa chỉ giao hàng</h5>
+								<h5>Thông tin giao hàng</h5>
 								<p>${transaction.traddress}</p>
 							</div>
 						</div>
@@ -150,25 +150,25 @@
 							<div class="col-sm-6">
 								<h5>Thông tin hóa đơn</h5>
 								<p>
-									Mã đơn hàng: <%=request.getParameter("vnp_TxnRef")%>
+									Mã đơn hàng: ${transaction.id}
 								</p>
 								<p>
 									Mã Ngân hàng: <%=request.getParameter("vnp_BankCode")%>
 								</p>
 								<p>
-									Thời gian thanh toán: <%=request.getParameter("vnp_PayDate")%>
+									Thời gian thanh toán: ${transaction.createdat}
 								</p>
 							</div>
 							<div class="col-sm-6">
 								<h5>Phương thức thanh toán</h5>
-								<p>Thanh toán Online</p>
+								<p>Thanh toán Online qua Vnpay</p>
 								<p>
 									Kết quả giao dịch:
 									<%
 										if ("00".equals(request.getParameter("vnp_ResponseCode"))) {
-											out.print("GD Thanh cong");
+											out.print("Success");
 										} else {
-											out.print("GD Khong thanh cong");
+											out.print("Fail");
 										}
 									%>
 								</p>

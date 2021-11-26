@@ -18,9 +18,9 @@
 			<div style="padding:0 10px;margin-bottom:25px">
 				<div class="adM">
 				</div>
-				<p>Xin chào ${transaction.usersByTruserid.name}</p>
-				<p>Cảm ơn Anh/chị đã đặt hàng tại <strong>PConline - Group 9</strong>!</p>
-				<p>Đơn hàng của Anh/chị đã được tiếp nhận, chúng tôi sẽ nhanh chóng liên hệ với Anh/chị.</p>
+				<p>Hello ${transaction.usersByTruserid.name}</p>
+				<p>Thank you for shopping at <strong>PConline - Group 9</strong>!</p>
+				<p>Your order has been recieved, we will contact you shortly</p>
 			</div>
 			<hr>
 			<div style="padding:0 10px">
@@ -28,8 +28,8 @@
 				<table style="width:100%;border-collapse:collapse;margin-top:20px">
 					<thead>
 						<tr>
-							<th style="text-align:left;width:50%;font-size:medium;padding:5px 0">Thông tin mua hàng</th>
-							<th style="text-align:left;width:50%;font-size:medium;padding:5px 0">Địa chỉ nhận hàng</th>
+							<th style="text-align:left;width:50%;font-size:medium;padding:5px 0">Billing Information</th>
+							<th style="text-align:left;width:50%;font-size:medium;padding:5px 0">Delivery Address</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -55,12 +55,6 @@
 							<td>
 								<table style="width:100%">
 									<tbody>
-
-										<tr>
-											<td>${transaction.usersByTruserid.name}</td>
-										</tr>
-
-
 										<tr>
 											<td style="word-break:break-word;word-wrap:break-word">
 												${transaction.traddress}
@@ -76,12 +70,12 @@
 
 			</div>
 			<div style="margin-top:20px;padding:0 10px">
-				<div style="padding-top:10px;font-size:medium"><strong>Thông tin đơn hàng</strong></div>
+				<div style="padding-top:10px;font-size:medium"><strong>Order Information</strong></div>
 				<table style="width:100%;margin:10px 0">
 					<tbody>
 						<tr>
-							<td style="width:50%;padding-right:15px">Mã đơn hàng: ${transaction.id}</td>
-							<td style="width:50%">Ngày đặt hàng: <?php echo date('F j, Y, g:i a'); ?></td>
+							<td style="width:50%;padding-right:15px">Order ID: ${transaction.id}</td>
+							<td style="width:50%">Date: ${transaction.createdat}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -94,7 +88,7 @@
 										<td style="width:100%;padding:25px 10px 0 0" colspan="2">
 											<div style="float:left;width:80px;height:80px;border:1px solid #ebeff2;overflow:hidden">
 												<img style="max-width:100%;max-height:100%"
-													 src="<c:url value='/public/images/${order.productsByOrproductid.proavatar}'/>"
+													 src="http://localhost:8080/public/images/${order.productsByOrproductid.proavatar}"
 													 class="CToWUd" alt="">
 											</div>
 											<div style="margin-left:100px">
@@ -126,25 +120,25 @@
 								<table style="width:100%;float:right">
 									<tbody>
 										<tr>
-											<td style="padding-bottom:10px">Giảm giá:</td>
+											<td style="padding-bottom:10px">Discount:</td>
 											<td style="font-weight:bold;text-align:right;padding-bottom:10px">
-												-0 VND
+												<fmt:formatNumber value="0" type="currency"/>
 											</td>
 										</tr>
 										<tr>
-											<td style="padding-bottom:10px">Giá trừ khuyến mãi:</td>
+											<td style="padding-bottom:10px">Price after discount:</td>
 											<td style="font-weight:bold;text-align:right;padding-bottom:10px">
 												<fmt:formatNumber value="${transaction.trtotal}" type="currency"/>
 											</td>
 										</tr>
 										<tr>
-											<td style="padding-bottom:10px">Phí vận chuyển:</td>
+											<td style="padding-bottom:10px">Delivery fee:</td>
 											<td style="font-weight:bold;text-align:right;padding-bottom:10px">
-												0 VND
+												<fmt:formatNumber value="0" type="currency"/>
 											</td>
 										</tr>
 										<tr style="border-top:1px solid #e5e9ec">
-											<td style="padding-top:10px">Thành tiền</td>
+											<td style="padding-top:10px">Total</td>
 											<td style="font-weight:bold;text-align:right;font-size:16px;padding-top:10px">
 												<fmt:formatNumber value="${transaction.trtotal}" type="currency"/>
 											</td>
@@ -166,18 +160,19 @@
 			<div style="padding:0 10px">
 
 				<p style="height:50px">
-					<span style="float:left;margin-top:14px;margin-right:10px">Để kiểm tra trạng thái đơn hàng, Anh/chị vui lòng:</span>
+					<span style="float:left;margin-top:14px;margin-right:10px">To check your order status, please:</span>
 					<span style="margin-top:25px;float:left"><span style="padding:14px 35px;background:#357ebd">
-			<a href="" style="font-size:16px;text-decoration:none;color:#fff" target="_blank" data-saferedirecturl="">Đăng nhập vào tài khoản</a>
+			<a href="" style="font-size:16px;text-decoration:none;color:#fff" target="_blank" data-saferedirecturl="">Login to your account</a>
 			</span></span>
 				</p>
 
 				<div style="clear:both"></div>
-				<p style="margin:30px 0">Nếu Anh/chị có bất kỳ câu hỏi nào, xin liên hệ với chúng tôi tại
+				<p style="margin:30px 0">
+					If you have any question, please contact us at
 					<a href="mailto:16110180@student.hcmute.edu.vn" style="color:#357ebd" target="_blank">16110180@student.hcmute.edu.vn</a>
 				</p>
-				<p style="text-align:right"><i>Trân trọng,</i></p>
-				<p style="text-align:right"><strong>Ban quản trị cửa hàng PCPM - PC Laravel</strong></p>
+				<p style="text-align:right"><i>Best regard,</i></p>
+				<p style="text-align:right"><strong>PConline - Group 9 admin board</strong></p>
 			</div>
 		</div>
 	</body>

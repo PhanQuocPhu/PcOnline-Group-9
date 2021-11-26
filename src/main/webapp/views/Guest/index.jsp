@@ -53,12 +53,7 @@
 								<div class="single-slide align-center-left animation-style-02 bg-4">
 									<div class="slider-progress"></div>
 									<div class="slider-content">
-										<h5>Sale Offer <span>-20% Off</span> This Week</h5>
-										<h2>Chamcham Galaxy S9 | S9+</h2>
-										<h3>Starting at <span>$589.00</span></h3>
-										<div class="default-btn slide-btn">
-											<a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-										</div>
+
 									</div>
 								</div>
 								<!-- Single Slide Area End Here -->
@@ -66,12 +61,7 @@
 								<div class="single-slide align-center-left animation-style-01 bg-5">
 									<div class="slider-progress"></div>
 									<div class="slider-content">
-										<h5>Sale Offer <span>Black Friday</span> This Week</h5>
-										<h2>Work Desk Surface Studio 2018</h2>
-										<h3>Starting at <span>$1599.00</span></h3>
-										<div class="default-btn slide-btn">
-											<a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-										</div>
+
 									</div>
 								</div>
 								<!-- Single Slide Area End Here -->
@@ -79,12 +69,7 @@
 								<div class="single-slide align-center-left animation-style-02 bg-6">
 									<div class="slider-progress"></div>
 									<div class="slider-content">
-										<h5>Sale Offer <span>-10% Off</span> This Week</h5>
-										<h2>Phantom 4 Pro+ Obsidian</h2>
-										<h3>Starting at <span>$809.00</span></h3>
-										<div class="default-btn slide-btn">
-											<a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-										</div>
+
 									</div>
 								</div>
 								<!-- Single Slide Area End Here -->
@@ -103,9 +88,9 @@
 				<div class="row">
 					<!-- Begin Single Banner Area -->
 					<div class="col-lg-4 col-md-4 text-center">
-						<div class="single-banner pb-xs-30">
+						<div class="single-banner pb-xs-30" >
 							<a href="#">
-								<img src="${pageContext.request.contextPath}/assets/guest/images/banner/1_3.jpg"
+								<img src="${pageContext.request.contextPath}/assets/guest/images/banner/4_1.jpg"
 									 alt="Li's Static Banner">
 							</a>
 						</div>
@@ -115,7 +100,7 @@
 					<div class="col-lg-4 col-md-4 text-center">
 						<div class="single-banner pb-xs-30">
 							<a href="#">
-								<img src="${pageContext.request.contextPath}/assets/guest/images/banner/1_4.jpg"
+								<img src="${pageContext.request.contextPath}/assets/guest/images/banner/4_2.jpg"
 									 alt="Li's Static Banner">
 							</a>
 						</div>
@@ -125,7 +110,7 @@
 					<div class="col-lg-4 col-md-4 text-center">
 						<div class="single-banner">
 							<a href="#">
-								<img src="${pageContext.request.contextPath}/assets/guest/images/banner/1_5.jpg"
+								<img src="${pageContext.request.contextPath}/assets/guest/images/banner/4_1.jpg"
 									 alt="Li's Static Banner">
 							</a>
 						</div>
@@ -154,9 +139,7 @@
 											<span>${catehome.cname}</span>
 										</h2>
 										<ul class="li-sub-category-list">
-											<li class="active"><a href="shop-left-sidebar.html">Chamcham</a></li>
-											<li><a href="shop-left-sidebar.html">Sanai</a></li>
-											<li><a href="shop-left-sidebar.html">Meito</a></li>
+											<li class="active"><a href="<c:url value = "/home/product/list?cid=${catehome.id}"/>">Xem tất cả</a></li>
 										</ul>
 									</div>
 									<div class="row">
@@ -166,7 +149,7 @@
 													<!-- single-product-wrap start -->
 													<div class="single-product-wrap">
 														<div class="product-image" style="width: 206px; height: 206px">
-															<a href="single-product.html">
+															<a href="<c:url value='/home/product/detail?id=${p.id}'/>">
 																<img src="<c:url value='/public/images/${p.proavatar}'/>"
 																	 alt="${p.proslug}">
 															</a>
@@ -176,7 +159,7 @@
 															<div class="product_desc_info">
 																<div class="product-review">
 																	<h5 class="manufacturer">
-																		<a href="shop-left-sidebar.html">MSI</a>
+																		<a href="">MSI</a>
 																	</h5>
 																	<div class="rating-box">
 																		<ul class="rating">
@@ -191,7 +174,7 @@
 																	</div>
 																</div>
 																<h4><a class="product_name"
-																	   href="single-product.html">${p.proname}</a></h4>
+																	   href="<c:url value='/home/product/detail?id=${p.id}'/>">${p.proname}</a></h4>
 																<div class="price-box">
 																	<span class="new-price">
 																		<fmt:setLocale value="vi_VN"/>
@@ -207,7 +190,7 @@
 																	</li>
 																	<li>
 																		<a class="links-details"
-																		   href="single-product.html"><i class="fa fa-heart-o"></i></a>
+																		   href=""><i class="fa fa-heart-o"></i></a>
 																	</li>
 																	<li>
 																		<a class="quick-view" data-toggle="modal"

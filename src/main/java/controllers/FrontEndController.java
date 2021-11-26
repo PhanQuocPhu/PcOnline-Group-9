@@ -9,6 +9,7 @@ import models.OrdersModel;
 import models.ProductsModel;
 import models.UsersModel;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -28,16 +29,17 @@ public class FrontEndController extends HttpServlet {
     }
 
     String convertJspToString(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         final StringWriter buffer = new StringWriter();
-        request.getRequestDispatcher(path)
-                .include(request, new HttpServletResponseWrapper(response) {
-                    private PrintWriter writer = new PrintWriter(buffer);
-                    @Override
-                    public PrintWriter getWriter() throws IOException {
-                        return writer;
-                    }
-                });
+        RequestDispatcher rd = request.getRequestDispatcher(path);
+        rd.include(request, new HttpServletResponseWrapper(response) {
+            private PrintWriter writer = new PrintWriter(buffer);
+            @Override
+            public PrintWriter getWriter() throws IOException {
+                return writer;
+            }
+        });
         return buffer.toString();
     }
      List<Categories> getAllCate() {
