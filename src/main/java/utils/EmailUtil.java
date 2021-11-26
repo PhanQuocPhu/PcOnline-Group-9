@@ -19,7 +19,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailUtil {
-    public static void sendHTMLMail(String message,String title,String toAddress) throws MessagingException {
+    public static void sendHTMLMail(String message, String title, String toAddress) throws MessagingException {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", EmailConst.mailhost);
         prop.put("mail.smtp.port", EmailConst.mailport);
@@ -50,7 +50,7 @@ public class EmailUtil {
         System.out.println("Mail Send");
     }
 
-    public static void sendTextMail(String message,String title, String toAddress) throws MessagingException {
+    public static void sendTextMail(String message, String title, String toAddress) throws MessagingException {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", EmailConst.mailhost);
         prop.put("mail.smtp.port", EmailConst.mailport);
