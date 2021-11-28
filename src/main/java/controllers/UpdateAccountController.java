@@ -3,14 +3,18 @@ package controllers;
 import entity.Users;
 import models.UsersModel;
 import services.helper;
+import utils.EmailUtil;
 import utils.ServletUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+
+import static services.test.convertJspToString;
 
 @WebServlet(name = "UpdateAccountController", value = "/home/account")
 public class UpdateAccountController extends HttpServlet {
@@ -64,6 +68,13 @@ public class UpdateAccountController extends HttpServlet {
             apassword.setMaxAge(0);
             response.addCookie(aemail);
             response.addCookie(apassword);
+            String message = convertJspToString("/views/Guest/Mail/UpdateInfo.jsp",request, response); /*buffer.toString();*/
+            System.out.println(message);
+            try {
+                EmailUtil.sendHTMLMail(message,"Thay đổi thông tin","nhattinnguyen99@gmail.com");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
             System.out.println("change Successfully");
             session.setAttribute("user", user);
             ServletUtils.redirect("/home/account", request, response);

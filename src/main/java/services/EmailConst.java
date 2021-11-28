@@ -9,8 +9,8 @@ public class EmailConst {
     public static String password = "5ee1044525eeea";*/
 
     //Phú
-    public static String username = "ff9233d9ead997";
-    public static String password = "f7d8ca89b05aab";
+    public static String username = "b526c764236556";
+    public static String password = "5ee1044525eeea";
     public static String mailhost = "smtp.mailtrap.io";
     public static String mailport = "587";
 

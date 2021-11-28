@@ -137,6 +137,9 @@
 			width: 370px;
 			height: 226px;
 		}
+		.show{
+			display: flex !important;
+		}
 	</style>
 
 	<body>
@@ -167,7 +170,9 @@
 												<div class="ht-setting-trigger"><span></span></div>
 												<div class="setting ht-setting">
 													<ul class="ht-setting-list">
-														<li><a href="#">My Account</a></li>
+
+
+														<li><a href="<c:url value='/home/account'/>">My Account</a></li>
 													</ul>
 												</div>
 											</li>
