@@ -35,8 +35,12 @@ public class ProductController extends FrontEndController {
         Categories cat = new Categories();
         switch (path) {
             case "/list":
+                int page = 1;
+                if(request.getParameter("page") != null)
+                    page = Integer.parseInt(request.getParameter("page"));
                 int cid = Integer.parseInt(request.getParameter("cid"));
-                listpc = getAllPro(cid);
+                int position = (page - 1) * 10;
+                listpc = getAllProPaginate(cid, position);
                 cat = getCateById(cid);
                 request.setAttribute("categories", listc);
                 request.setAttribute("products", listpc);
@@ -58,6 +62,12 @@ public class ProductController extends FrontEndController {
                 ServletUtils.redirect("/home", request, response);
                 break;
         }
+    }
+
+    List<Products> getAllProPaginate(int cid, int position){
+        List<Products> list = null;
+        list = ProductsModel.getByCidPagination(cid, position, 6);
+        return list;
     }
 
 

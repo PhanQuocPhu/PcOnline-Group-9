@@ -4,6 +4,7 @@ import entity.Categories;
 import entity.Products;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
 import java.sql.SQLException;
@@ -11,6 +12,21 @@ import java.util.List;
 
 public class ProductsModel {
     public static Session session = HibernateUtil.openSession();
+    //Đếm tổng record
+    public long countTotalRecords() {
+        String countQ = "Select count (id) from Products ";
+        return (Long) session.createQuery(countQ).uniqueResult();
+    }
+    public static List<Products> getByCidPagination(int proCategoryId, int position, int pageSize) {
+        session.clear();
+        final String hql = "FROM Products WHERE categoriesByProcategoryid.id=:proCategoryId";
+        Query query = session.createQuery(hql, Products.class);
+        query.setFirstResult(position);
+        query.setMaxResults(pageSize);
+        query.setParameter("proCategoryId", proCategoryId);
+        return query.list();
+    }
+
     //Lấy Id cuối
     public static int getLastId() throws SQLException {
         String hql = "select max(id) from Products";

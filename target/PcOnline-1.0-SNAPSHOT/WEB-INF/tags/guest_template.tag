@@ -133,10 +133,6 @@
         .NAMABANK label {
             background-image: url(https://sandbox.vnpayment.vn/paymentv2/images/bank/namabank_logo.png);
         }
-		.single-banner{
-			width: 370px;
-			height: 226px;
-		}
 	</style>
 
 	<body>

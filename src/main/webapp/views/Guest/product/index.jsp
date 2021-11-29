@@ -18,7 +18,7 @@
 		</div>
 		<!-- Li's Breadcrumb Area End Here -->
 		<!-- Begin Li's Content Wraper Area -->
-		<div class="content-wraper pt-30 pb-60">
+		<div class="content-wraper pb-60">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -49,13 +49,10 @@
 								<div class="product-short">
 									<p>Sort By:</p>
 									<select class="nice-select">
-										<option value="trending">Relevance</option>
+										<option value="trending">Default</option>
 										<option value="sales">Name (A - Z)</option>
 										<option value="sales">Name (Z - A)</option>
 										<option value="rating">Price (Low &gt; High)</option>
-										<option value="date">Rating (Lowest)</option>
-										<option value="price-asc">Model (A - Z)</option>
-										<option value="price-asc">Model (Z - A)</option>
 									</select>
 								</div>
 							</div>
