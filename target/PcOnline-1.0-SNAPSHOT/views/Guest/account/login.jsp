@@ -28,31 +28,36 @@
 								<div class="row">
 									<div class="col-md-12 col-12 mb-20">
 										<label>Email Address</label>
-										<input class="mb-0" type="email" placeholder="Email Address" name="email" required>
+										<input class="mb-0" type="email" placeholder="Email Address" name="email"
+											   required>
 									</div>
 									<div class="col-12">
 										<label>Password</label>
-										<input class="mb-0" type="password" placeholder="Password" name="password" required>
+										<input class="mb-0" type="password" placeholder="Password" name="password"
+											   required>
 									</div>
 
 
-										<div class="col-md-8">
-											<div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
-												<input type="checkbox" id="remember_me" name="rem">
-												<label for="remember_me">Remember me</label>
-											</div>
+									<div class="col-md-8">
+										<div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
+											<input type="checkbox" id="remember_me" name="rem">
+											<label for="remember_me">Remember me</label>
 										</div>
-										<div class="col-md-4 text-left text-md-right">
-											<a href="#"> Forgotten pasword?</a>
-										</div>
+									</div>
+									<div class="col-md-4 text-left text-md-right">
+										<a href="#"> Forgotten pasword?</a>
+									</div>
 
 
-									<p class="login-box-msg text-center" style="margin-left: 16px;color: red; ">${loginMes}</p>
+									<p class="login-box-msg text-center"
+									   style="margin-left: 16px;color: red; ">${loginMes}</p>
 									<div class="col-md-12" id="flex-login">
-										<button type="submit" class="register-button ml-0 mt-0" style="width: 100%">Login</button>
+										<button type="submit" class="register-button ml-0 mt-0" style="width: 100%">
+											Login
+										</button>
 									</div>
 									<div class="col-md-12 mt-3 text-end">
-										<a href="<c:url value = "/home/register"/>" >Register Now</a>
+										<a href="<c:url value = "/home/register"/>">Register Now</a>
 									</div>
 
 									<div class="col-md-12">
@@ -60,18 +65,16 @@
 											<span style=" background:#fff; padding:0 10px; ">Or</span>
 										</p>
 									</div>
-									<div class="col-md-12 text-center">
-										<a href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&
+									<div class="col-md-12">
+										<a class="btn btn-outline-primary" href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&
 												redirect_uri=http://localhost:8080/home/login/login-google&
 												response_type=code&
 												client_id=641342109621-ku4sp2tqo4cm9lad2mi5o1ehfmud3l7g.apps.googleusercontent.com&
-												approval_prompt=force"
-										   class="btn btn-danger text-white col-md-5 p-0" style="font-size: 25px">
-											<i class="fa fa-google-plus-square"></i>
-										</a>
-										<a href="" class="btn btn-primary text-white col-md-5 p-0"
-										   style="font-size: 25px">
-											<i class="fa fa-facebook-square"></i>
+												approval_prompt=force" role="button" style="text-transform:none; width: 100%">
+											<img width="20px" style="margin-bottom:3px; margin-right:5px"
+												 alt="Google sign-in"
+												 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
+											Login with Google
 										</a>
 									</div>
 								</div>
