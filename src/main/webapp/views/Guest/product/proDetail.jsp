@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <mt:guest_template tittle="${product.proname}">
 	<jsp:body>
@@ -53,7 +53,10 @@
 									</ul>
 								</div>
 								<div class="price-box pt-20">
-									<span class="new-price new-price-2">${product.proprice} vnd</span>
+									<span class="new-price new-price-2">
+										<fmt:setLocale value="vi_VN"/>
+										<fmt:formatNumber value="${product.proprice}" type="currency"/>
+									</span>
 								</div>
 								<div class="product-desc">
 									<p>
@@ -63,8 +66,8 @@
 									</p>
 								</div>
 								<div class="single-add-to-cart">
-									<form action="#" class="cart-quantity">
-										<button class="add-to-cart" type="submit">Add to cart</button>
+									<form method="post" action="<c:url value='/home/cart/add?id=${product.id}'/>" class="cart-quantity" id="addcart">
+										<button class="add-to-cart" type="button" data-id="${product.id}">Add to cart</button>
 									</form>
 								</div>
 							</div>
@@ -263,12 +266,17 @@
 														   href="single-product.html">${p.proname}</a>
 													</h4>
 													<div class="price-box">
-														<span class="new-price">${p.proprice}</span>
+														<span class="new-price">
+															<fmt:setLocale value="vi_VN"/>
+															<fmt:formatNumber value="${p.proprice}" type="currency"/>
+														</span>
 													</div>
 												</div>
 												<div class="add-actions">
 													<ul class="add-actions-link">
-														<li class="add-cart active"><a href="#">Add to cart</a></li>
+														<li class="add-cart active">
+															<a class="addcart" data-id="${p.id}">Add to cart</a>
+														</li>
 														<li><a href="#" title="quick view" class="quick-view-btn"
 															   data-toggle="modal" data-target="#exampleModalCenter"><i
 																class="fa fa-eye"></i></a></li>

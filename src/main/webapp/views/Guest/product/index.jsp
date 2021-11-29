@@ -18,17 +18,10 @@
 		</div>
 		<!-- Li's Breadcrumb Area End Here -->
 		<!-- Begin Li's Content Wraper Area -->
-		<div class="content-wraper pt-60 pb-60">
+		<div class="content-wraper pt-30 pb-60">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<!-- Begin Li's Banner Area -->
-						<div class="single-banner shop-page-banner">
-							<a href="#">
-								<img src="<c:url value='/assets/guest/images/bg-banner/2.jpg'/>"
-									 alt="Li's Static Banner">
-							</a>
-						</div>
 						<!-- Li's Banner Area End Here -->
 						<!-- shop-top-bar start -->
 						<div class="shop-top-bar mt-30">

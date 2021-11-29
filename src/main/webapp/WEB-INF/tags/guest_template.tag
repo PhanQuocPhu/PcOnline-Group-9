@@ -742,6 +742,7 @@
                     window.location.replace("<c:url value='/home/cart/'/>");
                 });
 
+                //Thêm giỏ hàng
                 $('.addcart').click(function () {
                     var href = '<c:url value='/home/cart/add?id='/>' + $(this).attr('data-id');
                     $.ajax({
@@ -756,6 +757,20 @@
                         }
                     });
                 });
+                $('.add-to-cart').click(function(){
+                    var href = $('#addcart').attr('action');
+                    $.ajax({
+                        type: "POST",
+                        url: href,
+                        success: function (responseXml) {
+                            alert("Success");
+                            $('.hm-minicart').html($(responseXml).html());
+                        },
+                        error: function (data) {
+                            alert("Lỗi");
+                        }
+                    });
+				});
 
                 //ajax sửa số lượng đơn hàng (Tạm không dùng - Nhưng đừng xóa)
                 $('.inc.qtybuttoni').click(function () {
