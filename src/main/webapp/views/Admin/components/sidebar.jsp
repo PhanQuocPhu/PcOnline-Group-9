@@ -89,8 +89,8 @@
 				</li>
 
 				<%--Account--%>
-				<li class="nav-item">
-					<a href="#" class="nav-link">
+				<li class="nav-item  ${accMenu}">
+					<a href="#" class="nav-link" >
 						<i class="nav-icon far fa-envelope"></i>
 						<p>
 							Account
@@ -99,13 +99,13 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="pages/mailbox/mailbox.html" class="nav-link">
+							<a href="${pageContext.request.contextPath}/admin/account/admin" class="nav-link ${adminActive}" >
 								<i class="far fa-circle nav-icon"></i>
 								<p>Admin</p>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="pages/mailbox/compose.html" class="nav-link">
+							<a href="${pageContext.request.contextPath}/admin/account/guest" class="nav-link ${guestActive}" >
 								<i class="far fa-circle nav-icon"></i>
 								<p>Guest</p>
 							</a>

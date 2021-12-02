@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @WebServlet(name = "LoginController", value = "/home/login/*")
@@ -29,7 +30,7 @@ public class LoginController extends FrontEndController {
         String password = request.getParameter("password");
         String rem = request.getParameter("remember");
         String preURI = (String) session.getAttribute("preURI");
-
+        Timestamp timestamp = helper.getCurrentTimeStamp();
 
         Users user = getUserByEmail(email);
         String path = request.getPathInfo();
@@ -83,6 +84,7 @@ public class LoginController extends FrontEndController {
         request.setAttribute("categories", listc);
         request.setAttribute("cart", session.getAttribute("cart"));
         request.setAttribute("LoginMess", "Welcome back!!");
+        Timestamp timestamp = helper.getCurrentTimeStamp();
         String preURI = (String) session.getAttribute("preURI");
         String path = request.getPathInfo();
         if (path == null || path.equals("/")) {
@@ -109,6 +111,7 @@ public class LoginController extends FrontEndController {
                         user.setPassword(helper.randString(10));
                         user.setName(googleEn.getName());
                         user.setAvatar(googleEn.getPicture());
+                        user.setCreatedAt(timestamp);
                         UsersModel.create(user);
                     }else{
                         user.setEmail(googleEn.getEmail());

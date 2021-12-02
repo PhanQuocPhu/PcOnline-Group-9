@@ -1,10 +1,12 @@
 package models;
 
 import entity.Admins;
+import entity.Categories;
 import entity.Products;
 import entity.Users;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.mindrot.jbcrypt.BCrypt;
 import org.sql2o.Connection;
 import utils.DbUtil;
@@ -17,8 +19,13 @@ import java.util.List;
 public class AdminsModel {
     public static Session session = HibernateUtil.openSession();
 
+    //Lấy hết
+    public static List<Admins> getAll() throws SQLException {
+        String hql = "from Admins  order by id";
+        return session.createQuery(hql, Admins.class).list();
+    }
+
     //Lấy theo email
-    //Lấy hết theo cateID
     public static Admins getByEmail(String email) throws SQLException {
         session.clear();
         final String hql = "FROM Admins WHERE email=:email";
@@ -32,7 +39,11 @@ public class AdminsModel {
         /*conn.close();*/
         return admin;
     }
-
+    //Lấy theo ID
+    public static Admins getById(int id) throws SQLException {
+        session.clear();
+        return (Admins) session.get(Admins.class, id);
+    }
     //Create
     public static Admins create(String name, String email, String password){
         String sql = "select * FROM admins WHERE email =:email";
@@ -58,6 +69,18 @@ public class AdminsModel {
         return admin;
     }
 
+    //Xóa
+    public static void delete(Admins entity) {
+        session.clear();
+        Transaction t = session.beginTransaction();
+        try {
+            session.delete(entity);
+            t.commit();
+        } catch (Exception e) {
+            t.rollback();
+        }
+
+    }
     //Mã hóa mật khẩu
     public static String encryptPass(String pass) {
         return BCrypt.hashpw(pass, BCrypt.gensalt());
