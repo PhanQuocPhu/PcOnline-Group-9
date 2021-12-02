@@ -49,7 +49,7 @@ public class test {
 
         //testGetJson(10);
         //testCreateTrans();
-        String message="<!DOCTYPE html>\n" +
+        /*String message="<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "  <head>\n" +
                 "    <meta charset=\"UTF-8\" />\n" +
@@ -69,7 +69,9 @@ public class test {
             EmailUtil.sendHTMLMail(message,"Xác nhận đăng ký","nhattinnguyen99@gmail.com");
         } catch (MessagingException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        CreateUser();
     }
     public static String convertJspToString(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");

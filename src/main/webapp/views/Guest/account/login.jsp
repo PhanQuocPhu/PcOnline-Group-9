@@ -8,7 +8,7 @@
 			<div class="container">
 				<div class="breadcrumb-content">
 					<ul>
-						<li><a href="index.html">Home</a></li>
+						<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
 						<li class="active">Login</li>
 					</ul>
 				</div>
@@ -67,7 +67,7 @@
 									</div>
 									<div class="col-md-12">
 										<a class="btn btn-outline-primary" href="https://accounts.google.com/o/oauth2/auth?scope=profile%20email&
-												redirect_uri=http://localhost:8080/home/login/login-google&
+												redirect_uri=https://pconline-group-9.herokuapp.com/home/login/login-google&
 												response_type=code&
 												client_id=641342109621-ku4sp2tqo4cm9lad2mi5o1ehfmud3l7g.apps.googleusercontent.com&
 												approval_prompt=force" role="button" style="text-transform:none; width: 100%">
