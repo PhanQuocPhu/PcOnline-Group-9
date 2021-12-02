@@ -114,7 +114,7 @@
 		<div class="container mt-4">
 			<div class="header">
 				<a href="/" class="hidden-xsx logo-big">
-					<img src="http://127.0.0.1:8000/img/logo.gif" alt="">
+					<img src="<c:url value='/assets/guest/images/menu/logo/1.jpg'/>" alt="">
 				</a>
 			</div>
 			<br>
@@ -123,7 +123,7 @@
 					<div class="col-md-7">
 						<div class="row">
 							<div class="col-md-2 text-center">
-								<img src="http://127.0.0.1:8000/img/Green-Check-Mark-PNG-Image.png" class="img-fluid"
+								<img src="<c:url value='/assets/guest/images/Green-Check-Mark-PNG-Image.png'/>" class="img-fluid"
 									 alt=""
 									 style="width: 72px; height: 72px;">
 							</div>
