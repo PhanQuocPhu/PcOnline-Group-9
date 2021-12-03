@@ -11,7 +11,7 @@ import java.util.*;
 public class VnpayConst {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     //Return URL local host
-    public static String vnp_Returnurl = "http://localhost:8080/home/cart/checkout/vnpay_return";
+    public static String vnp_Returnurl = "https://pconline-group-9.herokuapp.com/home/cart/checkout/vnpay_return";
     //Return URL deploy
     //public static String vnp_Returnurl = "http://https://pconline-group-9.herokuapp.com/home/vnpay_return";
     public static String vnp_TmnCode = "C7XFNHPJ";
