@@ -30,7 +30,7 @@
 						<!-- /.card -->
 						<div class="card">
 							<div class="card-header">
-								<input type="file" accept="image/*">
+								<%--<input type="file" accept="image/*">--%>
 								<h2 class="card-title" style="font-size: 2.0rem"></h2>
 								<button type="button" class="btn btn-outline-success float-right"
 										data-toggle="modal"
